@@ -25,7 +25,7 @@ const ArticleList = () => {
     <>
       <Header />
       <section className="border-2 border-zinc-800 m-5 p-10">
-        <p>Articles</p>
+        <p className="text-3xl font-bold text-center mb-5">Articles</p>
         <div>
           <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 place-items-center gap-4">
             {articleList.map((article) => {
