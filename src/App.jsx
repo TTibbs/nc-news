@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./components/Home";
 import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/articles" element={<ArticleList />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -25,7 +25,7 @@ const LoadingBar = ({ isArticlesLoading }) => {
     <div className="fixed inset-0 flex flex-col items-center justify-center bg-zinc-800 z-50">
       <div className="w-4/5 max-w-xs h-2 bg-zinc-600 rounded-full overflow-hidden">
         <div
-          className="h-full bg-blue-500 transition-all duration-100 ease-in-out"
+          className="h-full bg-blue-600 transition-all duration-100 ease-in-out"
           style={{ width: `${loadingProgress}` }}
         ></div>
       </div>
