@@ -34,7 +34,7 @@ const Filter = ({ setArticleList }) => {
   }
 
   return (
-    <div className="m-5 p-10 flex items-center justify-end gap-5">
+    <div className="pb-10 flex items-center justify-end gap-5">
       <label htmlFor="sortBy">
         Sort:
         <select

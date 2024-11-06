@@ -15,7 +15,7 @@ const Nav = () => {
             Articles
           </li>
         </Link>
-        <Link to="/">
+        <Link to="/topics">
           <li className="py-2 px-3 text-lg rounded-xl hover:bg-blue-500 transition-colors duration-250 ease-linear">
             Topics
           </li>
