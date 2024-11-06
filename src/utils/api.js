@@ -65,3 +65,9 @@ export const addNewComment = (article_id, username, newComment) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const deleteArticleComment = (comment_id) => {
+  return api
+    .delete(`/api/comments/${comment_id}`)
+    .catch((err) => console.log(err));
+};

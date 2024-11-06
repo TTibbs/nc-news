@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { addNewComment, fetchArticleComments } from "../utils/api";
 
-const CommentAdder = ({ setArticleComments, setIsArticleLoading }) => {
+const CommentAdder = ({ setArticleComments }) => {
   const { article_id } = useParams();
   const [newComment, setNewComment] = useState("");
   const [username, setUsername] = useState("grumpy19");

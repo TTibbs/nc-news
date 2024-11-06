@@ -8,7 +8,7 @@ import {
 import Header from "./Header";
 import Loading from "../components/Loading";
 import CommentsList from "./CommentsList";
-import { DownVoteButton, UpVoteButton } from "./VoteButtons";
+import { DownVoteButton, UpVoteButton } from "./Buttons";
 import CommentAdder from "./CommentAdder";
 
 const SingleArticle = () => {
@@ -78,7 +78,11 @@ const SingleArticle = () => {
           </div>
         </div>
         <CommentAdder setArticleComments={setArticleComments} />
-        <CommentsList articleComments={articleComments} />
+        <CommentsList
+          articleComments={articleComments}
+          setArticleComments={setArticleComments}
+          setSingleArticle={setSingleArticle}
+        />
       </section>
     </>
   );
