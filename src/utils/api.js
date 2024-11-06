@@ -53,3 +53,15 @@ export const updateArticleVotes = (article_id, inc_votes) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const addNewComment = (article_id, username, newComment) => {
+  return api
+    .post(`/api/articles/${article_id}/comments`, {
+      username: username,
+      body: newComment,
+    })
+    .then((response) => {
+      return response.data.newComment;
+    })
+    .catch((err) => console.log(err));
+};

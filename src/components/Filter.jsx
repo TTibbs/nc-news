@@ -18,17 +18,14 @@ const Filter = ({ setArticleList }) => {
   }, [sortBy, order, limit]);
 
   const handleSortByChange = ({ target: { value } }) => {
-    console.log(value);
     setSortBy(value);
   };
 
   const handleOrderChange = ({ target: { value } }) => {
-    console.log(value);
     setOrder(value);
   };
 
   const handleLimitChange = ({ target: { value } }) => {
-    console.log(value);
     setLimit(value);
   };
 
