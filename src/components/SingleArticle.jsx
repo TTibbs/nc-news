@@ -15,7 +15,6 @@ const SingleArticle = () => {
   const [singleArticle, setSingleArticle] = useState({});
   const [articleComments, setArticleComments] = useState([]);
   const [isArticleLoading, setIsArticleLoading] = useState(true);
-  const [articleVotes, setArticleVotes] = useState(0);
 
   useEffect(() => {
     fetchArticleById(article_id)
@@ -36,16 +35,11 @@ const SingleArticle = () => {
   }, [article_id]);
 
   const handleArticleVotes = (inc_votes) => {
-    setSingleArticle((currentArticle) => ({
-      ...(currentArticle.votes + inc_votes.value),
-    }));
-
-    setSingleArticle((currentArticle) => ({
-      ...(currentArticle.votes - inc_votes.value),
-    }));
-
-    setArticleVotes((currentVotes) => currentVotes + inc_votes.value);
-    updateArticleVotes(article_id, inc_votes).catch((err) => console.log(err));
+    updateArticleVotes(article_id, inc_votes)
+      .then((updatedArticle) => {
+        setSingleArticle(updatedArticle);
+      })
+      .catch((err) => console.log(err));
   };
 
   if (isArticleLoading) {
