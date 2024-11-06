@@ -9,6 +9,7 @@ import Header from "./Header";
 import Loading from "../components/Loading";
 import CommentsList from "./CommentsList";
 import { DownVoteButton, UpVoteButton } from "./VoteButtons";
+import CommentAdder from "./CommentAdder";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -76,8 +77,9 @@ const SingleArticle = () => {
             </div>
           </div>
         </div>
+        <CommentAdder setArticleComments={setArticleComments} />
+        <CommentsList articleComments={articleComments} />
       </section>
-      <CommentsList articleComments={articleComments} />
     </>
   );
 };
