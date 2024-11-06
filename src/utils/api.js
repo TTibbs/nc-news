@@ -43,6 +43,34 @@ export const fetchArticleComments = (article_id) => {
     .catch((err) => console.log(err));
 };
 
+export const fetchTopics = () => {
+  return api
+    .get("/api/topics")
+    .then((response) => {
+      return response.data.topics;
+    })
+    .catch((err) => console.log(err));
+};
+
+export const fetchArticlesByTopic = (slug) => {
+  return api
+    .get(`/api/articles?topic=${slug}`)
+    .then((response) => {
+      return response.data.articles;
+    })
+    .catch((err) => console.log(err));
+};
+
+export const fetchTopicSlug = (slug) => {
+  return api
+    .get(`/api/topics/${slug}`)
+    .then((response) => {
+      console.log(response.data);
+      return response.data;
+    })
+    .catch((err) => console.log(err));
+};
+
 export const updateArticleVotes = (article_id, inc_votes) => {
   const body = { inc_votes };
 

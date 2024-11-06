@@ -25,8 +25,8 @@ const ArticleList = () => {
   return (
     <>
       <Header />
-      <Filter setArticleList={setArticleList} />
-      <section className="border-2 border-zinc-800 m-5 p-10">
+      <section className="border-2 border-zinc-800 m-5 mt-16 p-10">
+        <Filter setArticleList={setArticleList} />
         <p className="text-3xl font-bold text-center mb-5">Articles</p>
         <div>
           <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 place-items-center gap-4">

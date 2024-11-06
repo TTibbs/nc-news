@@ -50,7 +50,7 @@ const SingleArticle = () => {
   return (
     <>
       <Header />
-      <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl mt-5 mx-5 p-10">
+      <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl my-5 mx-5 p-10">
         <div className="flex flex-col">
           <div className="flex items-center justify-between mb-4">
             <p className="text-xl md:text-2xl lg:text-3xl font-bold">
