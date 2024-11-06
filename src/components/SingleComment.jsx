@@ -1,5 +1,5 @@
 import React from "react";
-import { BiSolidUpvote, BiSolidDownvote } from "react-icons/bi";
+import { DownVoteButton, UpVoteButton } from "./VoteButtons";
 
 const SingleComment = ({ articleComment }) => {
   return (
@@ -11,13 +11,9 @@ const SingleComment = ({ articleComment }) => {
             <p className="w-[90%] mb-2">{articleComment.body}</p>
           </div>
           <div className="flex flex-col items-center justify-center gap-3">
-            <p className="text-lg md:text-xl lg:text-2xl">
-              <BiSolidUpvote className="text-red-600" />
-            </p>
+            <UpVoteButton />
             <p>{articleComment.votes}</p>
-            <p className="text-lg md:text-xl lg:text-2xl">
-              <BiSolidDownvote className="text-red-600" />
-            </p>
+            <DownVoteButton />
           </div>
         </div>
       </li>

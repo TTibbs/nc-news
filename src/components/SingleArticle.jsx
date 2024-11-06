@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchArticleById, fetchArticleComments } from "../utils/api";
+import {
+  fetchArticleById,
+  fetchArticleComments,
+  updateArticleVotes,
+} from "../utils/api";
 import Header from "./Header";
 import Loading from "../components/Loading";
 import CommentsList from "./CommentsList";
-import VotesAndCommentCount from "./VotesAndCommentCount";
+import { DownVoteButton, UpVoteButton } from "./VoteButtons";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
   const [articleComments, setArticleComments] = useState([]);
   const [isArticleLoading, setIsArticleLoading] = useState(true);
+  const [articleVotes, setArticleVotes] = useState(0);
 
   useEffect(() => {
     fetchArticleById(article_id)
@@ -30,6 +35,19 @@ const SingleArticle = () => {
       .catch((err) => console.log(err));
   }, [article_id]);
 
+  const handleArticleVotes = (inc_votes) => {
+    setSingleArticle((currentArticle) => ({
+      ...(currentArticle.votes + inc_votes.value),
+    }));
+
+    setSingleArticle((currentArticle) => ({
+      ...(currentArticle.votes - inc_votes.value),
+    }));
+
+    setArticleVotes((currentVotes) => currentVotes + inc_votes.value);
+    updateArticleVotes(article_id, inc_votes).catch((err) => console.log(err));
+  };
+
   if (isArticleLoading) {
     return <Loading isArticleLoading={isArticleLoading} />;
   }
@@ -45,7 +63,6 @@ const SingleArticle = () => {
             </p>
             <div>
               <p className="text-2xl">Author: {singleArticle.author}</p>
-              <p className="text-2xl">Topic: {singleArticle.topic}</p>
             </div>
           </div>
           <div className="flex flex-col items-center gap-10 mb-3 lg:flex-row">
@@ -56,10 +73,14 @@ const SingleArticle = () => {
               </p>
             </div>
           </div>
-          <VotesAndCommentCount
-            votes={singleArticle.votes}
-            commentCount={singleArticle.comment_count}
-          />
+          <div className="flex items-center justify-between pr-4">
+            <p className="text-2xl">Topic: {singleArticle.topic}</p>
+            <div className="flex flex-col items-center justify-center gap-3">
+              <UpVoteButton handleArticleVotes={handleArticleVotes} />
+              {singleArticle.votes}
+              <DownVoteButton handleArticleVotes={handleArticleVotes} />
+            </div>
+          </div>
         </div>
       </section>
       <CommentsList articleComments={articleComments} />
