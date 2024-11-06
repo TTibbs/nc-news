@@ -3,6 +3,7 @@ import { fetchArticles } from "../utils/api";
 import Loading from "../components/Loading";
 import Header from "../components/Header";
 import ArticleCard from "./ArticleCard";
+import Filter from "./Filter";
 
 const ArticleList = () => {
   const [articleList, setArticleList] = useState([]);
@@ -24,6 +25,7 @@ const ArticleList = () => {
   return (
     <>
       <Header />
+      <Filter setArticleList={setArticleList} />
       <section className="border-2 border-zinc-800 m-5 p-10">
         <p className="text-3xl font-bold text-center mb-5">Articles</p>
         <div>

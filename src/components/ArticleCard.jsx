@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import VotesAndCommentCount from "./VotesAndCommentCount";
 
 const ArticleCard = ({ article }) => {
+  const createdAt = new Date(article.created_at);
+  const formattedDate = `${createdAt.getDate()}/${
+    createdAt.getMonth() + 1
+  }/${createdAt.getFullYear()}`;
+
   return (
     <>
       <li className="flex flex-col items-center justify-center gap-3 border-2 border-black p-10">
@@ -12,6 +17,11 @@ const ArticleCard = ({ article }) => {
           className="w-[300px]"
         />
         <p>{article.title}</p>
+        <div className="flex flex-col gap-2 justify-between">
+          <p>Date: {formattedDate}</p>
+          <p>Author: {article.author}</p>
+          <p>Topic: {article.topic}</p>
+        </div>
         <VotesAndCommentCount
           votes={article.votes}
           commentCount={article.comment_count}

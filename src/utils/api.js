@@ -4,9 +4,21 @@ const api = axios.create({
   baseURL: "https://be-nc-news-92aj.onrender.com",
 });
 
-export const fetchArticles = () => {
+export const fetchArticles = (
+  sort_by = "created_at",
+  order = "asc",
+  limit,
+  p = 1
+) => {
   return api
-    .get("/api/articles")
+    .get("/api/articles", {
+      params: {
+        sort_by: sort_by,
+        order: order,
+        limit: limit,
+        p: p,
+      },
+    })
     .then((response) => {
       return response.data.articles;
     })
