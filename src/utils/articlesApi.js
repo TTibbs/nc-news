@@ -49,15 +49,6 @@ export const fetchArticleComments = (article_id) => {
     });
 };
 
-export const fetchTopics = () => {
-  return api
-    .get("/api/topics")
-    .then((response) => {
-      return response.data.topics;
-    })
-    .catch((err) => console.log(err));
-};
-
 export const fetchArticlesByTopic = (slug) => {
   return api
     .get(`/api/articles?topic=${slug}`)
@@ -65,18 +56,8 @@ export const fetchArticlesByTopic = (slug) => {
       return response.data.articles;
     })
     .catch((err) => {
-      return Promise.reject(err.response.data.msg)
+      return Promise.reject(err.response.data.msg);
     });
-};
-
-export const fetchTopicSlug = (slug) => {
-  return api
-    .get(`/api/topics/${slug}`)
-    .then((response) => {
-      console.log(response.data);
-      return response.data;
-    })
-    .catch((err) => console.log(err));
 };
 
 export const updateArticleVotes = (article_id, inc_votes) => {
@@ -86,18 +67,6 @@ export const updateArticleVotes = (article_id, inc_votes) => {
     .patch(`/api/articles/${article_id}`, body)
     .then((response) => {
       return response.data.updatedArticle;
-    })
-    .catch((err) => console.log(err));
-};
-
-export const addNewComment = (article_id, username, newComment) => {
-  return api
-    .post(`/api/articles/${article_id}/comments`, {
-      username: username,
-      body: newComment,
-    })
-    .then((response) => {
-      return response.data.newComment;
     })
     .catch((err) => console.log(err));
 };

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchArticleById, fetchArticleComments } from "../utils/api";
+import { fetchArticleById } from "../utils/articlesApi";
+import { fetchArticleComments } from "../utils/commentsApi";
 import Header from "./Header";
 import Loading from "../components/Loading";
 import CommentsList from "./CommentsList";
 import CommentAdder from "./CommentAdder";
 import Voting from "./Voting";
-import ErrorPage from "./ErrorPage";
 import NotFound from "./NotFound";
 
 const SingleArticle = () => {

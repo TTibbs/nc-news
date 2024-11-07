@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchArticlesByTopic } from "../utils/api";
+import { fetchArticlesByTopic } from "../utils/articlesApi";
 import ArticleCard from "./ArticleCard";
 import Header from "./Header";
 import Footer from "./Footer";

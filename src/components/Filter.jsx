@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Loading from "./Loading";
-import { fetchArticles } from "../utils/api";
+import { fetchArticles } from "../utils/articlesApi";
 import { FaChevronDown } from "react-icons/fa";
 
 const Filter = ({ setArticleList }) => {
