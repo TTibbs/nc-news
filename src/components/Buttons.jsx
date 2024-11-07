@@ -6,7 +6,7 @@ export const UpVoteButton = ({ handleArticleVotes }) => {
   return (
     <BiSolidUpvote
       onClick={() => handleArticleVotes(1)}
-      className="cursor-pointer text-lg md:text-xl lg:text-2xl text-blue-600"
+      className="cursor-pointer text-2xl md:text-3xl lg:text-4xl text-red-500"
     />
   );
 };
@@ -15,7 +15,7 @@ export const DownVoteButton = ({ handleArticleVotes }) => {
   return (
     <BiSolidDownvote
       onClick={() => handleArticleVotes(-1)}
-      className="cursor-pointer text-lg md:text-xl lg:text-2xl text-blue-600"
+      className="cursor-pointer text-2xl md:text-3xl lg:text-4xl text-red-500"
     />
   );
 };

@@ -50,31 +50,36 @@ const SingleArticle = () => {
   return (
     <>
       <Header />
-      <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl my-5 mx-5 p-10">
+      <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-28 mb-5 mx-5 p-10">
         <div className="flex flex-col">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-xl md:text-2xl lg:text-3xl font-bold">
+            <p className="text-md md:text-lg lg:text-xl font-bold">
               {singleArticle.title}
             </p>
             <div>
-              <p className="text-2xl">Author: {singleArticle.author}</p>
-            </div>
-          </div>
-          <div className="flex flex-col items-center gap-10 mb-3 lg:flex-row">
-            <img src={singleArticle.article_img_url} alt="" />
-            <div className="">
-              <p className="text-lg md:text-xl lg:text-2xl">
-                {singleArticle.body}
+              <p className="text-sm md:text-base lg:text-lg">
+                Author: {singleArticle.author}
+                <p className="text-md md:text-base lg:text-lg">
+                  Topic: {singleArticle.topic}
+                </p>
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-between pr-4">
-            <p className="text-2xl">Topic: {singleArticle.topic}</p>
-            <div className="flex flex-col items-center justify-center gap-3">
-              <UpVoteButton handleArticleVotes={handleArticleVotes} />
+          <div className="flex flex-col items-center gap-10 mb-3 lg:flex-row">
+            <img
+              src={singleArticle.article_img_url}
+              alt={singleArticle.description}
+            />
+            <p className="text-md md:text-base lg:text-lg">
+              {singleArticle.body}
+            </p>
+          </div>
+          <div className="flex items-center gap-3 mb-2">
+            <UpVoteButton handleArticleVotes={handleArticleVotes} />
+            <DownVoteButton handleArticleVotes={handleArticleVotes} />
+            <p className="text-md md:text-base lg:text-lg">
               {singleArticle.votes}
-              <DownVoteButton handleArticleVotes={handleArticleVotes} />
-            </div>
+            </p>
           </div>
         </div>
         <CommentAdder setArticleComments={setArticleComments} />

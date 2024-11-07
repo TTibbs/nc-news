@@ -14,7 +14,7 @@ const TopicCard = ({ topic }) => {
       className="flex flex-col items-center justify-center gap-3 border-2 
                  bg-zinc-800/90 text-zinc-200 border-black p-10 w-64 h-48 
                  rounded-lg transition-transform hover:scale-105 relative 
-                 overflow-hidden group"
+                 overflow-hidden shadow-lg shadow-red-500 group"
       style={cardStyle}
     >
       <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors" />
