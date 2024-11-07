@@ -64,7 +64,7 @@ const SingleArticle = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col items-center gap-10 mb-3 lg:flex-row">
+          <div className="flex flex-col items-center gap-10 mb-3 w-full">
             <img
               src={singleArticle.article_img_url}
               alt={singleArticle.description}
@@ -73,7 +73,7 @@ const SingleArticle = () => {
               {singleArticle.body}
             </p>
           </div>
-          <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-center gap-5 mb-2">
             <Voting article_id={article_id} votes={singleArticle.votes} />
           </div>
         </div>

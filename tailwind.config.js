@@ -6,6 +6,8 @@ export default {
       colors: {
         navBgColor: "var(--navBgColor)",
         textLight: "var(--textLight)",
+        textRed: "var(--textRed)",
+        redHover: "var(--redHover)",
       },
     },
   },

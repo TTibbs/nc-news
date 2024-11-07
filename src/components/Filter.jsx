@@ -46,12 +46,12 @@ const Filter = ({ setArticleList }) => {
   return (
     <div className="w-full rounded-lg">
       <button
-        className="md:hidden flex items-center outline outline-2 outline-zinc-900 p-3 rounded-lg mb-2"
+        className="md:hidden flex items-center gap-2 mx-auto border-b-2 border-black px-1 mb-2"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="font-medium">Filters</span>
         <FaChevronDown
-          className={`transform transition-transform ${
+          className={`transform transition-transform duration-400 ${
             isOpen ? "rotate-180" : ""
           }`}
         />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { addNewComment, fetchArticleComments } from "../utils/api";
 
@@ -6,7 +6,7 @@ const CommentAdder = ({ setArticleComments }) => {
   const { article_id } = useParams();
   const [newComment, setNewComment] = useState("");
   const [username, setUsername] = useState("grumpy19");
-  const [body, setBody] = useState("");
+  const [isError, setIsError] = useState(null);
 
   const handleNewComment = (e) => {
     setNewComment(e.target.value);
@@ -16,25 +16,33 @@ const CommentAdder = ({ setArticleComments }) => {
     e.preventDefault();
     addNewComment(article_id, username, newComment)
       .then(() => {
+        setIsError(null);
         setNewComment("");
       })
-      .catch((err) => console.log(err))
       .then(() => {
-        fetchArticleComments(article_id)
-          .then((commentsData) => {
-            setArticleComments(commentsData);
-          })
-          .catch((err) => console.log(err));
+        return fetchArticleComments(article_id);
+      })
+      .then((commentsData) => {
+        setArticleComments(commentsData);
+      })
+      .catch((err) => {
+        console.log("Error adding comment", err);
+        setIsError(err);
+      })
+      .catch((err) => {
+        console.log("Error fetching updated comments", err);
+        setIsError(err);
       });
   };
 
   return (
     <div className="flex flex-col gap-2 border-zinc-200">
       <div className="flex items-center">
+        {isError ? <ErrorPage err={err} /> : null}
         <form onSubmit={submitNewComment}>
           <label htmlFor="newComment">Add Comment:</label>
           <textarea
-            className="bg-zinc-800 py-2 px-3 text-lg md:text-xl lg:text-2xl rounded-lg outline outline-4 outline-zinc-200 text-zinc-200 w-full focus:outline-red-500 focus:shadow-lg focus:shadow-red-500"
+            className="bg-zinc-800 mt-2 py-2 px-3 text-lg md:text-xl lg:text-2xl rounded-lg outline outline-4 outline-textRed text-zinc-200 w-full focus:shadow-lg focus:shadow-redHover"
             name="newComment"
             id="newComment"
             cols="200"
@@ -46,7 +54,7 @@ const CommentAdder = ({ setArticleComments }) => {
           <div className="flex items-center justify-end mt-5">
             <button
               type="submit"
-              className="mb-5 outline outline-2 outline-zinc-200 hover:bg-red-500 hover:text-zinc-200 transition-colors duration-250 ease-linear py-1 px-3 rounded-lg text-lg md:text-xl lg:text-2xl"
+              className="mb-5 outline outline-2 outline-textRed hover:bg-redHover hover:outline-zinc-200 transition-all duration-300 ease-linear py-1 px-3 rounded-lg text-lg md:text-xl lg:text-2xl"
             >
               Submit
             </button>

@@ -6,7 +6,7 @@ export const UpVoteButton = ({ handleArticleVotes }) => {
   return (
     <BiSolidUpvote
       onClick={() => handleArticleVotes(1)}
-      className="cursor-pointer text-2xl md:text-3xl lg:text-4xl text-red-500"
+      className="cursor-pointer text-xl md:text-2xl lg:text-3xl text-textRed hover:text-redHover"
     />
   );
 };
@@ -15,13 +15,13 @@ export const DownVoteButton = ({ handleArticleVotes }) => {
   return (
     <BiSolidDownvote
       onClick={() => handleArticleVotes(-1)}
-      className="cursor-pointer text-2xl md:text-3xl lg:text-4xl text-red-500"
+      className="cursor-pointer text-xl md:text-2xl lg:text-3xl text-textRed hover:text-redHover"
     />
   );
 };
 
-export const DeleteButton = ({ handleCommentDelete }) => {
-  <MdDelete className="cursor-pointer text-lg md:text-xl lg:text-2xl text-red-500" />;
+export const DeleteButton = () => {
+  <MdDelete />;
 };
 
 export const CommentUpVoteButton = ({ handleCommentVotes }) => {

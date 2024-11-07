@@ -8,17 +8,17 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
       <nav className="hidden md:block">
         <ul className="flex items-center justify-center gap-3">
           <Link to="/">
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-red-500 transition-colors duration-250 ease-linear">
+            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Home
             </li>
           </Link>
           <Link to="/articles">
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-red-500 transition-colors duration-250 ease-linear">
+            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Articles
             </li>
           </Link>
           <Link to="/topics">
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-red-500 transition-colors duration-250 ease-linear">
+            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Topics
             </li>
           </Link>
@@ -27,7 +27,7 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
       <nav
         className={`${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } fixed top-0 right-0 h-full w-52 bg-zinc-900 p-6 transition-transform duration-300 ease-in-out z-50 md:hidden`}
+        } fixed top-0 right-0 h-full w-full bg-zinc-900 p-6 transition-all duration-700 ease-linear z-50 md:hidden`}
       >
         <button
           className="absolute top-4 right-4"
@@ -38,17 +38,17 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
         </button>
         <ul className="flex flex-col items-center justify-center gap-4 mt-12">
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-blue-500 transition-colors duration-250 ease-linear">
+            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Home
             </li>
           </Link>
           <Link to="/articles" onClick={() => setIsMenuOpen(false)}>
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-blue-500 transition-colors duration-250 ease-linear">
+            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Articles
             </li>
           </Link>
           <Link to="/topics" onClick={() => setIsMenuOpen(false)}>
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-blue-500 transition-colors duration-250 ease-linear">
+            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Topics
             </li>
           </Link>

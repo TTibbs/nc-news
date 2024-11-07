@@ -23,7 +23,9 @@ export default function Voting({ votes, article_id }) {
 
   return (
     <>
-      <p>Votes: {votes + clientVotes}</p>
+      <p className="text-base md:text-lg lg:text-xl">
+        Votes: {votes + clientVotes}
+      </p>
       {isError ? <p>Oops, an error</p> : null}
       <UpVoteButton handleArticleVotes={handleArticleVotes} />
       <DownVoteButton handleArticleVotes={handleArticleVotes} />

@@ -8,7 +8,7 @@ const CommentsList = ({
 }) => {
   return (
     <section className="bg-zinc-800 text-zinc-100 rounded-bl-xl rounded-br-xl mx-5">
-      <p className="text-lg md:text-2xl lg:text-3xl font-bold text-center my-4">
+      <p className="text-lg md:text-2xl lg:text-3xl font-bold my-4">
         Comments
       </p>
       <ul>

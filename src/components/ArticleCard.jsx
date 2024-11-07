@@ -10,18 +10,24 @@ const ArticleCard = ({ article }) => {
 
   return (
     <>
-      <li className="flex flex-col items-center justify-center gap-3 rounded-lg bg-zinc-800 shadow-lg shadow-red-500 text-zinc-200 p-10">
-        <div className="flex flex-col items-center gap-1 p-4">
-          <p className="text-sm md:text-lg lg:text-xl">Author: {article.author}</p>
-          <p className="text-sm md:text-lg lg:text-xl">Date: {formattedDate}</p>
-          <p className="text-sm md:text-lg lg:text-xl">Topic: {article.topic}</p>
-        </div>
+      <li className="flex flex-col justify-evenly gap-3 rounded-lg bg-zinc-800 shadow-lg shadow-redHover text-zinc-200 p-10">
+        <p className="text-sm md:text-lg lg:text-xl p-2">
+          {article.title}
+        </p>
         <img
           src={article.article_img_url}
           alt="article image"
           className="w-[300px] rounded-lg"
         />
-        <p className="w-[200px] text-sm md:text-lg lg:text-xl p-2">{article.title}</p>
+        <div className="flex flex-col gap-1 py-4">
+          <p className="text-sm md:text-lg lg:text-xl">
+            Author: {article.author}
+          </p>
+          <p className="text-sm md:text-lg lg:text-xl">Date: {formattedDate}</p>
+          <p className="text-sm md:text-lg lg:text-xl">
+            Topic: {article.topic}
+          </p>
+        </div>
         <VotesAndCommentCount
           votes={article.votes}
           commentCount={article.comment_count}
@@ -32,7 +38,7 @@ const ArticleCard = ({ article }) => {
             article={article}
             className="w-20"
           >
-            <button className="w-20 outline outline-2 rounded-lg outline-red-500 hover:outline-zinc-900 hover:bg-red-600 hover:text-zinc-100 transition-colors duration-250 ease-linear py-1 px-3">
+            <button className="w-20 outline outline-2 rounded-lg outline-textRed hover:outline-textLight hover:bg-redHover hover:text-zinc-100 transition-all duration-200 ease-linear py-1 px-3">
               Read
             </button>
           </Link>
