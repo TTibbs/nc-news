@@ -10,12 +10,14 @@ import Loading from "../components/Loading";
 import CommentsList from "./CommentsList";
 import { DownVoteButton, UpVoteButton } from "./Buttons";
 import CommentAdder from "./CommentAdder";
+import Voting from "./Voting";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
   const [articleComments, setArticleComments] = useState([]);
   const [isArticleLoading, setIsArticleLoading] = useState(true);
+  const [articleVotes, setArticleVotes] = useState(singleArticle.votes);
 
   useEffect(() => {
     fetchArticleById(article_id)
@@ -35,14 +37,6 @@ const SingleArticle = () => {
       .catch((err) => console.log(err));
   }, [article_id]);
 
-  const handleArticleVotes = (inc_votes) => {
-    updateArticleVotes(article_id, inc_votes)
-      .then((updatedArticle) => {
-        setSingleArticle(updatedArticle);
-      })
-      .catch((err) => console.log(err));
-  };
-
   if (isArticleLoading) {
     return <Loading isArticleLoading={isArticleLoading} />;
   }
@@ -59,9 +53,9 @@ const SingleArticle = () => {
             <div>
               <p className="text-sm md:text-base lg:text-lg">
                 Author: {singleArticle.author}
-                <p className="text-md md:text-base lg:text-lg">
-                  Topic: {singleArticle.topic}
-                </p>
+              </p>
+              <p className="text-md md:text-base lg:text-lg">
+                Topic: {singleArticle.topic}
               </p>
             </div>
           </div>
@@ -75,11 +69,7 @@ const SingleArticle = () => {
             </p>
           </div>
           <div className="flex items-center gap-3 mb-2">
-            <UpVoteButton handleArticleVotes={handleArticleVotes} />
-            <DownVoteButton handleArticleVotes={handleArticleVotes} />
-            <p className="text-md md:text-base lg:text-lg">
-              {singleArticle.votes}
-            </p>
+            <Voting article_id={article_id} votes={singleArticle.votes} />
           </div>
         </div>
         <CommentAdder setArticleComments={setArticleComments} />
