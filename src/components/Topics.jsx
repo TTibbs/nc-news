@@ -23,7 +23,7 @@ const Topics = () => {
   return (
     <>
       <Header />
-      <section cn="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl my-5 mx-5 p-10">
+      <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-24 mx-5 p-10">
         <p className="text-3xl font-bold text-center my-5">Topics</p>
         <div>
           <ul className="grid grid-cols-2 md:grid-cols-3 place-items-center gap-4">

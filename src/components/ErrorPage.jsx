@@ -6,7 +6,7 @@ const ErrorPage = () => {
     <>
       <Header />
       <section
-        className="min-h-[100vh - 80px] flex items-center justify-center"
+        className="min-h-[100vh - 80px] flex items-center justify-center mt-20"
         style={{ minHeight: "calc(100vh - 80px)" }}
       >
         <div

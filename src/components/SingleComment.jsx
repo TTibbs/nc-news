@@ -17,7 +17,7 @@ const SingleComment = ({
   const createdAt = new Date(articleComment.created_at);
   const formattedDate = `${createdAt.getDate()}/${
     createdAt.getMonth() + 1
-  }/${createdAt.getFullYear()} at ${createdAt.getHours()}:${createdAt.getMinutes()}`;
+  }/${createdAt.getFullYear()} ${createdAt.getHours()}:${createdAt.getMinutes()}`;
 
   const handleCommentDelete = (comment_id) => {
     deleteArticleComment(comment_id)
@@ -36,21 +36,20 @@ const SingleComment = ({
   }
 
   return (
-    <div className="border-b-2 border-zinc-300">
+    <div className="border-2 border-zinc-200 rounded-lg mb-2">
       <li className="flex items-center justify-between">
         <div className="w-full bg-zinc-800 text-zinc-200 flex items-center justify-between p-5 rounded-xl">
           <div className="flex flex-col gap-1 w-full">
-            <p className="font-medium">
-              {articleComment.author} - {formattedDate}
+            <p className="font-medium mb-2">
+              {formattedDate} by {articleComment.author}
             </p>
-            <p className="w-[90%]">{articleComment.body}</p>
+            <p className="w-[90%] rounded-lg py-2 px-4">{articleComment.body}</p>
             <div className="flex items-center justify-start gap-2 mt-3">
               <button
                 hidden={username !== articleComment.author}
                 onClick={() => handleCommentDelete(articleComment.comment_id)}
               >
-                <div className="flex items-center gap-2 py-2 px-4 bg-red-500">
-                  <p>Delete?</p>
+                <div className="flex items-center font-bold gap-2 py-2 px-4 bg-red-500">
                   <MdDelete />
                 </div>
               </button>

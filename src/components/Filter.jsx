@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Loading from "./Loading";
 import { fetchArticles } from "../utils/api";
-import Loading from "../components/Loading";
+import { FaChevronDown } from "react-icons/fa";
 
 const Filter = ({ setArticleList }) => {
   const [sortBy, setSortBy] = useState("created_at");
   const [order, setOrder] = useState("asc");
   const [isArticlesLoading, setIsArticlesLoading] = useState(true);
   const [limit, setLimit] = useState(10);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     fetchArticles(sortBy, order, limit)
@@ -17,64 +19,85 @@ const Filter = ({ setArticleList }) => {
       .catch((err) => console.log(err));
   }, [sortBy, order, limit]);
 
-  const handleSortByChange = ({ target: { value } }) => {
-    setSortBy(value);
-  };
+  const handleSortByChange = ({ target: { value } }) => setSortBy(value);
+  const handleOrderChange = ({ target: { value } }) => setOrder(value);
+  const handleLimitChange = ({ target: { value } }) => setLimit(value);
 
-  const handleOrderChange = ({ target: { value } }) => {
-    setOrder(value);
-  };
-
-  const handleLimitChange = ({ target: { value } }) => {
-    setLimit(value);
-  };
-
-  if (isArticlesLoading) {
+  if (isArticlesLoading)
     return <Loading isArticlesLoading={isArticlesLoading} />;
-  }
+
+  const SelectInput = ({ label, value, onChange, options, width = "w-24" }) => (
+    <label className="flex items-center justify-center gap-2">
+      <span className="min-w-16">{label}:</span>
+      <select
+        value={value}
+        onChange={onChange}
+        className={`${width} outline outline-2 outline-zinc-900 py-1 px-2 rounded-md text-center bg-white`}
+      >
+        {options.map(({ value, label }) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
 
   return (
-    <div className="pb-10 flex items-center justify-end gap-5">
-      <label htmlFor="sortBy">
-        Sort:
-        <select
-          name="sortBy"
-          id="sortBy"
+    <div className="w-full rounded-lg">
+      <button
+        className="md:hidden flex items-center outline outline-2 outline-zinc-900 p-3 rounded-lg mb-2"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="font-medium">Filters</span>
+        <FaChevronDown
+          className={`transform transition-transform ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <div
+        className={`
+        flex flex-col md:flex-row md:items-center md:justify-end gap-4
+        ${isOpen ? "block" : "hidden"} md:flex
+        p-4 md:p-0 rounded-lg
+      `}
+      >
+        <SelectInput
+          label="Sort"
+          value={sortBy}
           onChange={handleSortByChange}
-          className="outline outline-2 outline-zinc-900 ml-2 w-[100px] py-1 px-2 rounded-md text-center"
-        >
-          <option value="created_at">Created</option>
-          <option value="title">Title</option>
-          <option value="topic">Topic</option>
-          <option value="author">Author</option>
-          <option value="votes">Votes</option>
-          <option value="comment_count">Comment Count</option>
-        </select>
-      </label>
-      <label htmlFor="order">
-        Order:
-        <select
-          name="order"
-          id="order"
+          width="w-[100px] md:w-32"
+          options={[
+            { value: "created_at", label: "Created" },
+            { value: "title", label: "Title" },
+            { value: "topic", label: "Topic" },
+            { value: "author", label: "Author" },
+            { value: "votes", label: "Votes" },
+            { value: "comment_count", label: "Comment Count" },
+          ]}
+        />
+        <SelectInput
+          label="Order"
+          value={order}
           onChange={handleOrderChange}
-          className="outline outline-2 outline-zinc-900 ml-2 w-[60px] py-1 px-2 rounded-md text-center"
-        >
-          <option value="asc">A-Z</option>
-          <option value="desc">Z-A</option>
-        </select>
-      </label>
-      <label htmlFor="limit">
-        Limit:
-        <select
-          name="limit"
-          id="limit"
+          width="w-[100px] md:w-24"
+          options={[
+            { value: "asc", label: "A-Z" },
+            { value: "desc", label: "Z-A" },
+          ]}
+        />
+        <SelectInput
+          label="Limit"
+          value={limit}
           onChange={handleLimitChange}
-          className="outline outline-2 outline-zinc-900 ml-2 w-[60px] py-1 px-2 rounded-md text-center"
-        >
-          <option value="10">10</option>
-          <option value="5">5</option>
-        </select>
-      </label>
+          width="w-[100px] md:w-24"
+          options={[
+            { value: "10", label: "10" },
+            { value: "5", label: "5" },
+          ]}
+        />
+      </div>
     </div>
   );
 };

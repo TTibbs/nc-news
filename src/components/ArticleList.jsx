@@ -4,6 +4,7 @@ import Loading from "../components/Loading";
 import Header from "../components/Header";
 import ArticleCard from "./ArticleCard";
 import Filter from "./Filter";
+import Footer from "./Footer";
 
 const ArticleList = () => {
   const [articleList, setArticleList] = useState([]);
@@ -25,17 +26,20 @@ const ArticleList = () => {
   return (
     <>
       <Header />
-      <section className="border-2 border-zinc-800 m-5 mt-16 p-10">
-        <Filter setArticleList={setArticleList} />
-        <p className="text-3xl font-bold text-center mb-5">Articles</p>
+      <section className="mx-5 mt-20 p-10">
+        <div className="flex items-center justify-center">
+          <Filter setArticleList={setArticleList} />
+        </div>
+        <p className="text-3xl font-bold text-center my-5">Articles</p>
         <div>
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 place-items-center gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center gap-4">
             {articleList.map((article) => {
               return <ArticleCard article={article} key={article.article_id} />;
             })}
           </ul>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

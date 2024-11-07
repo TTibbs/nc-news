@@ -3,9 +3,21 @@ import Header from "./Header";
 
 const Home = () => {
   return (
-    <section>
+    <>
       <Header />
-    </section>
+      <section
+        className="min-h-[100vh - 80px] flex items-center justify-center mt-20"
+        style={{ minHeight: "calc(100vh - 80px)" }}
+      >
+        <div
+          className="bg-zinc-800 rounded-xl w-[500px] text-zinc-200 flex flex-col items-center justify-center gap-3"
+          style={{ minHeight: "30vh" }}
+        >
+          <p className="p-3 text-2xl">Ello, it's Tibbs. Talk to me.</p>
+          <img src="/TTibbs.png" alt="Talk to me" />
+        </div>
+      </section>
+    </>
   );
 };
 

@@ -6,11 +6,11 @@ const VotesAndCommentCount = ({ votes, commentCount }) => {
   return (
     <div className="flex gap-5 w-full">
       <p className="flex items-center gap-2">
-        <BiSolidUpvote className="text-2xl text-blue-600" />
+        <BiSolidUpvote className="text-2xl text-red-600" />
         {votes}
       </p>
       <p className="flex items-center gap-2">
-        <FaComments className="text-2xl text-blue-600" />
+        <FaComments className="text-2xl text-red-600" />
         {commentCount}
       </p>
     </div>
