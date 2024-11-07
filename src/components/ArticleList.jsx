@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchArticles } from "../utils/api";
+import { fetchArticles } from "../utils/articlesApi";
 import Loading from "../components/Loading";
 import Header from "../components/Header";
 import ArticleCard from "./ArticleCard";

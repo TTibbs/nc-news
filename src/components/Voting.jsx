@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DownVoteButton, UpVoteButton } from "./Buttons";
-import { updateArticleVotes } from "../utils/api";
+import { updateArticleVotes } from "../utils/articlesApi";
 
 export default function Voting({ votes, article_id }) {
   const [clientVotes, setClientVotes] = useState(0);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { addNewComment, fetchArticleComments } from "../utils/api";
+import { fetchArticleComments, addNewComment } from "../utils/commentsApi";
 
 const CommentAdder = ({ setArticleComments }) => {
   const { article_id } = useParams();

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
+import {
+  fetchArticleComments,
+  deleteArticleComment,
+} from "../utils/commentsApi";
 import { DownVoteButton, UpVoteButton } from "./Buttons";
-import Loading from "./Loading";
-import { deleteArticleComment, fetchArticleComments } from "../utils/api";
 
 const SingleComment = ({ articleComment, setArticleComments }) => {
   const [username, setUsername] = useState("grumpy19");

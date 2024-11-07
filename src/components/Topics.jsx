@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchTopics } from "../utils/api";
+import { fetchTopics } from "../utils/topicsApi";
 import Header from "./Header";
 import Loading from "./Loading";
 import TopicCard from "./TopicCard";
@@ -12,10 +12,10 @@ const Topics = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setIsTopicsLoading(true);
     fetchTopics()
-      .then((topics) => {
-        setTopicsList(topics);
+      .then((data) => {
+        setIsTopicsLoading(true);
+        setTopicsList(data);
         setError(null);
       })
       .catch((err) => {
