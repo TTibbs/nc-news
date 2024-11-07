@@ -16,6 +16,7 @@ const ErrorPage = ({ status }) => {
           <h1 className="text-base md:text-lg lg:text-xl font-bold">
             Error: {status}
           </h1>
+          <img src="/400.jpg" alt="Article does not exist" />
         </div>
       </section>
     </>

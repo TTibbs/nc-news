@@ -4,18 +4,37 @@ import { fetchArticlesByTopic } from "../utils/api";
 import ArticleCard from "./ArticleCard";
 import Header from "./Header";
 import Footer from "./Footer";
+import Loading from "./Loading";
+import NotFound from "./NotFound";
 
 const TopicSlug = () => {
   const { slug } = useParams();
   const [articlesByTopic, setArticlesByTopic] = useState([]);
+  const [isTopicsLoading, setIsTopicsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setIsTopicsLoading(true);
     fetchArticlesByTopic(slug)
       .then((articles) => {
         setArticlesByTopic(articles);
+        setError(null);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setIsTopicsLoading(false);
+      });
   }, [slug]);
+
+  if (isTopicsLoading) {
+    return <Loading isTopicsLoading={isTopicsLoading} />;
+  }
+
+  if (error) {
+    return <NotFound status={error} />;
+  }
 
   return (
     <>

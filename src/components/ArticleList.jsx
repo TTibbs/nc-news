@@ -14,10 +14,10 @@ const ArticleList = () => {
 
   useEffect(() => {
     fetchArticles()
-      .then((data) => {
+      .then((articles) => {
         setIsError(null);
         setIsLoading(false);
-        setArticleList(data);
+        setArticleList(articles);
       })
       .catch((err) => {
         console.log(err);

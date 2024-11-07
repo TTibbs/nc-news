@@ -22,7 +22,9 @@ export const fetchArticles = (
     .then((response) => {
       return response.data.articles;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const fetchArticleById = (article_id) => {
@@ -31,7 +33,9 @@ export const fetchArticleById = (article_id) => {
     .then((response) => {
       return response.data.article;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return Promise.reject(err.response.data.msg);
+    });
 };
 
 export const fetchArticleComments = (article_id) => {
@@ -40,7 +44,9 @@ export const fetchArticleComments = (article_id) => {
     .then((response) => {
       return response.data.articleComments;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return Promise.reject(err.response.data.msg);
+    });
 };
 
 export const fetchTopics = () => {
@@ -58,7 +64,9 @@ export const fetchArticlesByTopic = (slug) => {
     .then((response) => {
       return response.data.articles;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return Promise.reject(err.response.data.msg)
+    });
 };
 
 export const fetchTopicSlug = (slug) => {

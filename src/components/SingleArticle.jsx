@@ -7,42 +7,52 @@ import CommentsList from "./CommentsList";
 import CommentAdder from "./CommentAdder";
 import Voting from "./Voting";
 import ErrorPage from "./ErrorPage";
+import NotFound from "./NotFound";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
   const [articleComments, setArticleComments] = useState([]);
   const [isArticleLoading, setIsArticleLoading] = useState(true);
-  const [isError, setIsError] = useState(null);
+  const [isCommentsLoading, setIsCommentsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setIsArticleLoading(true);
     fetchArticleById(article_id)
       .then((data) => {
-        setIsError(null);
-        setIsArticleLoading(false);
         setSingleArticle(data);
+        setError(null);
       })
       .catch((err) => {
-        console.log(err);
-        setIsError(err);
+        setError(err);
+      })
+      .finally(() => {
+        setIsArticleLoading(false);
       });
   }, [article_id]);
 
   useEffect(() => {
+    setIsCommentsLoading(true);
     fetchArticleComments(article_id)
       .then((commentsData) => {
-        setIsError(null);
-        setIsArticleLoading(false);
         setArticleComments(commentsData);
+        setError(null);
       })
       .catch((err) => {
-        console.log(err);
-        setIsError(err);
+        setError(err);
+      })
+      .finally(() => {
+        setIsCommentsLoading(false);
       });
   }, [article_id]);
 
-  if (isArticleLoading) {
+  if (isArticleLoading || isCommentsLoading) {
     return <Loading isArticleLoading={isArticleLoading} />;
+  }
+
+  if (error) {
+    return <NotFound status={error} />;
   }
 
   return (
@@ -50,7 +60,6 @@ const SingleArticle = () => {
       <Header />
       <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-28 mb-5 mx-5 p-10">
         <div className="flex flex-col">
-          {isError ? <ErrorPage err={err} /> : null}
           <p className="text-sm md:text-base lg:text-lg font-bold">
             {singleArticle.title}
           </p>
