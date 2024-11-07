@@ -27,7 +27,7 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
       <nav
         className={`${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
-        } fixed top-0 right-0 h-full w-full bg-zinc-900 p-6 transition-all duration-700 ease-linear z-50 md:hidden`}
+        } fixed top-0 right-0 h-full w-full bg-zinc-900 p-6 transition-all duration-300 ease-linear z-50 md:hidden`}
       >
         <button
           className="absolute top-4 right-4"

@@ -42,7 +42,7 @@ const CommentAdder = ({ setArticleComments }) => {
         <form onSubmit={submitNewComment}>
           <label htmlFor="newComment">Add Comment:</label>
           <textarea
-            className="bg-zinc-800 mt-2 py-2 px-3 text-lg md:text-xl lg:text-2xl rounded-lg outline outline-4 outline-textRed text-zinc-200 w-full focus:shadow-lg focus:shadow-redHover"
+            className="bg-zinc-800 mt-2 py-2 px-3 text-sm md:text-base lg:text-lg rounded-lg outline outline-4 outline-textRed text-zinc-200 w-full focus:shadow-lg focus:shadow-redHover"
             name="newComment"
             id="newComment"
             cols="200"
@@ -54,7 +54,7 @@ const CommentAdder = ({ setArticleComments }) => {
           <div className="flex items-center justify-end mt-5">
             <button
               type="submit"
-              className="mb-5 outline outline-2 outline-textRed hover:bg-redHover hover:outline-zinc-200 transition-all duration-300 ease-linear py-1 px-3 rounded-lg text-lg md:text-xl lg:text-2xl"
+              className="mb-5 outline outline-2 outline-textRed hover:bg-redHover hover:outline-zinc-200 transition-all duration-300 ease-linear py-1 px-3 rounded-lg text-sm md:text-base lg:text-lg"
             >
               Submit
             </button>

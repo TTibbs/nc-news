@@ -11,7 +11,7 @@ const TopicCard = ({ topic }) => {
 
   return (
     <li
-      className="flex flex-col items-center justify-center gap-3 text-zinc-200 border-black p-10 w-64 h-56 rounded-lg transition-transform duration-300 hover:scale-105 relative overflow-hidden shadow-lg shadow-redHover group"
+      className="flex flex-col items-center justify-center gap-3 text-zinc-200 border-black p-10 sm:w-44 md:w-52 h-56 rounded-lg transition-transform duration-300 hover:scale-105 relative overflow-hidden shadow-lg shadow-redHover group"
       style={cardStyle}
     >
       <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors" />

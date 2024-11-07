@@ -10,7 +10,7 @@ const ArticleCard = ({ article }) => {
 
   return (
     <>
-      <li className="flex flex-col justify-evenly gap-3 rounded-lg bg-zinc-800 shadow-lg shadow-redHover text-zinc-200 p-10">
+      <li className="flex flex-col items-center justify-evenly gap-3 rounded-lg bg-zinc-800 shadow-lg shadow-redHover text-zinc-200 p-10">
         <p className="text-sm md:text-lg lg:text-xl p-2">
           {article.title}
         </p>

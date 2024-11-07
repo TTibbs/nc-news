@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="w-full py-5 px-4 md:px-20 bg-zinc-800 text-zinc-200">
+    <footer className="w-full bottom-0 left-0 py-5 px-4 md:px-20 bg-zinc-800 text-zinc-200">
       <div className="flex items-center justify-between gap-4">
         <p className="text-lg font-semibold">N(c)ews</p>
         <p className="max-w-[200px] md:max-w-[400px] text-sm md:text-base text-center">
@@ -19,7 +19,7 @@ const Footer = () => {
           </Link>
         </p>
         <nav>
-          <ul className="flex flex-col items-center gap-4 text-sm md:text-base">
+          <ul className="flex items-center gap-4 text-sm md:text-base">
             <li>
               <Link to="/" className="hover:text-red-500">
                 Home
