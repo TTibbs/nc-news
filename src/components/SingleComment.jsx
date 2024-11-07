@@ -6,7 +6,6 @@ import Loading from "./Loading";
 import { deleteArticleComment, fetchArticleComments } from "../utils/api";
 
 const SingleComment = ({ articleComment, setArticleComments }) => {
-  const [isArticleLoading, setIsArticleLoading] = useState(false);
   const [username, setUsername] = useState("grumpy19");
   const { article_id } = useParams();
   const createdAt = new Date(articleComment.created_at);
@@ -17,18 +16,12 @@ const SingleComment = ({ articleComment, setArticleComments }) => {
   const handleCommentDelete = (comment_id) => {
     deleteArticleComment(comment_id)
       .then(() => {
-        setIsArticleLoading(true);
         fetchArticleComments(article_id).then((data) => {
-          setIsArticleLoading(false);
           setArticleComments(data);
         });
       })
       .catch((err) => console.log(err));
   };
-
-  if (isArticleLoading) {
-    return <Loading isArticleLoading={isArticleLoading} />;
-  }
 
   return (
     <div className="border-2 border-red-600 shadow-md shadow-red-700 rounded-lg mb-2">

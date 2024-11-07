@@ -30,6 +30,7 @@ const Filter = ({ setArticleList }) => {
     <label className="flex items-center justify-center gap-2">
       <span className="min-w-16">{label}:</span>
       <select
+        aria-label={`${label} filter`}
         value={value}
         onChange={onChange}
         className={`${width} outline outline-2 outline-zinc-900 py-1 px-2 rounded-md text-center bg-white`}
@@ -46,6 +47,7 @@ const Filter = ({ setArticleList }) => {
   return (
     <div className="w-full rounded-lg">
       <button
+        aria-expanded={isOpen}
         className="md:hidden flex items-center gap-2 mx-auto border-b-2 border-black px-1 mb-2"
         onClick={() => setIsOpen(!isOpen)}
       >

@@ -12,7 +12,12 @@ const LoadingBar = ({ isLoading }) => {
   }, [isLoading]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div
+      className="fixed inset-0 flex items-center justify-center z-50"
+      aria-live="assertive"
+      role="status"
+      aria-label="Loading content..."
+    >
       <div className="grid w-full max-w-xs place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">
         <svg
           className={`w-16 h-16 text-gray-900/50 ${
@@ -41,6 +46,7 @@ const LoadingBar = ({ isLoading }) => {
           ></path>
         </svg>
       </div>
+      <div className="sr-only">Loading content...</div>
     </div>
   );
 };

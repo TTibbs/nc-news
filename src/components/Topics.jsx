@@ -8,37 +8,42 @@ import Footer from "./Footer";
 
 const Topics = () => {
   const [topicsList, setTopicsList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(null);
+  const [isTopicsLoading, setIsTopicsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    setIsTopicsLoading(true);
     fetchTopics()
-      .then((data) => {
-        setIsError(null);
-        setIsLoading(false);
-        setTopicsList(data);
+      .then((topics) => {
+        setTopicsList(topics);
+        setError(null);
       })
       .catch((err) => {
-        console.log(err);
-        setIsError(err);
+        setError(err);
+      })
+      .finally(() => {
+        setIsTopicsLoading(false);
       });
   });
 
-  if (isLoading) {
-    return <Loading isLoading={isLoading} />;
+  if (isTopicsLoading) {
+    return <Loading isTopicsLoading={isTopicsLoading} />;
+  }
+
+  if (error) {
+    return <ErrorPage err={err} />;
   }
 
   return (
     <div className="h-screen flex flex-col">
       <Header />
       <main className="flex-grow bg-zinc-800 text-zinc-100 rounded-xl mb-5 mt-24 mx-5 p-10">
-        {isError ? <ErrorPage err={err} /> : null}
         <p className="text-3xl font-bold text-center my-5">Topics</p>
-          <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {topicsList.map((topic) => {
-              return <TopicCard topic={topic} key={topic.slug} />;
-            })}
-          </ul>
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+          {topicsList.map((topic) => {
+            return <TopicCard topic={topic} key={topic.slug} />;
+          })}
+        </ul>
       </main>
       <Footer />
     </div>

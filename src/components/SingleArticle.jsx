@@ -80,7 +80,9 @@ const SingleArticle = () => {
             <Voting article_id={article_id} votes={singleArticle.votes} />
           </div>
         </div>
-        <CommentAdder setArticleComments={setArticleComments} />
+        <div className="flex items-center justify-center">
+          <CommentAdder setArticleComments={setArticleComments} />
+        </div>
         <CommentsList
           articleComments={articleComments}
           setArticleComments={setArticleComments}
