@@ -1,40 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  fetchArticleById,
-  fetchArticleComments,
-  updateArticleVotes,
-} from "../utils/api";
+import { fetchArticleById, fetchArticleComments } from "../utils/api";
 import Header from "./Header";
 import Loading from "../components/Loading";
 import CommentsList from "./CommentsList";
-import { DownVoteButton, UpVoteButton } from "./Buttons";
 import CommentAdder from "./CommentAdder";
 import Voting from "./Voting";
+import ErrorPage from "./ErrorPage";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
   const [articleComments, setArticleComments] = useState([]);
   const [isArticleLoading, setIsArticleLoading] = useState(true);
-  const [articleVotes, setArticleVotes] = useState(singleArticle.votes);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     fetchArticleById(article_id)
       .then((data) => {
+        setIsError(null);
         setIsArticleLoading(false);
         setSingleArticle(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsError(err);
+      });
   }, [article_id]);
 
   useEffect(() => {
     fetchArticleComments(article_id)
       .then((commentsData) => {
+        setIsError(null);
         setIsArticleLoading(false);
         setArticleComments(commentsData);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsError(err);
+      });
   }, [article_id]);
 
   if (isArticleLoading) {
@@ -47,6 +51,7 @@ const SingleArticle = () => {
       <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-28 mb-5 mx-5 p-10">
         <div className="flex flex-col">
           <div className="flex items-center justify-between mb-4">
+            {isError ? <ErrorPage err={err} /> : null}
             <p className="text-md md:text-lg lg:text-xl font-bold">
               {singleArticle.title}
             </p>

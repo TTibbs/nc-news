@@ -3,27 +3,36 @@ import { fetchTopics } from "../utils/api";
 import Header from "./Header";
 import Loading from "./Loading";
 import TopicCard from "./TopicCard";
+import ErrorPage from "./ErrorPage";
+import Footer from "./Footer";
 
 const Topics = () => {
   const [topicsList, setTopicsList] = useState([]);
-  const [isTopicsLoading, setIsTopicsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     fetchTopics()
       .then((data) => {
+        setIsError(null);
+        setIsLoading(false);
         setTopicsList(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsError(err);
+      });
   });
 
-  if (isTopicsLoading) {
-    return <Loading isTopicsLoading={isTopicsLoading} />;
+  if (isLoading) {
+    return <Loading isLoading={isLoading} />;
   }
 
   return (
-    <>
+    <div className="h-screen flex flex-col">
       <Header />
-      <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-24 mx-5 p-10">
+      <main className="flex-grow bg-zinc-800 text-zinc-100 rounded-xl mb-5 mt-24 mx-5 p-10">
+        {isError ? <ErrorPage err={err} /> : null}
         <p className="text-3xl font-bold text-center my-5">Topics</p>
         <div>
           <ul className="grid grid-cols-2 md:grid-cols-3 place-items-center gap-4">
@@ -32,8 +41,9 @@ const Topics = () => {
             })}
           </ul>
         </div>
-      </section>
-    </>
+      </main>
+      <Footer />
+    </div>
   );
 };
 

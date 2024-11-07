@@ -5,11 +5,7 @@ import { DownVoteButton, UpVoteButton } from "./Buttons";
 import Loading from "./Loading";
 import { deleteArticleComment, fetchArticleComments } from "../utils/api";
 
-const SingleComment = ({
-  articleComment,
-  setSingleArticle,
-  setArticleComments,
-}) => {
+const SingleComment = ({ articleComment, setArticleComments }) => {
   const [isArticleLoading, setIsArticleLoading] = useState(false);
   const [username, setUsername] = useState("grumpy19");
   const { article_id } = useParams();
@@ -43,7 +39,9 @@ const SingleComment = ({
             <p className="font-medium mb-2">
               {formattedDate} by {articleComment.author}
             </p>
-            <p className="w-[90%] rounded-lg py-2 px-4">{articleComment.body}</p>
+            <p className="w-[90%] rounded-lg py-2 px-4">
+              {articleComment.body}
+            </p>
             <div className="flex items-center justify-start gap-2 mt-3">
               <button
                 hidden={username !== articleComment.author}

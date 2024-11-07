@@ -5,28 +5,35 @@ import Header from "../components/Header";
 import ArticleCard from "./ArticleCard";
 import Filter from "./Filter";
 import Footer from "./Footer";
+import ErrorPage from "./ErrorPage";
 
 const ArticleList = () => {
   const [articleList, setArticleList] = useState([]);
-  const [isArticlesLoading, setIsArticlesLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     fetchArticles()
       .then((data) => {
-        setIsArticlesLoading(false);
+        setIsError(null);
+        setIsLoading(false);
         setArticleList(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsError(err);
+      });
   }, []);
 
-  if (isArticlesLoading) {
-    return <Loading isArticlesLoading={isArticlesLoading} />;
+  if (isLoading) {
+    return <Loading isLoading={isLoading} />;
   }
 
   return (
     <>
       <Header />
       <section className="mx-5 mt-20 p-10">
+        {isError ? <ErrorPage err={err} /> : null}
         <div className="flex items-center justify-center">
           <Filter setArticleList={setArticleList} />
         </div>
