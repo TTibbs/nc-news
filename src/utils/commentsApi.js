@@ -24,7 +24,9 @@ export const addNewComment = (article_id, username, newComment) => {
     .then((response) => {
       return response.data.newComment;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      return Promise.reject(err.response.data.msg);
+    });
 };
 
 export const deleteArticleComment = (comment_id) => {

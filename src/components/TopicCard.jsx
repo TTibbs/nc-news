@@ -18,7 +18,7 @@ const TopicCard = ({ topic }) => {
       <p className="relative z-10 text-xl font-bold capitalize">Topic: {topic.slug}</p>
       <p className="relative z-10 text-lg font-bold">{topic.description}</p>
       <Link to={`/topics/${topic.slug}`} className="z-10">
-        <button className="w-20 outline outline-2 rounded-lg bg-textRed outline-textLight hover:outline-zinc-200 hover:bg-redHover transition-all duration-200 ease-linear py-1 px-3">
+        <button className="w-20 outline outline-2 text-white rounded-lg bg-textRed outline-textLight hover:outline-zinc-200 hover:bg-redHover transition-all duration-200 ease-linear py-1 px-3">
           Go
         </button>
       </Link>

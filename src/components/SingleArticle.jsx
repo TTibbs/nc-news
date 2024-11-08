@@ -70,7 +70,7 @@ const SingleArticle = () => {
           <div className="flex flex-col items-center gap-10 mt-3 mb-5 w-full">
             <img
               src={singleArticle.article_img_url}
-              alt={singleArticle.description}
+              alt={`Image related to article titled: ${singleArticle.title}`}
             />
             <p className="text-sm md:text-base lg:text-lg">
               {singleArticle.body}

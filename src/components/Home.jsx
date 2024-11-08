@@ -14,7 +14,7 @@ const Home = () => {
           style={{ minHeight: "30vh" }}
         >
           <h1 className="p-3 text-2xl">Ello, it's Tibbs. Talk to me.</h1>
-          <img src="/TTibbs.png" alt="Talk to me" />
+          <img src="/TTibbs.png" alt="Home page image of Tibbs NC frontend project. Talk to me" />
         </div>
       </section>
     </>
