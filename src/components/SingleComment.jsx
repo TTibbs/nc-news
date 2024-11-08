@@ -5,7 +5,7 @@ import {
   fetchArticleComments,
   deleteArticleComment,
 } from "../utils/commentsApi";
-import { DownVoteButton, UpVoteButton } from "./Buttons";
+import Voting from "./Voting";
 
 const SingleComment = ({ articleComment, setArticleComments }) => {
   const [username, setUsername] = useState("grumpy19");
@@ -49,9 +49,10 @@ const SingleComment = ({ articleComment, setArticleComments }) => {
             </div>
           </div>
           <div className="flex flex-col items-center justify-center gap-3">
-            <UpVoteButton className="text-textRed hover:text-redHover" />
-            <p>{articleComment.votes}</p>
-            <DownVoteButton />
+            <Voting
+              votes={articleComment.votes}
+              comment_id={articleComment.comment_id}
+            />
           </div>
         </div>
       </li>

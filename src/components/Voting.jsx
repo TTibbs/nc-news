@@ -1,22 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DownVoteButton, UpVoteButton } from "./Buttons";
 import { updateArticleVotes } from "../utils/articlesApi";
+import { updateCommentVotes } from "../utils/commentsApi";
 
-export default function Voting({ votes, article_id }) {
+const Voting = ({ votes, article_id, comment_id }) => {
   const [clientVotes, setClientVotes] = useState(0);
   const [isError, setIsError] = useState(false);
-  const handleArticleVotes = (num) => {
-    setClientVotes((currVotes) => {
-      return currVotes + num;
-    });
-    updateArticleVotes(article_id, num)
+  const [hasVoted, setHasVoted] = useState(false);
+
+  const contentType = article_id ? "article" : "comment";
+  const contentId = article_id || comment_id;
+
+  useEffect(() => {
+    const savedVote = localStorage.getItem(`${contentType}-${contentId}-vote`);
+    if (savedVote) {
+      setHasVoted(true);
+    }
+  }, [contentType, contentId]);
+
+  const handleVotes = (num) => {
+    if (hasVoted) return;
+
+    setClientVotes((currVotes) => currVotes + num);
+    setHasVoted(true);
+
+    const updateVotes = article_id ? updateArticleVotes : updateCommentVotes;
+    const id = article_id || comment_id;
+
+    updateVotes(id, num)
       .then(() => {
         setIsError(false);
+        localStorage.setItem(
+          `${contentType}-${contentId}-vote`,
+          num.toString()
+        );
       })
-      .catch((err) => {
-        setClientVotes((currVotes) => {
-          return currVotes - num;
-        });
+      .catch(() => {
+        setClientVotes((currVotes) => currVotes - num);
+        setHasVoted(false);
+        localStorage.removeItem(`${contentType}-${contentId}-vote`);
         setIsError(true);
       });
   };
@@ -27,8 +49,10 @@ export default function Voting({ votes, article_id }) {
         Votes: {votes + clientVotes}
       </p>
       {isError ? <p>Oops, an error</p> : null}
-      <UpVoteButton handleArticleVotes={handleArticleVotes} />
-      <DownVoteButton handleArticleVotes={handleArticleVotes} />
+      <UpVoteButton handleArticleVotes={handleVotes} disabled={hasVoted} />
+      <DownVoteButton handleArticleVotes={handleVotes} disabled={hasVoted} />
     </>
   );
-}
+};
+
+export default Voting;

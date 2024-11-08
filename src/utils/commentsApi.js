@@ -29,6 +29,17 @@ export const addNewComment = (article_id, username, newComment) => {
     });
 };
 
+export const updateCommentVotes = (comment_id, increment) => {
+  return api
+    .patch(`/api/comments/${comment_id}`, { inc_votes: increment })
+    .then((response) => {
+      return response.data.comment;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response.data.msg);
+    });
+};
+
 export const deleteArticleComment = (comment_id) => {
   return api
     .delete(`/api/comments/${comment_id}`)
