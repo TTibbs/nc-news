@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 
-const ErrorPage = ({ status }) => {
+const NotFound = ({ status }) => {
   return (
     <>
       <Header />
@@ -23,4 +23,4 @@ const ErrorPage = ({ status }) => {
   );
 };
 
-export default ErrorPage;
+export default NotFound;
