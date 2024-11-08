@@ -11,7 +11,7 @@ const Footer = () => {
           provided by
           <Link
             to="https://northcoders.com/"
-            className="ml-1 text-red-500 hover:text-red-400"
+            className="ml-1 text-textRed font-bold"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -21,17 +21,23 @@ const Footer = () => {
         <nav>
           <ul className="flex flex-col lg:flex-row items-center gap-1 text-sm md:text-base">
             <li>
-              <Link to="/" className="hover:text-red-500">
+              <Link to="/" className="hover:bg-redHover py-2 px-3 rounded-lg">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/articles" className="hover:text-red-500">
+              <Link
+                to="/articles"
+                className="hover:bg-redHover py-2 px-3 rounded-lg"
+              >
                 Articles
               </Link>
             </li>
             <li>
-              <Link to="/topics" className="hover:text-red-500">
+              <Link
+                to="/topics"
+                className="hover:bg-redHover py-2 px-3 rounded-lg"
+              >
                 Topics
               </Link>
             </li>
