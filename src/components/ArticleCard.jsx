@@ -13,7 +13,7 @@ const ArticleCard = ({ article }) => {
       role="listitem"
       className="flex flex-col items-center justify-evenly gap-3 rounded-lg bg-zinc-800 shadow-lg shadow-redHover text-zinc-200 p-10"
     >
-      <p className="text-sm md:text-lg lg:text-xl p-2">{article.title}</p>
+      <h1 className="text-sm md:text-lg lg:text-xl p-2">{article.title}</h1>
       <img
         src={article.article_img_url}
         alt={`Image related to article titled: ${article.title}`}

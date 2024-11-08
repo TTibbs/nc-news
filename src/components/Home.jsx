@@ -13,7 +13,7 @@ const Home = () => {
           className="bg-zinc-800 rounded-xl w-[500px] text-zinc-200 flex flex-col items-center justify-center gap-3"
           style={{ minHeight: "30vh" }}
         >
-          <p className="p-3 text-2xl">Ello, it's Tibbs. Talk to me.</p>
+          <h1 className="p-3 text-2xl">Ello, it's Tibbs. Talk to me.</h1>
           <img src="/TTibbs.png" alt="Talk to me" />
         </div>
       </section>

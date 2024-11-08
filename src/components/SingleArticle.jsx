@@ -60,9 +60,9 @@ const SingleArticle = () => {
       <Header />
       <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-28 mb-5 mx-5 p-10">
         <div className="flex flex-col">
-          <p className="text-sm md:text-base lg:text-lg font-bold">
+          <h1 className="text-sm md:text-base lg:text-lg font-bold">
             {singleArticle.title}
-          </p>
+          </h1>
           <div className="text-sm flex flex-col gap-1 md:text-base lg:text-lg mt-3">
             <p>Author: {singleArticle.author}</p>
             <p>Topic: {singleArticle.topic}</p>
