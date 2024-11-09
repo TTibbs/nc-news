@@ -12,7 +12,7 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
               Home
             </li>
           </Link>
-          <Link to="/articles">
+          <Link to="/articles?p=1">
             <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Articles
             </li>

@@ -4,13 +4,14 @@ import Loading from "./Loading";
 import { fetchArticles } from "../utils/articlesApi";
 import { FaChevronDown } from "react-icons/fa";
 
-const Filter = ({ setArticleList }) => {
+const Filter = ({ setArticleList, currentPage, totalArticles }) => {
   const [isArticlesLoading, setIsArticlesLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const sortByQuery = searchParams.get("sort_by");
   const orderQuery = searchParams.get("order");
   const limitQuery = searchParams.get("limit");
+  const pageQuery = searchParams.get("p");
 
   const setSortValue = (direction) => {
     const newParams = new URLSearchParams(searchParams);
@@ -30,11 +31,21 @@ const Filter = ({ setArticleList }) => {
     setSearchParams(newParams);
   };
 
+  const setPageValue = (direction) => {
+    const newParams = new URLSearchParams(searchParams);
+    const currentPage = parseInt(pageQuery) || 1;
+    const newPage = currentPage + direction;
+    if (newPage >= 1 && newPage <= maxPage) {
+      newParams.set("p", newPage.toString());
+      setSearchParams(newParams);
+    }
+  };
+
   useEffect(() => {
-    fetchArticles(sortByQuery, orderQuery, limitQuery)
-      .then((data) => {
+    fetchArticles(sortByQuery, orderQuery, limitQuery, pageQuery)
+      .then(({ data }) => {
         setIsArticlesLoading(true);
-        setArticleList(data);
+        setArticleList(data.articles);
       })
       .catch((err) => {
         console.log(err);
@@ -42,11 +53,14 @@ const Filter = ({ setArticleList }) => {
       .finally(() => {
         setIsArticlesLoading(false);
       });
-  }, [sortByQuery, orderQuery, limitQuery]);
+  }, [sortByQuery, orderQuery, limitQuery, pageQuery]);
 
   if (isArticlesLoading) {
     return <Loading isArticlesLoading={isArticlesLoading} />;
   }
+
+  const limit = parseInt(limitQuery) || 10;
+  const maxPage = Math.ceil(totalArticles / limit);
 
   const isSortByNumeric =
     sortByQuery === "created_at" ||
@@ -82,56 +96,76 @@ const Filter = ({ setArticleList }) => {
   );
 
   return (
-    <div className="w-full rounded-lg">
-      <button
-        aria-expanded={isOpen}
-        className="md:hidden flex items-center gap-2 mx-auto border-b-2 text-textPrimary border-black px-1 mb-2"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <span className="font-medium">Filters</span>
-        <FaChevronDown
-          className={`transform transition-transform duration-400 ${
-            isOpen ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-      <div
-        className={`flex flex-col md:flex-row md:items-center md:justify-end gap-4 ${
-          isOpen ? "block" : "hidden"
-        } md:flex p-4 md:p-0 rounded-lg`}
-      >
-        <SelectInput
-          label="Sort"
-          value={sortByQuery || "created_at"}
-          onChange={({ target: { value } }) => setSortValue(value)}
-          width="w-[100px] md:w-32"
-          options={[
-            { value: "created_at", label: "Created" },
-            { value: "title", label: "Title" },
-            { value: "topic", label: "Topic" },
-            { value: "author", label: "Author" },
-            { value: "votes", label: "Votes" },
-            { value: "comment_count", label: "Comment Count" },
-          ]}
-        />
-        <SelectInput
-          label="Order"
-          value={orderQuery || "asc"}
-          onChange={({ target: { value } }) => setOrderValue(value)}
-          width="w-[100px] md:w-32"
-          options={orderOptions}
-        />
-        <SelectInput
-          label="Limit"
-          value={limitQuery || "10"}
-          onChange={({ target: { value } }) => setLimitValue(value)}
-          width="w-[100px] md:w-24"
-          options={[
-            { value: "10", label: "10" },
-            { value: "8", label: "8" },
-            { value: "4", label: "4" },
-          ]}
-        />
+    <div className="w-full flex items-center justify-between">
+      <div className="flex gap-4 mt-4">
+        <button
+          value={pageQuery}
+          onClick={() => setPageValue(-1)}
+          disabled={parseInt(pageQuery || 1) <= 1}
+          className="px-4 py-2 outline outline-2 outline-redPrimary hover:bg-redPrimary hover:outline-textPrimary hover:text-textPrimary transition-all duration-300 ease-in-out text-textSecondary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-textSecondary disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
+        >
+          Previous
+        </button>
+        <button
+          value={pageQuery}
+          onClick={() => setPageValue(+1)}
+          disabled={parseInt(pageQuery || 1) >= maxPage}
+          className="px-4 py-2 outline outline-2 outline-redPrimary hover:bg-redPrimary hover:outline-textPrimary hover:text-textPrimary transition-all duration-300 ease-in-out text-textSecondary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-textSecondary disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
+        >
+          Next
+        </button>
+      </div>
+      <div className="w-full rounded-lg">
+        <button
+          aria-expanded={isOpen}
+          className="md:hidden flex items-center gap-2 mx-auto border-b-2 text-textPrimary border-black px-1 mb-2"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span className="font-medium">Filters</span>
+          <FaChevronDown
+            className={`transform transition-transform duration-400 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </button>
+        <div
+          className={`flex flex-col md:flex-row md:items-center md:justify-end gap-4 ${
+            isOpen ? "block" : "hidden"
+          } md:flex p-4 md:p-0 rounded-lg`}
+        >
+          <SelectInput
+            label="Sort"
+            value={sortByQuery || "created_at"}
+            onChange={({ target: { value } }) => setSortValue(value)}
+            width="w-[100px] md:w-32"
+            options={[
+              { value: "created_at", label: "Created" },
+              { value: "title", label: "Title" },
+              { value: "topic", label: "Topic" },
+              { value: "author", label: "Author" },
+              { value: "votes", label: "Votes" },
+              { value: "comment_count", label: "Comment Count" },
+            ]}
+          />
+          <SelectInput
+            label="Order"
+            value={orderQuery || "asc"}
+            onChange={({ target: { value } }) => setOrderValue(value)}
+            width="w-[100px] md:w-32"
+            options={orderOptions}
+          />
+          <SelectInput
+            label="Limit"
+            value={limitQuery || "10"}
+            onChange={({ target: { value } }) => setLimitValue(value)}
+            width="w-[100px] md:w-24"
+            options={[
+              { value: "10", label: "10" },
+              { value: "8", label: "8" },
+              { value: "4", label: "4" },
+            ]}
+          />
+        </div>
       </div>
     </div>
   );
