@@ -14,11 +14,13 @@ const TopicCard = ({ topic }) => {
       className="flex flex-col items-center justify-center gap-3 text-zinc-200 border-black p-10 sm:w-44 md:w-52 h-56 rounded-lg transition-transform duration-300 hover:scale-105 relative overflow-hidden shadow-lg shadow-redHover group"
       style={cardStyle}
     >
-      <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors" />
-      <p className="relative z-10 text-xl font-bold capitalize">Topic: {topic.slug}</p>
+      <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors py-3 px-5" />
+      <h1 className="relative z-10 text-sm md:text-base lg:text-lg font-bold capitalize">
+        {topic.slug}
+      </h1>
       <p className="relative z-10 text-lg font-bold">{topic.description}</p>
       <Link to={`/topics/${topic.slug}`} className="z-10">
-        <button className="w-20 outline outline-2 text-white rounded-lg bg-textRed outline-textLight hover:outline-zinc-200 hover:bg-redHover transition-all duration-200 ease-linear py-1 px-3">
+        <button className="w-20 outline outline-2 text-white rounded-lg bg-redPrimary outline-textLight hover:outline-zinc-200 hover:bg-redHover transition-all duration-200 ease-linear py-1 px-3">
           Go
         </button>
       </Link>

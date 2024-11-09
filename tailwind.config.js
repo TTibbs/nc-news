@@ -4,9 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        navBgColor: "var(--navBgColor)",
-        textLight: "var(--textLight)",
-        textRed: "var(--textRed)",
+        navBg: "var(--nav-bg)",
+        textPrimary: "var(--text-primary)",
+        textSecondary: "var(--text-secondary)",
+        redPrimary: "var(--red-primary)",
         redHover: "var(--redHover)",
       },
     },

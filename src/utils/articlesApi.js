@@ -23,7 +23,7 @@ export const fetchArticles = (
       return response.data.articles;
     })
     .catch((err) => {
-      console.log(err);
+      return Promise.reject(err.response.data.msg);
     });
 };
 

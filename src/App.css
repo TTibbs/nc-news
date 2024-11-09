@@ -4,9 +4,10 @@
 @tailwind utilities;
 
 :root {
-    --navBgColor: rgb(34, 34, 34);
-    --textLight: rgb(220, 220, 220);
-    --textRed: rgb(229, 34, 34);
+    --nav-bg: rgb(28, 28, 28);
+    --text-primary: rgb(229, 231, 235);
+    --text-secondary: rgb(28, 28, 28);
+    --red-primary: rgb(229, 34, 34);
     --redHover: rgb(215, 13, 13);
 }
 

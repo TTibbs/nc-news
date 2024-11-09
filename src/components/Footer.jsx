@@ -1,9 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="w-full bottom-0 left-0 py-5 px-4 md:px-20 bg-zinc-800 text-zinc-200">
+    <footer className="w-full bottom-0 left-0 py-5 px-4 md:px-20 bg-navBg text-textPrimary">
       <div className="flex items-center justify-between gap-4">
         <h2 className="text-lg font-semibold">N(c)ews</h2>
         <p className="max-w-[180px] md:max-w-[400px] text-xs md:text-sm text-center">
@@ -11,7 +10,7 @@ const Footer = () => {
           provided by
           <Link
             to="https://northcoders.com/"
-            className="ml-1 text-textRed font-bold"
+            className="ml-1 text-redPrimary font-bold"
             target="_blank"
             rel="noopener noreferrer"
           >

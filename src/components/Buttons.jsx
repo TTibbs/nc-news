@@ -9,7 +9,7 @@ export const UpVoteButton = ({ handleArticleVotes, disabled }) => {
       className={`text-xl md:text-2xl lg:text-3xl ${
         disabled
           ? "opacity-50 cursor-not-allowed"
-          : "cursor-pointer text-textRed hover:text-redHover"
+          : "cursor-pointer text-redPrimary hover:text-redHover"
       }`}
     />
   );
@@ -22,7 +22,7 @@ export const DownVoteButton = ({ handleArticleVotes, disabled }) => {
       className={`text-xl md:text-2xl lg:text-3xl ${
         disabled
           ? "opacity-50 cursor-not-allowed"
-          : "cursor-pointer text-textRed hover:text-redHover"
+          : "cursor-pointer text-redPrimary hover:text-redHover"
       }`}
     />
   );

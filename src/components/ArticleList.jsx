@@ -34,7 +34,7 @@ const ArticleList = () => {
   return (
     <>
       <Header />
-      <section aria-labelledby="articles-title" className="mx-5 mt-20 p-10">
+      <section aria-labelledby="articles-title" className="mx-5 mb-10 mt-20 p-10 text-textSecondary">
         {isError ? <ErrorPage err={err} /> : null}
         <div className="flex items-center justify-center">
           <Filter setArticleList={setArticleList} />
