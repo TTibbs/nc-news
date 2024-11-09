@@ -10,13 +10,16 @@ import ErrorPage from "./ErrorPage";
 const ArticleList = () => {
   const [articleList, setArticleList] = useState([]);
   const [isArticlesLoading, setIsArticlesLoading] = useState(true);
+  const [totalArticles, setTotalArticles] = useState(0);
   const [isError, setIsError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setIsArticlesLoading(true);
     fetchArticles()
-      .then((articles) => {
-        setArticleList(articles);
+      .then(({ data }) => {
+        setArticleList(data.articles);
+        setTotalArticles(data.total_count);
         setIsError(null);
       })
       .catch((err) => {
@@ -34,10 +37,18 @@ const ArticleList = () => {
   return (
     <>
       <Header />
-      <section aria-labelledby="articles-title" className="mx-5 mb-10 mt-20 p-10 text-textSecondary">
+      <section
+        aria-labelledby="articles-title"
+        className="mx-5 mb-10 mt-20 p-10 text-textSecondary"
+      >
         {isError ? <ErrorPage err={err} /> : null}
         <div className="flex items-center justify-center">
-          <Filter setArticleList={setArticleList} />
+          <Filter
+            setArticleList={setArticleList}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+            totalArticles={totalArticles}
+          />
         </div>
         <h2
           id="articles-title"

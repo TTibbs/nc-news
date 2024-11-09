@@ -20,7 +20,7 @@ export const fetchArticles = (
       },
     })
     .then((response) => {
-      return response.data.articles;
+      return response;
     })
     .catch((err) => {
       return Promise.reject(err.response.data.msg);
