@@ -9,6 +9,7 @@ export default {
         textSecondary: "var(--text-secondary)",
         redPrimary: "var(--red-primary)",
         redHover: "var(--redHover)",
+        bluePrimary: "var(--blue-primary)",
       },
     },
   },

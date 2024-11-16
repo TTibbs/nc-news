@@ -39,7 +39,7 @@ const ArticleList = () => {
       <Header />
       <section
         aria-labelledby="articles-title"
-        className="mx-5 mb-10 mt-20 p-10 text-textSecondary"
+        className="mx-5 mb-10 mt-20 p-3 md:p-6 lg:p-10 text-textPrimary"
       >
         {isError ? <ErrorPage err={err} /> : null}
         <div className="flex items-center justify-center">
@@ -56,7 +56,7 @@ const ArticleList = () => {
         >
           Articles
         </h2>
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5 lg:gap-7">
           {articleList.map((article) => {
             return <ArticleCard article={article} key={article.article_id} />;
           })}

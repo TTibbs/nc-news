@@ -40,10 +40,10 @@ const TopicSlug = () => {
     <>
       <Header />
       <section className="mt-20 p-10">
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-center mb-8">
+        <h2 className="text-textPrimary text-xl md:text-2xl lg:text-3xl font-bold text-center mb-8">
           Articles related to {slug}
         </h2>
-        <ul className="px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <ul className="px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
           {articlesByTopic.map((article) => (
             <ArticleCard key={article.article_id} article={article} />
           ))}

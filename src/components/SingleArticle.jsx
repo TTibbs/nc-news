@@ -60,24 +60,29 @@ const SingleArticle = () => {
       <Header />
       <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-28 mb-5 mx-5 p-10">
         <div className="flex flex-col">
-          <h1 className="text-sm md:text-base lg:text-lg font-bold">
-            {singleArticle.title}
-          </h1>
-          <div className="text-sm flex flex-col gap-1 md:text-base lg:text-lg mt-3">
-            <p>Author: {singleArticle.author}</p>
-            <p>Topic: {singleArticle.topic}</p>
+          <div className="flex items-center justify-between">
+            <h1 className="text-base md:text-lg lg:text-xl font-bold">
+              {singleArticle.title}
+            </h1>
+            <div className="text-sm flex flex-col gap-1 md:text-base lg:text-lg mt-3">
+              <p>Author: {singleArticle.author}</p>
+              <p>Topic: {singleArticle.topic}</p>
+            </div>
           </div>
           <div className="flex flex-col items-center gap-10 mt-3 mb-5 w-full">
             <img
               src={singleArticle.article_img_url}
               alt={`Image related to article titled: ${singleArticle.title}`}
+              className="w-[500px] rounded-lg shadow-lg shadow-zinc-600"
             />
-            <p className="text-sm md:text-base lg:text-lg">
-              {singleArticle.body}
-            </p>
-          </div>
-          <div className="flex items-center gap-5 mb-4">
-            <Voting article_id={article_id} votes={singleArticle.votes} />
+            <div className="flex items-center justify-between px-8">
+              <p className="w-[80%] text-sm md:text-base lg:text-lg">
+                {singleArticle.body}
+              </p>
+              <div className="flex items-center gap-5 mb-4">
+                <Voting article_id={article_id} votes={singleArticle.votes} />
+              </div>
+            </div>
           </div>
         </div>
         <div className="flex items-center justify-center">
