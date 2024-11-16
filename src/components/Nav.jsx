@@ -8,17 +8,17 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
       <nav className="hidden md:block">
         <ul className="flex items-center justify-center gap-3">
           <Link to="/">
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
+            <li className="py-1 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Home
             </li>
           </Link>
           <Link to="/articles?p=1">
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
+            <li className="py-1 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Articles
             </li>
           </Link>
           <Link to="/topics">
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
+            <li className="py-1 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
               Topics
             </li>
           </Link>
