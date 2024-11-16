@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import { fetchArticles } from "../utils/articlesApi";
 import { FaChevronDown } from "react-icons/fa";
 
-const Filter = ({ setArticleList, currentPage, totalArticles }) => {
+const Filter = ({ setArticleList, totalArticles }) => {
   const [isArticlesLoading, setIsArticlesLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -78,7 +78,7 @@ const Filter = ({ setArticleList, currentPage, totalArticles }) => {
       ];
 
   const SelectInput = ({ label, value, onChange, options, width = "w-24" }) => (
-    <label className="flex items-center justify-center gap-2">
+    <label className="flex items-center justify-center mt-2 gap-2 text-textPrimary">
       <span className="min-w-8">{label}:</span>
       <select
         aria-label={`${label} filter`}
@@ -96,13 +96,13 @@ const Filter = ({ setArticleList, currentPage, totalArticles }) => {
   );
 
   return (
-    <div className="w-full flex items-center justify-between">
-      <div className="flex gap-4 mt-4">
+    <div className="w-full flex flex-col md:flex-row items-center justify-between gap-3">
+      <div className="flex items-center gap-4">
         <button
           value={pageQuery}
           onClick={() => setPageValue(-1)}
           disabled={parseInt(pageQuery || 1) <= 1}
-          className="px-4 py-2 outline outline-2 outline-redPrimary hover:bg-redPrimary hover:outline-textPrimary hover:text-textPrimary transition-all duration-300 ease-in-out text-textSecondary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-textSecondary disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
+          className="py-1 px-2 md:px-3 text-xs md:text-sm lg:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redPrimary hover:outline-textPrimary hover:text-textSecondary transition-all duration-300 ease-in-out text-textPrimary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-textSecondary disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
         >
           Previous
         </button>
@@ -110,7 +110,7 @@ const Filter = ({ setArticleList, currentPage, totalArticles }) => {
           value={pageQuery}
           onClick={() => setPageValue(+1)}
           disabled={parseInt(pageQuery || 1) >= maxPage}
-          className="px-4 py-2 outline outline-2 outline-redPrimary hover:bg-redPrimary hover:outline-textPrimary hover:text-textPrimary transition-all duration-300 ease-in-out text-textSecondary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-textSecondary disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
+          className="py-1 px-2 md:px-3 text-xs md:text-sm lg:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redPrimary hover:outline-textPrimary hover:text-textSecondary transition-all duration-300 ease-in-out text-textPrimary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-textSecondary disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
         >
           Next
         </button>
@@ -118,12 +118,12 @@ const Filter = ({ setArticleList, currentPage, totalArticles }) => {
       <div className="w-full rounded-lg">
         <button
           aria-expanded={isOpen}
-          className="md:hidden flex items-center gap-2 mx-auto border-b-2 text-textPrimary border-black px-1 mb-2"
+          className="md:hidden flex items-center gap-2 mx-auto border-b-2 text-textPrimary border-textPrimary px-1 mb-2"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <span className="font-medium">Filters</span>
+          <span className="font-medium text-textPrimary">Filters</span>
           <FaChevronDown
-            className={`transform transition-transform duration-400 ${
+            className={`transform transition-transform duration-400 text-textPrimary ${
               isOpen ? "rotate-180" : ""
             }`}
           />
@@ -137,7 +137,7 @@ const Filter = ({ setArticleList, currentPage, totalArticles }) => {
             label="Sort"
             value={sortByQuery || "created_at"}
             onChange={({ target: { value } }) => setSortValue(value)}
-            width="w-[100px] md:w-32"
+            width="w-[80px] md:w-32"
             options={[
               { value: "created_at", label: "Created" },
               { value: "title", label: "Title" },
@@ -151,14 +151,14 @@ const Filter = ({ setArticleList, currentPage, totalArticles }) => {
             label="Order"
             value={orderQuery || "asc"}
             onChange={({ target: { value } }) => setOrderValue(value)}
-            width="w-[100px] md:w-32"
+            width="w-[80px] md:w-32"
             options={orderOptions}
           />
           <SelectInput
             label="Limit"
             value={limitQuery || "10"}
             onChange={({ target: { value } }) => setLimitValue(value)}
-            width="w-[100px] md:w-24"
+            width="w-[80px] md:w-24"
             options={[
               { value: "10", label: "10" },
               { value: "8", label: "8" },

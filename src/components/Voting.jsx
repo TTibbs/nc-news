@@ -45,11 +45,11 @@ const Voting = ({ votes, article_id, comment_id }) => {
 
   return (
     <>
-      <p className="text-base md:text-lg lg:text-xl">
-        Votes: {votes + clientVotes}
-      </p>
       {isError ? <p>Oops, an error</p> : null}
       <UpVoteButton handleArticleVotes={handleVotes} disabled={hasVoted} />
+      <p className="text-base">
+        {votes + clientVotes}
+      </p>
       <DownVoteButton handleArticleVotes={handleVotes} disabled={hasVoted} />
     </>
   );

@@ -37,13 +37,13 @@ const CommentAdder = ({ setArticleComments }) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 border-zinc-200">
+    <div className="flex flex-col gap-2 border-zinc-200 mt-5">
       <div className="flex items-center">
         {error && <ErrorPage error={error} />}
         <form onSubmit={submitNewComment}>
           <label htmlFor="newComment">Add Comment:</label>
           <textarea
-            className="bg-zinc-800 mt-2 py-2 px-3 text-sm md:text-base lg:text-lg rounded-lg outline outline-4 outline-redPrimary text-zinc-200 w-full focus:shadow-lg focus:shadow-redHover"
+            className="bg-zinc-800 py-2 px-3 text-sm md:text-base lg:text-lg rounded-lg outline outline-4 outline-redPrimary text-zinc-200 w-full focus:shadow-lg focus:shadow-redHover"
             name="newComment"
             id="newComment"
             cols="100"
