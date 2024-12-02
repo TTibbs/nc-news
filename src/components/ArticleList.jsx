@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { fetchArticles } from "../utils/articlesApi";
 import Loading from "../components/Loading";
 import Header from "../components/Header";
@@ -61,6 +62,16 @@ const ArticleList = () => {
             return <ArticleCard article={article} key={article.article_id} />;
           })}
         </ul>
+        <div className="w-full flex flex-col items-center justify-center">
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-center my-5">
+            Got an article you want to post?
+          </h1>
+          <Link to="/postArticle">
+            <button className="w-32 mx-auto text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
+              Post Article
+            </button>
+          </Link>
+        </div>
       </section>
       <Footer />
     </>

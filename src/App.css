@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --nav-bg: rgb(28, 28, 28);
-    --text-primary: rgb(235, 234, 229);
-    --text-secondary: rgb(28, 28, 28);
-    --red-primary: rgb(229, 34, 34);
-    --redHover: rgb(215, 13, 13);
-    --blue-primary: rgb(68, 147, 226);
+  --nav-bg: rgb(28, 28, 28);
+  --text-primary: rgb(235, 234, 229);
+  --text-secondary: rgb(28, 28, 28);
+  --red-primary: rgb(229, 34, 34);
+  --redHover: rgb(215, 13, 13);
+  --blue-primary: rgb(68, 147, 226);
 }
 
 body {
-    background: rgb(47, 47, 47);
-    font-family: "Sour Gummy", sans-serif;
+  background: rgb(47, 47, 47);
+  font-family: "Sour Gummy", sans-serif;
 }

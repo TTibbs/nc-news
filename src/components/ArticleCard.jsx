@@ -53,9 +53,6 @@ const ArticleCard = ({ article }) => {
             Read
           </button>
         </Link>
-        <p className="text-xs mt-1" aria-live="polite">
-          Estimated read time: 4 minutes
-        </p>
       </div>
     </li>
   );

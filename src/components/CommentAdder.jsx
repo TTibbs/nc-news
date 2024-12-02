@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../App.css";
 import { fetchArticleComments, addNewComment } from "../utils/commentsApi";
 import ErrorPage from "./ErrorPage";
 
@@ -9,9 +12,29 @@ const CommentAdder = ({ setArticleComments }) => {
   const [username, setUsername] = useState("grumpy19");
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const textareaRef = useRef(null);
+  const notify = () => {
+    toast("Comment Added", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+  };
 
   const handleNewComment = (e) => {
     setNewComment(e.target.value);
+    if (textareaRef.current) {
+      textareaRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
   };
 
   const submitNewComment = (e) => {
@@ -26,6 +49,7 @@ const CommentAdder = ({ setArticleComments }) => {
       })
       .then((commentsData) => {
         setArticleComments(commentsData);
+        notify();
       })
       .catch((errorMessage) => {
         setError(errorMessage);
@@ -43,6 +67,7 @@ const CommentAdder = ({ setArticleComments }) => {
         <form onSubmit={submitNewComment}>
           <label htmlFor="newComment">Add Comment:</label>
           <textarea
+            ref={textareaRef}
             className="bg-zinc-800 py-2 px-3 text-sm md:text-base lg:text-lg rounded-lg outline outline-4 outline-redPrimary text-zinc-200 w-full focus:shadow-lg focus:shadow-redHover"
             name="newComment"
             id="newComment"
@@ -62,6 +87,20 @@ const CommentAdder = ({ setArticleComments }) => {
             >
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>
+            <ToastContainer
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+              transition={Bounce}
+              progressClassName="Toastify__progress-bar-theme--dark"
+            />
           </div>
         </form>
       </div>

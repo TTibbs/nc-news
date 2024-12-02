@@ -76,3 +76,18 @@ export const deleteArticleComment = (comment_id) => {
     .delete(`/api/comments/${comment_id}`)
     .catch((err) => console.log(err));
 };
+
+export const postArticle = (newArticle) => {
+  return api
+    .post(`/api/articles`, newArticle)
+    .then((response) => {
+      return response.data.newArticle;
+    })
+    .catch((err) => console.log(err));
+};
+
+export const deleteArticle = (article_id) => {
+  return api
+    .delete(`/api/articles/${article_id}`)
+    .catch((err) => console.log(err));
+};

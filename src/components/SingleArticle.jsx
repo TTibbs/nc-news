@@ -8,6 +8,7 @@ import CommentsList from "./CommentsList";
 import CommentAdder from "./CommentAdder";
 import Voting from "./Voting";
 import NotFound from "./NotFound";
+import { calculateReadingTime } from "../utils/readingTime";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -16,6 +17,7 @@ const SingleArticle = () => {
   const [isArticleLoading, setIsArticleLoading] = useState(true);
   const [isCommentsLoading, setIsCommentsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [readingTime, setReadingTime] = useState(0);
 
   useEffect(() => {
     setIsArticleLoading(true);
@@ -23,6 +25,8 @@ const SingleArticle = () => {
       .then((data) => {
         setSingleArticle(data);
         setError(null);
+        const readingTime = calculateReadingTime(data.body);
+        setReadingTime(readingTime);
       })
       .catch((err) => {
         setError(err);
@@ -58,7 +62,7 @@ const SingleArticle = () => {
   return (
     <>
       <Header />
-      <section className="bg-zinc-800 text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-28 mb-5 mx-5 p-10">
+      <section className="text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-28 mb-5 mx-5 p-10">
         <div className="flex flex-col">
           <div className="flex items-center justify-between">
             <h1 className="text-base md:text-lg lg:text-xl font-bold">
@@ -67,6 +71,10 @@ const SingleArticle = () => {
             <div className="text-sm flex flex-col gap-1 md:text-base lg:text-lg mt-3">
               <p>Author: {singleArticle.author}</p>
               <p>Topic: {singleArticle.topic}</p>
+              <p>
+                Estimated Reading Time: {readingTime} minute
+                {readingTime > 1 ? "s" : ""}
+              </p>
             </div>
           </div>
           <div className="flex flex-col items-center gap-10 mt-3 mb-5 w-full">

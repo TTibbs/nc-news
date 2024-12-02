@@ -6,6 +6,7 @@ import SingleArticle from "./components/SingleArticle";
 import Topics from "./components/Topics";
 import TopicSlug from "./components/TopicSlug";
 import NotFound from "./components/NotFound";
+import PostArticle from "./components/PostArticle";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:slug" element={<TopicSlug />} />
+        <Route path="/postArticle" element={<PostArticle />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
