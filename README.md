@@ -54,31 +54,31 @@ This project was designed to practice frontend development principles, including
 ### Mobile
 
 <p align="center">
-  <img width="150" height="340" src="mockups/iphone14-promax/auth-mobile.png" alt="Auth screen displayed on a iPhone 14 Pro Max" />
-  <img width="150" height="340" src="mockups/iphone14-promax/articles-mobile.png" alt="Articles screen displayed on a iPhone 14 Pro Max" />
-  <img width="150" height="340" src="mockups/iphone14-promax/article-mobile.png" alt="Single article screen displayed on a iPhone 14 Pro Max" />
-  <img width="150" height="340" src="mockups/iphone14-promax/topics-mobile.png" alt="Topics screen displayed on a iPhone 14 Pro Max" />
-  <img width="150" height="340" src="mockups/iphone14-promax/topics-slug-mobile.png" alt="Topic slug screen displayed on a iPhone 14 Pro Max" />
+  <img width="150" height="340" src="https://i.ibb.co/wSLKnNd/article-mobile.png" alt="Auth screen displayed on a iPhone 14 Pro Max" />
+  <img width="150" height="340" src="https://i.ibb.co/mJvwW95/articles-mobile.png" alt="Articles screen displayed on a iPhone 14 Pro Max" />
+  <img width="150" height="340" src="https://i.ibb.co/xJrN3ZP/auth-mobile.png" alt="Single article screen displayed on a iPhone 14 Pro Max" />
+  <img width="150" height="340" src="https://i.ibb.co/xXrtJwc/topics-mobile.png" alt="Topics screen displayed on a iPhone 14 Pro Max" />
+  <img width="150" height="340" src="https://i.ibb.co/HFkYnxx/topics-slug-mobile.png" alt="Topic slug screen displayed on a iPhone 14 Pro Max" />
 </p>
 
 ### Tablet
 
 <p align="center">
-  <img width="300" height="400" src="mockups/ipad-pro11/auth-tablet.png" alt="Auth screen displayed on a iPad Pro 11" />
-  <img width="300" height="400" src="mockups/ipad-pro11/articles-tablet.png" alt="Articles screen displayed on a iPad Pro 11" />
-  <img width="300" height="400" src="mockups/ipad-pro11/article-tablet.png" alt="Single article screen displayed on a iPad Pro 11" />
-  <img width="300" height="400" src="mockups/ipad-pro11/topics-tablet.png" alt="Topics screen displayed on a iPad Pro 11" />
-  <img width="300" height="400" src="mockups/ipad-pro11/topic-slug-tablet.png" alt="Topic slug screen displayed on a iPad Pro 11" />
+  <img width="300" height="400" src="https://i.ibb.co/t4FWnRw/article-tablet.png" alt="Auth screen displayed on a iPad Pro 11" />
+  <img width="300" height="400" src="https://i.ibb.co/48ypxV6/articles-tablet.png" alt="Articles screen displayed on a iPad Pro 11" />
+  <img width="300" height="400" src="https://i.ibb.co/sy93QK8/auth-tablet.png" alt="Single article screen displayed on a iPad Pro 11" />
+  <img width="300" height="400" src="https://i.ibb.co/ZWQDdc3/topic-slug-tablet.png" alt="Topics screen displayed on a iPad Pro 11" />
+  <img width="300" height="400" src="https://i.ibb.co/5Bpwt8H/topics-tablet.png" alt="Topic slug screen displayed on a iPad Pro 11" />
 </p>
 
 ### Laptop
 
 <p align="center">
-  <img width="480" height="370" src="mockups/macbook-pro14/auth-laptop.png" alt="Auth screen displayed on a MacBook Pro" />
-  <img width="480" height="370" src="mockups/macbook-pro14/articles-laptop.png" alt="Articles screen displayed on a MacBook Pro" />
-  <img width="480" height="370" src="mockups/macbook-pro14/article-laptop.png" alt="Single article screen displayed on a MacBook Pro" />
-  <img width="480" height="370" src="mockups/macbook-pro14/topics-laptop.png" alt="Topics screen displayed on a MacBook Pro" />
-  <img width="480" height="370" src="mockups/macbook-pro14/topics-slug-laptop.png" alt="Topic slug screen displayed on a MacBook Pro" />
+  <img width="480" height="370" src="https://i.ibb.co/D16TQkd/article-laptop.png" alt="Auth screen displayed on a MacBook Pro" />
+  <img width="480" height="370" src="https://i.ibb.co/SmLJ2Fd/articles-laptop.png" alt="Articles screen displayed on a MacBook Pro" />
+  <img width="480" height="370" src="https://i.ibb.co/vs2QR31/auth-laptop.png" alt="Single article screen displayed on a MacBook Pro" />
+  <img width="480" height="370" src="https://i.ibb.co/zJ0k4FM/topics-laptop.png" alt="Topics screen displayed on a MacBook Pro" />
+  <img width="480" height="370" src="https://i.ibb.co/1d3GBbM/topics-slug-laptop.png" alt="Topic slug screen displayed on a MacBook Pro" />
 </p>
 
 ## Backend Repo
