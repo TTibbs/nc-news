@@ -55,7 +55,7 @@ const SingleArticle = () => {
   }
 
   if (error) {
-    return <NotFound status={error} />;
+    return <NotFound error={error} />;
   }
 
   return (

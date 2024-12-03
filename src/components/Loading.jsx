@@ -15,7 +15,7 @@ const LoadingBar = ({ isLoading }) => {
     <div
       className="fixed inset-0 mt-24 flex items-center justify-center z-50"
       aria-live="assertive"
-      role="status"
+      role="error"
       aria-label="Loading content..."
     >
       <div className="grid w-full max-w-xs place-items-center overflow-x-scroll rounded-lg p-6 lg:overflow-visible">

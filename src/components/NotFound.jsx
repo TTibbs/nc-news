@@ -1,6 +1,9 @@
 import React from "react";
 
-const NotFound = ({ status }) => {
+const NotFound = ({ error }) => {
+  const status = error?.status || "404";
+  const message = error?.msg || "Page Not Found";
+
   return (
     <section
       className="flex items-center justify-center mt-20"
@@ -11,9 +14,9 @@ const NotFound = ({ status }) => {
         style={{ minHeight: "30vh" }}
       >
         <h1 className="text-base md:text-lg lg:text-xl font-bold">
-          Error: {status}
+          {`Error ${status}: ${message}`}
         </h1>
-        <img src="/404.jpg" alt="Article does not exist" />
+        <img src="/404.jpg" alt="Not found error image, http status dogs 404 image" />
       </div>
     </section>
   );
