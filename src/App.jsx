@@ -7,9 +7,9 @@ import Topics from "./components/Topics";
 import TopicSlug from "./components/TopicSlug";
 import NotFound from "./components/NotFound";
 import PostArticle from "./components/PostArticle";
-import Login from "./components/LogIn";
-import { ToastContainer } from "react-toastify";
 import Auth from "./components/Auth";
+import { ToastContainer } from "react-toastify";
+import Layout from "./components/Layout";
 
 function App() {
   return (
@@ -27,15 +27,70 @@ function App() {
         theme="dark"
       />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/articles" element={<ArticleList />} />
-        <Route path="/articles/:article_id" element={<SingleArticle />} />
-        <Route path="/topics" element={<Topics />} />
-        <Route path="/topics/:slug" element={<TopicSlug />} />
-        <Route path="/post-article" element={<PostArticle />} />
-        <Route path="*" element={<NotFound />} />
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+        <Route
+          path="/auth"
+          element={
+            <Layout>
+              <Auth />
+            </Layout>
+          }
+        />
+        <Route
+          path="/articles"
+          element={
+            <Layout>
+              <ArticleList />
+            </Layout>
+          }
+        />
+        <Route
+          path="/articles/:article_id"
+          element={
+            <Layout>
+              <SingleArticle />
+            </Layout>
+          }
+        />
+        <Route
+          path="/topics"
+          element={
+            <Layout>
+              <Topics />
+            </Layout>
+          }
+        />
+        <Route
+          path="/topics/:slug"
+          element={
+            <Layout>
+              <TopicSlug />
+            </Layout>
+          }
+        />
+        <Route
+          path="/post-article"
+          element={
+            <Layout>
+              <PostArticle />
+            </Layout>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <NotFound />
+            </Layout>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { fetchArticlesByTopic } from "../utils/articlesApi";
 import ArticleCard from "./ArticleCard";
-import Header from "./Header";
-import Footer from "./Footer";
 import Loading from "./Loading";
 import NotFound from "./NotFound";
 
@@ -37,20 +35,16 @@ const TopicSlug = () => {
   }
 
   return (
-    <>
-      <Header />
-      <section className="mt-20 p-10">
-        <h2 className="text-textPrimary text-xl md:text-2xl lg:text-3xl font-bold text-center mb-8">
-          Articles related to {slug}
-        </h2>
-        <ul className="px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
-          {articlesByTopic.map((article) => (
-            <ArticleCard key={article.article_id} article={article} />
-          ))}
-        </ul>
-      </section>
-      <Footer />
-    </>
+    <section className="mt-20 p-10">
+      <h2 className="text-textPrimary text-xl md:text-2xl lg:text-3xl font-bold text-center mb-8">
+        Articles related to {slug}
+      </h2>
+      <ul className="px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
+        {articlesByTopic.map((article) => (
+          <ArticleCard key={article.article_id} article={article} />
+        ))}
+      </ul>
+    </section>
   );
 };
 

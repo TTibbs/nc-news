@@ -80,7 +80,7 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
           </Link>
           {user ? (
             <div>
-              <Link to="/login">
+              <Link to="/auth">
                 <button
                   onClick={handleLogout}
                   className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"
@@ -90,7 +90,7 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
               </Link>
             </div>
           ) : (
-            <Link to="/login">
+            <Link to="/auth">
               <button className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
                 Log In
               </button>

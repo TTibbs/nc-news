@@ -117,7 +117,7 @@ const Filter = ({ setArticleList, totalArticles }) => {
       </div>
       <div>
         <Link to="/post-article">
-          <button className="text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1">
+          <button className="py-1 px-2 md:px-3 text-xs md:text-sm lg:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redPrimary hover:outline-textPrimary hover:text-textSecondary transition-all duration-300 ease-in-out text-textPrimary rounded">
             Post Article
           </button>
         </Link>

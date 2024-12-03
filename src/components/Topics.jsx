@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { fetchTopics } from "../utils/topicsApi";
-import Header from "./Header";
 import Loading from "./Loading";
 import TopicCard from "./TopicCard";
 import ErrorPage from "./ErrorPage";
-import Footer from "./Footer";
 
 const Topics = () => {
   const [topicsList, setTopicsList] = useState([]);
@@ -24,29 +22,27 @@ const Topics = () => {
       .finally(() => {
         setIsTopicsLoading(false);
       });
-  });
+  }, []);
 
   if (isTopicsLoading) {
     return <Loading isTopicsLoading={isTopicsLoading} />;
   }
 
   if (error) {
-    return <ErrorPage err={err} />;
+    return <ErrorPage err={error} />;
   }
 
   return (
-    <div className="h-screen flex flex-col">
-      <Header />
-      <main className="flex-grow text-textPrimary rounded-xl mb-5 mt-24 mx-5 p-10">
+    <section className="flex flex-col">
+      <main className="flex-grow text-textPrimary rounded-xl mb-5 my-24 mx-5">
         <h1 className="text-3xl font-bold text-center my-5">Topics</h1>
-        <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-3">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-12 md:px-20 sm:gap-6 md:gap-8">
           {topicsList.map((topic) => {
             return <TopicCard topic={topic} key={topic.slug} />;
           })}
         </ul>
       </main>
-      <Footer />
-    </div>
+    </section>
   );
 };
 
