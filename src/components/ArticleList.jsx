@@ -6,6 +6,7 @@ import ArticleCard from "./ArticleCard";
 import Filter from "./Filter";
 import Footer from "./Footer";
 import ErrorPage from "./ErrorPage";
+import { Link } from "react-router-dom";
 
 const ArticleList = () => {
   const [articleList, setArticleList] = useState([]);

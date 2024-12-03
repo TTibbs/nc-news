@@ -7,7 +7,6 @@ export const UserProvider = ({ children }) => {
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : user;
   });
-  console.log(user);
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));

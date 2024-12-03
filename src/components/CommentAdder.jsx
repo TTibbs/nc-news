@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 import { fetchArticleComments, addNewComment } from "../utils/commentsApi";
@@ -41,8 +41,9 @@ const CommentAdder = ({ setArticleComments }) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
+    const username = user.username;
 
-    addNewComment(article_id, user, newComment)
+    addNewComment(article_id, username, newComment)
       .then(() => {
         setNewComment("");
         return fetchArticleComments(article_id);

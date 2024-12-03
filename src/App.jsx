@@ -9,6 +9,7 @@ import NotFound from "./components/NotFound";
 import PostArticle from "./components/PostArticle";
 import Login from "./components/LogIn";
 import { ToastContainer } from "react-toastify";
+import Auth from "./components/Auth";
 
 function App() {
   return (
@@ -27,12 +28,13 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/auth" element={<Auth />} />
         <Route path="/login" element={<Login />} />
         <Route path="/articles" element={<ArticleList />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/topics" element={<Topics />} />
         <Route path="/topics/:slug" element={<TopicSlug />} />
-        <Route path="/postArticle" element={<PostArticle />} />
+        <Route path="/post-article" element={<PostArticle />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
