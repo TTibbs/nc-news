@@ -6,7 +6,6 @@ import ArticleCard from "./ArticleCard";
 import Filter from "./Filter";
 import Footer from "./Footer";
 import ErrorPage from "./ErrorPage";
-import { Link } from "react-router-dom";
 
 const ArticleList = () => {
   const [articleList, setArticleList] = useState([]);
@@ -31,6 +30,12 @@ const ArticleList = () => {
       });
   }, []);
 
+  const handleDelete = (article_id) => {
+    setArticles((prevArticles) =>
+      prevArticles.filter((article) => article.article_id !== article_id)
+    );
+  };
+
   if (isArticlesLoading) {
     return <Loading isArticlesLoading={isArticlesLoading} />;
   }
@@ -53,7 +58,13 @@ const ArticleList = () => {
         </div>
         <ul className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5 lg:gap-7">
           {articleList.map((article) => {
-            return <ArticleCard article={article} key={article.article_id} />;
+            return (
+              <ArticleCard
+                article={article}
+                key={article.article_id}
+                onDelete={handleDelete}
+              />
+            );
           })}
         </ul>
       </section>
