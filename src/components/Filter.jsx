@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Loading from "./Loading";
 import { fetchArticles } from "../utils/articlesApi";
 import { FaChevronDown } from "react-icons/fa";
@@ -114,6 +114,13 @@ const Filter = ({ setArticleList, totalArticles }) => {
         >
           Next
         </button>
+      </div>
+      <div>
+        <Link to="/post-article">
+          <button className="text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1">
+            Post Article
+          </button>
+        </Link>
       </div>
       <div className="w-full rounded-lg">
         <button

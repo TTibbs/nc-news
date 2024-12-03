@@ -16,3 +16,27 @@ body {
   background: rgb(47, 47, 47);
   font-family: "Sour Gummy", sans-serif;
 }
+
+.perspective {
+  perspective: 1000px;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.auth-form {
+  @apply text-zinc-200 bg-zinc-800 shadow-xl shadow-redPrimary rounded-lg p-6 flex flex-col justify-center;
+}
+
+.auth-input {
+  @apply bg-zinc-800 py-2 px-3 text-sm md:text-base lg:text-lg rounded-lg outline outline-4 outline-redPrimary text-zinc-200 w-full focus:shadow-lg focus:shadow-redHover;
+}
+
+.auth-button {
+  @apply w-32 text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3;
+}

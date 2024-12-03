@@ -40,7 +40,9 @@ const PostArticle = () => {
         topic,
         author,
         body,
-        article_img_url: articleImgUrl || "https://via.placeholder.com/150",
+        article_img_url:
+          articleImgUrl ||
+          "https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_1280.jpg",
       };
 
       const postedArticle = await postArticle(newArticle);
