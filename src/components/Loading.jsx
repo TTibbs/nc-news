@@ -13,7 +13,7 @@ const LoadingBar = ({ isLoading }) => {
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center z-50"
+      className="fixed inset-0 mt-24 flex items-center justify-center z-50"
       aria-live="assertive"
       role="status"
       aria-label="Loading content..."

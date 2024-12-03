@@ -4,13 +4,14 @@ import { UserContext } from "../contexts/UserContext";
 import VotesAndCommentCount from "./VotesAndCommentCount";
 import { capitaliseFirstLetter } from "../utils/utilFuncs";
 import { MdDelete } from "react-icons/md";
-import { deleteArticle, fetchArticles } from "../utils/articlesApi";
+import { deleteArticle } from "../utils/articlesApi";
 
-const ArticleCard = ({ article }) => {
+const ArticleCard = ({ article, onDelete }) => {
   const { user } = useContext(UserContext);
   const username = user.username;
   const [showModal, setShowModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isError, setIsError] = useState(null);
 
   const createdAt = new Date(article.created_at);
   const formattedDate = `${createdAt.getDate()}/${
@@ -21,10 +22,12 @@ const ArticleCard = ({ article }) => {
     setIsDeleting(true);
     deleteArticle(article_id)
       .then(() => {
+        onDelete(article_id);
         setShowModal(false);
-        fetchArticles();
       })
-      .catch((err) => console.error(err))
+      .catch((err) => {
+        setIsError(err);
+      })
       .finally(() => {
         setIsDeleting(false);
       });
@@ -77,9 +80,14 @@ const ArticleCard = ({ article }) => {
             hidden={username !== article.author}
             onClick={() => setShowModal(true)}
           >
-            <div className="w-24 mx-auto flex items-center font-bold gap-2 py-2 px-3 text-xs md:text-base rounded-xl text-white bg-redPrimary hover:bg-redHover transition-colors duration-200 ease-linear">
+            <div className="w-20 mx-auto flex items-center font-bold gap-2 py-2 px-3 text-xs md:text-base rounded-xl text-white bg-redPrimary hover:bg-redHover transition-colors duration-200 ease-linear">
               <p>Delete</p>
               <MdDelete />
+              {isError && (
+                <p>
+                  {err.msg} | {err.status}
+                </p>
+              )}
             </div>
           </button>
         </div>
