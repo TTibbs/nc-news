@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { Bounce, toast } from "react-toastify";
+import { UserContext } from "../contexts/UserContext";
 import { MdDelete } from "react-icons/md";
 import {
   fetchArticleComments,
@@ -8,18 +10,32 @@ import {
 import Voting from "./Voting";
 
 const SingleComment = ({ articleComment, setArticleComments }) => {
-  const [username, setUsername] = useState("grumpy19");
+  const { user } = useContext(UserContext);
   const { article_id } = useParams();
   const createdAt = new Date(articleComment.created_at);
   const formattedDate = `${createdAt.getDate()}/${
     createdAt.getMonth() + 1
   }/${createdAt.getFullYear()} ${createdAt.getHours()}:${createdAt.getMinutes()}`;
+  const deleteCommentToast = () => {
+    toast("Comment Deleted", {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+    });
+  };
 
   const handleCommentDelete = (comment_id) => {
     deleteArticleComment(comment_id)
       .then(() => {
         fetchArticleComments(article_id).then((data) => {
           setArticleComments(data);
+          deleteCommentToast();
         });
       })
       .catch((err) => console.log(err));
@@ -38,7 +54,7 @@ const SingleComment = ({ articleComment, setArticleComments }) => {
             </p>
             <div className="flex items-center justify-start gap-2 mt-3">
               <button
-                hidden={username !== articleComment.author}
+                hidden={user !== articleComment.author}
                 onClick={() => handleCommentDelete(articleComment.comment_id)}
               >
                 <div className="flex items-center font-bold gap-2 py-2 px-3 text-xs md:text-base rounded-xl text-white bg-redPrimary hover:bg-redHover transition-colors duration-200 ease-linear">
