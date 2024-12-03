@@ -87,7 +87,12 @@ function App() {
           path="*"
           element={
             <Layout>
-              <NotFound />
+              <NotFound
+                error={{
+                  status: 404,
+                  msg: "The page you are looking for does not exist.",
+                }}
+              />
             </Layout>
           }
         />

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header";
 
-const ErrorPage = ({ status }) => {
+const ErrorPage = ({ error }) => {
   return (
     <section
       className="min-h-[100vh - 80px] flex items-center justify-center mt-20"
@@ -12,7 +12,7 @@ const ErrorPage = ({ status }) => {
         style={{ minHeight: "30vh" }}
       >
         <h1 className="text-base md:text-lg lg:text-xl font-bold">
-          Error: {status}
+          Error: {error}
         </h1>
       </div>
     </section>

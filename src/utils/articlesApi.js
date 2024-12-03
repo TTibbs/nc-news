@@ -56,7 +56,9 @@ export const fetchArticlesByTopic = (slug) => {
       return response.data.articles;
     })
     .catch((err) => {
-      return Promise.reject(err.response.data.msg);
+      return Promise.reject(
+        err.response?.data || { status: 500, msg: "Server error" }
+      );
     });
 };
 

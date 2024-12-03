@@ -8,7 +8,7 @@ import { deleteArticle } from "../utils/articlesApi";
 
 const ArticleCard = ({ article, onDelete }) => {
   const { user } = useContext(UserContext);
-  const username = user.username;
+  const username = user ? user.username : null;
   const [showModal, setShowModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isError, setIsError] = useState(null);
