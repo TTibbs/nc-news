@@ -7,12 +7,27 @@ import Topics from "./components/Topics";
 import TopicSlug from "./components/TopicSlug";
 import NotFound from "./components/NotFound";
 import PostArticle from "./components/PostArticle";
+import Login from "./components/LogIn";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
     <BrowserRouter>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/articles" element={<ArticleList />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/topics" element={<Topics />} />

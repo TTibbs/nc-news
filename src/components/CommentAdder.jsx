@@ -1,15 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../App.css";
 import { fetchArticleComments, addNewComment } from "../utils/commentsApi";
-import ErrorPage from "./ErrorPage";
 
 const CommentAdder = ({ setArticleComments }) => {
+  const { user } = useContext(UserContext);
   const { article_id } = useParams();
   const [newComment, setNewComment] = useState("");
-  const [username, setUsername] = useState("grumpy19");
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const textareaRef = useRef(null);
@@ -42,7 +42,7 @@ const CommentAdder = ({ setArticleComments }) => {
     setIsSubmitting(true);
     setError(null);
 
-    addNewComment(article_id, username, newComment)
+    addNewComment(article_id, user, newComment)
       .then(() => {
         setNewComment("");
         return fetchArticleComments(article_id);
@@ -63,7 +63,6 @@ const CommentAdder = ({ setArticleComments }) => {
   return (
     <div className="flex flex-col gap-2 border-zinc-200 mt-5">
       <div className="flex items-center">
-        {error && <ErrorPage error={error} />}
         <form onSubmit={submitNewComment}>
           <label htmlFor="newComment">Add Comment:</label>
           <textarea
@@ -77,6 +76,7 @@ const CommentAdder = ({ setArticleComments }) => {
             value={newComment}
             onChange={handleNewComment}
           ></textarea>
+          {error && <p>{error}</p>}
           <div className="flex items-center justify-end mt-5">
             <button
               type="submit"
@@ -87,20 +87,6 @@ const CommentAdder = ({ setArticleComments }) => {
             >
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>
-            <ToastContainer
-              position="bottom-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="dark"
-              transition={Bounce}
-              progressClassName="Toastify__progress-bar-theme--dark"
-            />
           </div>
         </form>
       </div>

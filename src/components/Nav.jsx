@@ -1,27 +1,53 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
+  const { user, setUser } = useContext(UserContext);
+
+  const handleLogout = () => {
+    setUser(null);
+  };
+
   return (
     <>
       <nav className="hidden md:block">
         <ul className="flex items-center justify-center gap-3">
           <Link to="/">
-            <li className="py-1 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
+            <li className="text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
               Home
             </li>
           </Link>
           <Link to="/articles?p=1">
-            <li className="py-1 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
+            <li className="text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
               Articles
             </li>
           </Link>
           <Link to="/topics">
-            <li className="py-1 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
+            <li className="text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
               Topics
             </li>
           </Link>
+          {user ? (
+            <div>
+              <Link to="/login">
+                <button
+                  onClick={handleLogout}
+                  className="text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"
+                >
+                  Log Out
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
+                Log In
+              </button>
+            </Link>
+          )}
         </ul>
       </nav>
       <nav
@@ -36,22 +62,40 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
         >
           <IoMdClose className="text-3xl relative right-2 top-2" />
         </button>
-        <ul className="flex flex-col items-center justify-center gap-4 mt-12">
+        <ul className="h-full flex flex-col items-center justify-center gap-4">
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
+            <li className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
               Home
             </li>
           </Link>
           <Link to="/articles" onClick={() => setIsMenuOpen(false)}>
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
+            <li className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
               Articles
             </li>
           </Link>
           <Link to="/topics" onClick={() => setIsMenuOpen(false)}>
-            <li className="py-2 px-3 text-lg rounded-xl hover:bg-redHover transition-colors duration-250 ease-linear">
+            <li className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
               Topics
             </li>
           </Link>
+          {user ? (
+            <div>
+              <Link to="/login">
+                <button
+                  onClick={handleLogout}
+                  className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"
+                >
+                  Log Out
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <Link to="/login">
+              <button className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
+                Log In
+              </button>
+            </Link>
+          )}
         </ul>
       </nav>
       {isMenuOpen && (
