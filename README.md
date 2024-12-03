@@ -5,11 +5,14 @@
 
 # NC News FE Project
 
-Welcome to N(c)ews! This is a React app built with Vite that displays news articles from a server I created in the backend phase of the Northcoders boootcamp.
+Welcome to N(c)ews! This is a React app built with Vite.js to display news articles from a backend server. It was created as part of the frontend phase of the Northcoders bootcamp.
 
 ## Table of Contents
 
+- [Live View](#live-view)
+- [About The App](#about-the-app)
 - [Tech Stack](#tech-stack)
+- [Screenshots](#screenshots)
 - [Backend Repo](#backend-repo)
 - [Requirements](#requirements)
 - [Installation](#installation)
@@ -18,18 +21,64 @@ Welcome to N(c)ews! This is a React app built with Vite that displays news artic
 
 View the live version [here](https://nc-news-ten.vercel.app/)
 
+## Features to Explore:
+
+- Browse articles by topic.
+- Read detailed articles.
+- Post comments and vote on articles.
+- Sign up and log in to interact with content (e.g., post or delete comments and articles).
+
 ## About the App
 
-This app allows you to browse articles that are fetched from a backend server, and displayed in an easy-to-read format, this app can be useful for learning purposes or as a foundation for web development.
+NC News is a news aggregation and interaction app where users can:
+
+- Browse news articles by topic.
+- Read individual articles with detailed views.
+- Post comments on articles and interact via voting.
+- Create an account and log in for enhanced functionality (e.g., posting or deleting articles/comments).
+
+This project was designed to practice frontend development principles, including routing, API integration, and dynamic user interfaces.
 
 ## Tech Stack
 
 <p align="center">
-    <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="vite-js"/></a>
-    <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript"/></a>
-    <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" /></a>
-    <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="visual-studio-code-2019"/></a>
-    <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="git"/></a>
+  <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" alt="vite-js"/></a>
+  <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="javascript"/></a>
+  <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" /></a>
+  <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" alt="visual-studio-code-2019"/></a>
+  <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="git"/></a>
+</p>
+
+## Screenshots
+
+### Mobile
+
+<p align="center">
+  <img width="150" height="340" src="mockups/iphone14-promax/auth-mobile.png" alt="Auth screen displayed on a iPhone 14 Pro Max" />
+  <img width="150" height="340" src="mockups/iphone14-promax/articles-mobile.png" alt="Articles screen displayed on a iPhone 14 Pro Max" />
+  <img width="150" height="340" src="mockups/iphone14-promax/article-mobile.png" alt="Single article screen displayed on a iPhone 14 Pro Max" />
+  <img width="150" height="340" src="mockups/iphone14-promax/topics-mobile.png" alt="Topics screen displayed on a iPhone 14 Pro Max" />
+  <img width="150" height="340" src="mockups/iphone14-promax/topics-slug-mobile.png" alt="Topic slug screen displayed on a iPhone 14 Pro Max" />
+</p>
+
+### Tablet
+
+<p align="center">
+  <img width="300" height="400" src="mockups/ipad-pro11/auth-tablet.png" alt="Auth screen displayed on a iPad Pro 11" />
+  <img width="300" height="400" src="mockups/ipad-pro11/articles-tablet.png" alt="Articles screen displayed on a iPad Pro 11" />
+  <img width="300" height="400" src="mockups/ipad-pro11/article-tablet.png" alt="Single article screen displayed on a iPad Pro 11" />
+  <img width="300" height="400" src="mockups/ipad-pro11/topics-tablet.png" alt="Topics screen displayed on a iPad Pro 11" />
+  <img width="300" height="400" src="mockups/ipad-pro11/topic-slug-tablet.png" alt="Topic slug screen displayed on a iPad Pro 11" />
+</p>
+
+### Laptop
+
+<p align="center">
+  <img width="480" height="370" src="mockups/macbook-pro14/auth-laptop.png" alt="Auth screen displayed on a MacBook Pro" />
+  <img width="480" height="370" src="mockups/macbook-pro14/articles-laptop.png" alt="Articles screen displayed on a MacBook Pro" />
+  <img width="480" height="370" src="mockups/macbook-pro14/article-laptop.png" alt="Single article screen displayed on a MacBook Pro" />
+  <img width="480" height="370" src="mockups/macbook-pro14/topics-laptop.png" alt="Topics screen displayed on a MacBook Pro" />
+  <img width="480" height="370" src="mockups/macbook-pro14/topics-slug-laptop.png" alt="Topic slug screen displayed on a MacBook Pro" />
 </p>
 
 ## Backend Repo
@@ -50,15 +99,15 @@ node --version
 
 ## Installation
 
-Follow these steps in order to set it up on your computer:
+Follow these steps to set up the project on your machine:
 
-### 1. Open Terminal & Clone Repo
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/nc-news.git
 ```
 
-### 2. Change Directory
+### 2. Navigate to the Project Directory
 
 ```bash
 cd nc-news
@@ -70,12 +119,6 @@ cd nc-news
 npm install
 ```
 
-Alternatively for shorthand you can use:
-
-```bash
-npm i
-```
-
 ### 4. Start the Development Server
 
 ```bash
@@ -83,3 +126,7 @@ npm run dev
 ```
 
 The app should now be running on http://localhost:5173 by default
+
+---
+
+This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/)
