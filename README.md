@@ -49,37 +49,50 @@ This project was designed to practice frontend development principles, including
   <a href="https://devicon.dev/"><img width="45" height="45" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="git"/></a>
 </p>
 
-## Screenshots
+<details>
+  <summary>
+    <h1>
+      Screenshots
+    </h1>
+  </summary>
 
-### Mobile
+  <h2>
+    Mobile
+  </h2>
 
-<p align="center">
-  <img width="150" height="340" src="https://i.ibb.co/wSLKnNd/article-mobile.png" alt="Auth screen displayed on a iPhone 14 Pro Max" />
-  <img width="150" height="340" src="https://i.ibb.co/mJvwW95/articles-mobile.png" alt="Articles screen displayed on a iPhone 14 Pro Max" />
-  <img width="150" height="340" src="https://i.ibb.co/xJrN3ZP/auth-mobile.png" alt="Single article screen displayed on a iPhone 14 Pro Max" />
-  <img width="150" height="340" src="https://i.ibb.co/xXrtJwc/topics-mobile.png" alt="Topics screen displayed on a iPhone 14 Pro Max" />
-  <img width="150" height="340" src="https://i.ibb.co/HFkYnxx/topics-slug-mobile.png" alt="Topic slug screen displayed on a iPhone 14 Pro Max" />
-</p>
+  <p align="center">
+    <img width="150" height="340" src="https://i.ibb.co/wSLKnNd/article-mobile.png" alt="Auth screen displayed on a iPhone 14 Pro Max" />
+    <img width="150" height="340" src="https://i.ibb.co/mJvwW95/articles-mobile.png" alt="Articles screen displayed on a iPhone 14 Pro Max" />
+    <img width="150" height="340" src="https://i.ibb.co/xJrN3ZP/auth-mobile.png" alt="Single article screen displayed on a iPhone 14 Pro Max" />
+    <img width="150" height="340" src="https://i.ibb.co/xXrtJwc/topics-mobile.png" alt="Topics screen displayed on a iPhone 14 Pro Max" />
+    <img width="150" height="340" src="https://i.ibb.co/HFkYnxx/topics-slug-mobile.png" alt="Topic slug screen displayed on a iPhone 14 Pro Max" />
+  </p>
 
-### Tablet
+  <h2>
+    Tablet
+  </h2>
 
-<p align="center">
-  <img width="300" height="400" src="https://i.ibb.co/t4FWnRw/article-tablet.png" alt="Auth screen displayed on a iPad Pro 11" />
-  <img width="300" height="400" src="https://i.ibb.co/48ypxV6/articles-tablet.png" alt="Articles screen displayed on a iPad Pro 11" />
-  <img width="300" height="400" src="https://i.ibb.co/sy93QK8/auth-tablet.png" alt="Single article screen displayed on a iPad Pro 11" />
-  <img width="300" height="400" src="https://i.ibb.co/ZWQDdc3/topic-slug-tablet.png" alt="Topics screen displayed on a iPad Pro 11" />
-  <img width="300" height="400" src="https://i.ibb.co/5Bpwt8H/topics-tablet.png" alt="Topic slug screen displayed on a iPad Pro 11" />
-</p>
+  <p align="center">
+    <img width="300" height="400" src="https://i.ibb.co/t4FWnRw/article-tablet.png" alt="Auth screen displayed on a iPad Pro 11" />
+    <img width="300" height="400" src="https://i.ibb.co/48ypxV6/articles-tablet.png" alt="Articles screen displayed on a iPad Pro 11" />
+    <img width="300" height="400" src="https://i.ibb.co/sy93QK8/auth-tablet.png" alt="Single article screen displayed on a iPad Pro 11" />
+    <img width="300" height="400" src="https://i.ibb.co/ZWQDdc3/topic-slug-tablet.png" alt="Topics screen displayed on a iPad Pro 11" />
+    <img width="300" height="400" src="https://i.ibb.co/5Bpwt8H/topics-tablet.png" alt="Topic slug screen displayed on a iPad Pro 11" />
+  </p>
 
-### Laptop
+  <h2>
+    Laptop
+  </h2>
 
-<p align="center">
-  <img width="480" height="370" src="https://i.ibb.co/D16TQkd/article-laptop.png" alt="Auth screen displayed on a MacBook Pro" />
-  <img width="480" height="370" src="https://i.ibb.co/SmLJ2Fd/articles-laptop.png" alt="Articles screen displayed on a MacBook Pro" />
-  <img width="480" height="370" src="https://i.ibb.co/vs2QR31/auth-laptop.png" alt="Single article screen displayed on a MacBook Pro" />
-  <img width="480" height="370" src="https://i.ibb.co/zJ0k4FM/topics-laptop.png" alt="Topics screen displayed on a MacBook Pro" />
-  <img width="480" height="370" src="https://i.ibb.co/1d3GBbM/topics-slug-laptop.png" alt="Topic slug screen displayed on a MacBook Pro" />
-</p>
+  <p align="center">
+    <img width="480" height="370" src="https://i.ibb.co/D16TQkd/article-laptop.png" alt="Auth screen displayed on a MacBook Pro" />
+    <img width="480" height="370" src="https://i.ibb.co/SmLJ2Fd/articles-laptop.png" alt="Articles screen displayed on a MacBook Pro" />
+    <img width="480" height="370" src="https://i.ibb.co/vs2QR31/auth-laptop.png" alt="Single article screen displayed on a MacBook Pro" />
+    <img width="480" height="370" src="https://i.ibb.co/zJ0k4FM/topics-laptop.png" alt="Topics screen displayed on a MacBook Pro" />
+    <img width="480" height="370" src="https://i.ibb.co/1d3GBbM/topics-slug-laptop.png" alt="Topic slug screen displayed on a MacBook Pro" />
+  </p>
+
+</details>
 
 ## Backend Repo
 
