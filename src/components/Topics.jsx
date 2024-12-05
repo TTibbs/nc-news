@@ -72,10 +72,10 @@ const Topics = () => {
   }
 
   return (
-    <section className="flex flex-col">
-      <main className="flex-grow text-textPrimary rounded-xl mb-5 my-24 mx-5">
+    <section className="flex flex-col items-center">
+      <main className="flex flex-col items-center justify-center text-textPrimary rounded-xl mb-5 my-24 mx-5 w-full max-w-6xl min-h-[calc(90vh-10rem)]">
         <h1 className="text-3xl font-bold text-center my-5">Topics</h1>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-12 md:px-20 sm:gap-6 md:gap-8">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-12 md:px-20 sm:gap-6 md:gap-8 justify-items-center">
           {topicsList.map((topic) => (
             <TopicCard
               key={topic.slug}
@@ -89,7 +89,7 @@ const Topics = () => {
 
       {topicToDelete && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-zinc-800 shadow-xl shadow-redPrimary rounded-lg p-5 w-96 text-center">
+          <div className="bg-zinc-800 text-zinc-200 shadow-xl shadow-redPrimary rounded-lg p-5 w-96 text-center">
             <h2 className="text-lg font-bold mb-4">Confirm Deletion</h2>
             <p>
               Are you sure you want to delete the topic "

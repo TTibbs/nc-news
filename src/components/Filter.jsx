@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import Loading from "./Loading";
 import { fetchArticles } from "../utils/articlesApi";
 import { FaChevronDown } from "react-icons/fa";
@@ -59,7 +59,7 @@ const Filter = ({ setArticleList, totalArticles }) => {
     return <Loading isArticlesLoading={isArticlesLoading} />;
   }
 
-  const limit = parseInt(limitQuery) || 10;
+  const limit = parseInt(limitQuery) || 12;
   const maxPage = Math.ceil(totalArticles / limit);
 
   const isSortByNumeric =
@@ -102,7 +102,7 @@ const Filter = ({ setArticleList, totalArticles }) => {
           value={pageQuery}
           onClick={() => setPageValue(-1)}
           disabled={parseInt(pageQuery || 1) <= 1}
-          className="py-1 px-2 md:px-3 text-xs md:text-sm lg:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redPrimary hover:outline-textPrimary hover:text-textSecondary transition-all duration-300 ease-in-out text-textPrimary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-textSecondary disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
+          className="py-1 px-2 md:px-3 text-xs md:text-sm lg:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redHover hover:outline-textPrimary transition-all duration-300 ease-in-out text-textPrimary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
         >
           Previous
         </button>
@@ -110,27 +110,20 @@ const Filter = ({ setArticleList, totalArticles }) => {
           value={pageQuery}
           onClick={() => setPageValue(+1)}
           disabled={parseInt(pageQuery || 1) >= maxPage}
-          className="py-1 px-2 md:px-3 text-xs md:text-sm lg:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redPrimary hover:outline-textPrimary hover:text-textSecondary transition-all duration-300 ease-in-out text-textPrimary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:text-textSecondary disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
+          className="py-1 px-2 md:px-3 text-xs md:text-sm lg:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redHover hover:outline-textPrimary transition-all duration-300 ease-in-out text-textPrimary rounded disabled:opacity-50 disabled:hover:bg-transparent disabled:hover:outline-redPrimary disabled:cursor-not-allowed"
         >
           Next
         </button>
       </div>
-      <div>
-        <Link to="/post-article">
-          <button className="py-1 px-2 md:px-3 text-xs md:text-sm lg:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redPrimary hover:outline-textPrimary hover:text-textSecondary transition-all duration-300 ease-in-out text-textPrimary rounded">
-            Post Article
-          </button>
-        </Link>
-      </div>
       <div className="w-full rounded-lg">
         <button
           aria-expanded={isOpen}
-          className="md:hidden flex items-center gap-2 mx-auto border-b-2 text-textPrimary border-textPrimary px-1 mb-2"
+          className="md:hidden flex items-center mx-auto border-b-2 text-textPrimary border-textPrimary px-1 mb-2"
           onClick={() => setIsOpen(!isOpen)}
         >
           <span className="font-medium text-textPrimary">Filters</span>
           <FaChevronDown
-            className={`transform transition-transform duration-400 text-textPrimary ${
+            className={`ml-2 transform transition-transform duration-400 text-textPrimary ${
               isOpen ? "rotate-180" : ""
             }`}
           />
@@ -163,11 +156,11 @@ const Filter = ({ setArticleList, totalArticles }) => {
           />
           <SelectInput
             label="Limit"
-            value={limitQuery || "10"}
+            value={limitQuery || "12"}
             onChange={({ target: { value } }) => setLimitValue(value)}
             width="w-[80px] md:w-24"
             options={[
-              { value: "10", label: "10" },
+              { value: "12", label: "12" },
               { value: "8", label: "8" },
               { value: "4", label: "4" },
             ]}

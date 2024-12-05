@@ -62,6 +62,7 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
         >
           <IoMdClose className="text-3xl relative right-2 top-2" />
         </button>
+        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold">N(c)ews</h1>
         <ul className="h-full flex flex-col items-center justify-center gap-4">
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
             <li className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">

@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, Bounce } from "react-toastify";
 import { UserContext } from "../contexts/UserContext";
 import { postArticle } from "../utils/articlesApi";
-import { fetchTopicBySlug, postTopic } from "../utils/topicsApi";
+import { fetchTopics, fetchTopicBySlug, postTopic } from "../utils/topicsApi";
 
 const PostArticle = () => {
   const { user } = useContext(UserContext);
@@ -11,6 +11,7 @@ const PostArticle = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [topic, setTopic] = useState("");
+  const [topics, setTopics] = useState([]);
   const [topicDescription, setTopicDescription] = useState("");
   const [articleImgUrl, setArticleImgUrl] = useState("");
   const [isNewTopic, setIsNewTopic] = useState(false);
@@ -30,22 +31,41 @@ const PostArticle = () => {
     });
   };
 
+  useEffect(() => {
+    const loadTopics = async () => {
+      try {
+        const topicsData = await fetchTopics();
+        setTopics(topicsData);
+      } catch (err) {
+        showToast("Failed to load topics. Please try again.", "error");
+      }
+    };
+
+    loadTopics();
+  }, []);
+
+  const handleTopicChange = (e) => {
+    const selectedValue = e.target.value;
+    if (selectedValue === "new") {
+      setIsNewTopic(true);
+      setTopic("");
+    } else {
+      setIsNewTopic(false);
+      setTopic(selectedValue);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || !body || !topic) {
+    if (!title || !body || (!topic && !isNewTopic)) {
       showToast("All fields are required.", "error");
       return;
     }
     setIsSubmitting(true);
     try {
-      const existingTopic = await fetchTopicBySlug(topic.trim().toLowerCase());
-      if (!existingTopic) {
-        if (!topicDescription) {
-          showToast(
-            "Topic doesn't exist. Please provide a description.",
-            "error"
-          );
-          setIsNewTopic(true);
+      if (isNewTopic) {
+        if (!topic || !topicDescription) {
+          showToast("Please provide a topic name and description.", "error");
           setIsSubmitting(false);
           return;
         }
@@ -117,25 +137,47 @@ const PostArticle = () => {
         </label>
         <label className="flex flex-col text-sm md:text-base">
           Topic
-          <input
-            type="text"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
+          <select
+            value={isNewTopic ? "new" : topic}
+            onChange={handleTopicChange}
             className="bg-zinc-700 text-zinc-100 rounded-lg p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-redPrimary"
-            placeholder="Enter the article topic"
             required
-          />
+          >
+            <option value="" disabled>
+              Select a topic
+            </option>
+            {topics.map((t) => (
+              <option key={t.slug} value={t.slug}>
+                {t.slug}
+              </option>
+            ))}
+            <option value="new">Add a new topic</option>
+          </select>
         </label>
         {isNewTopic && (
-          <label className="flex flex-col text-sm md:text-base">
-            New Topic Description
-            <textarea
-              value={topicDescription}
-              onChange={(e) => setTopicDescription(e.target.value)}
-              className="bg-zinc-700 text-zinc-100 rounded-lg p-2 mt-1 h-20 resize-none focus:outline-none focus:ring-2 focus:ring-redPrimary"
-              placeholder="Provide a description for the new topic"
-            ></textarea>
-          </label>
+          <>
+            <label className="flex flex-col text-sm md:text-base">
+              New Topic Name
+              <input
+                type="text"
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+                className="bg-zinc-700 text-zinc-100 rounded-lg p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-redPrimary"
+                placeholder="Enter the new topic name"
+                required
+              />
+            </label>
+            <label className="flex flex-col text-sm md:text-base">
+              New Topic Description
+              <textarea
+                value={topicDescription}
+                onChange={(e) => setTopicDescription(e.target.value)}
+                className="bg-zinc-700 text-zinc-100 rounded-lg p-2 mt-1 h-20 resize-none focus:outline-none focus:ring-2 focus:ring-redPrimary"
+                placeholder="Provide a description for the new topic"
+                required
+              ></textarea>
+            </label>
+          </>
         )}
         <label className="flex flex-col text-sm md:text-base">
           Image URL (optional)
