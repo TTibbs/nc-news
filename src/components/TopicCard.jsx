@@ -2,7 +2,7 @@ import React from "react";
 import backgroundMapping from "../utils/backgroundMapping";
 import { Link } from "react-router-dom";
 
-const TopicCard = ({ topic }) => {
+const TopicCard = ({ topic, onDelete, isDeletable }) => {
   const cardStyle = {
     backgroundImage: backgroundMapping[topic.slug] || "none",
     backgroundSize: "cover",
@@ -25,6 +25,14 @@ const TopicCard = ({ topic }) => {
           Go
         </button>
       </Link>
+      {isDeletable && (
+        <button
+          onClick={onDelete}
+          className="absolute top-2 right-2 text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"
+        >
+          Delete
+        </button>
+      )}
     </li>
   );
 };

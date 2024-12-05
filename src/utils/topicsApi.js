@@ -28,3 +28,10 @@ export const postTopic = (newTopic) => {
     .then((response) => response.data.topic)
     .catch((err) => console.log(err));
 };
+
+export const deleteTopic = (slug) => {
+  return api
+    .delete(`/api/topics/${slug}`)
+    .then((response) => response.data.topic)
+    .catch((err) => console.log(err));
+};

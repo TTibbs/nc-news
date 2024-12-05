@@ -1,65 +1,88 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, Bounce } from "react-toastify";
+import { UserContext } from "../contexts/UserContext";
 import { postArticle } from "../utils/articlesApi";
-import { fetchTopicBySlug } from "../utils/topicsApi";
-import { postTopic } from "../utils/topicsApi";
+import { fetchTopicBySlug, postTopic } from "../utils/topicsApi";
 
 const PostArticle = () => {
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [topic, setTopic] = useState("");
   const [topicDescription, setTopicDescription] = useState("");
-  const [author, setAuthor] = useState("");
   const [articleImgUrl, setArticleImgUrl] = useState("");
   const [isNewTopic, setIsNewTopic] = useState(false);
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const showToast = (message, type = "success") => {
+    toast(message, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+      type,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!title || !body || !topic || !author) {
-      setError("All fields are required.");
+    if (!title || !body || !topic) {
+      showToast("All fields are required.", "error");
       return;
     }
-
+    setIsSubmitting(true);
     try {
-      const existingTopic = await fetchTopicBySlug(topic);
+      const existingTopic = await fetchTopicBySlug(topic.trim().toLowerCase());
       if (!existingTopic) {
         if (!topicDescription) {
-          setError("Topic does not exist. Please provide a description.");
+          showToast(
+            "Topic doesn't exist. Please provide a description.",
+            "error"
+          );
           setIsNewTopic(true);
+          setIsSubmitting(false);
           return;
         }
-
-        await postTopic({ slug: topic, description: topicDescription });
+        await postTopic({
+          slug: topic.trim().toLowerCase(),
+          description: topicDescription,
+        });
+        showToast(`New topic "${topic}" created successfully.`);
       }
-
       const newArticle = {
         title,
-        topic,
-        author,
+        topic: topic.trim().toLowerCase(),
+        author: user.username,
         body,
         article_img_url:
           articleImgUrl ||
           "https://cdn.pixabay.com/photo/2015/09/05/20/02/coding-924920_1280.jpg",
       };
-
       const postedArticle = await postArticle(newArticle);
-
-      setSuccessMessage(
-        `Article "${postedArticle.title}" posted successfully!`
-      );
-      setError(null);
-      setTitle("");
-      setBody("");
-      setTopic("");
-      setTopicDescription("");
-      setAuthor("");
-      setArticleImgUrl("");
-      setIsNewTopic(false);
+      showToast(`Article "${postedArticle.title}" posted successfully!`);
+      resetForm();
+      navigate(`/articles/${postedArticle.article_id}`);
     } catch (err) {
-      setError("Failed to post the article. Please try again.");
+      showToast("Failed to post the article. Please try again.", "error");
+      console.error("Error posting article:", err);
+    } finally {
+      setIsSubmitting(false);
     }
+  };
+
+  const resetForm = () => {
+    setTitle("");
+    setBody("");
+    setTopic("");
+    setTopicDescription("");
+    setArticleImgUrl("");
+    setIsNewTopic(false);
   };
 
   return (
@@ -115,17 +138,6 @@ const PostArticle = () => {
           </label>
         )}
         <label className="flex flex-col text-sm md:text-base">
-          Author
-          <input
-            type="text"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            className="bg-zinc-700 text-zinc-100 rounded-lg p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-redPrimary"
-            placeholder="Enter your name or username"
-            required
-          />
-        </label>
-        <label className="flex flex-col text-sm md:text-base">
           Image URL (optional)
           <input
             type="text"
@@ -137,20 +149,13 @@ const PostArticle = () => {
         </label>
         <button
           type="submit"
-          className="w-32 mx-auto text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"
+          disabled={isSubmitting}
+          className={`w-32 mx-auto text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3 ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
         >
-          Post Article
+          {isSubmitting ? "Submitting..." : "Post Article"}
         </button>
-        {error && (
-          <p className="text-redPrimary text-sm md:text-base text-center mt-2">
-            {error}
-          </p>
-        )}
-        {successMessage && (
-          <p className="text-green-500 text-sm md:text-base text-center mt-2">
-            {successMessage}
-          </p>
-        )}
       </form>
     </section>
   );

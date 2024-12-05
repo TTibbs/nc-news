@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast, Bounce } from "react-toastify";
 import { UserContext } from "../contexts/UserContext";
 import VotesAndCommentCount from "./VotesAndCommentCount";
 import { capitaliseFirstLetter } from "../utils/utilFuncs";
@@ -18,15 +19,32 @@ const ArticleCard = ({ article, onDelete }) => {
     createdAt.getMonth() + 1
   }/${createdAt.getFullYear()}`;
 
+  const showToast = (message, type = "success") => {
+    toast(message, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      transition: Bounce,
+      type,
+    });
+  };
+
   const handleArticleDelete = (article_id) => {
     setIsDeleting(true);
     deleteArticle(article_id)
       .then(() => {
         onDelete(article_id);
         setShowModal(false);
+        showToast("Article deleted successfully.", "success");
       })
       .catch((err) => {
         setIsError(err);
+        showToast("Failed to delete the article. Please try again.", "error");
       })
       .finally(() => {
         setIsDeleting(false);
@@ -85,7 +103,7 @@ const ArticleCard = ({ article, onDelete }) => {
               <MdDelete />
               {isError && (
                 <p>
-                  {err.msg} | {err.status}
+                  {isError.msg} | {isError.status}
                 </p>
               )}
             </div>
