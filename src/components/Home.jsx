@@ -48,7 +48,7 @@ const Home = () => {
               {topics.map((topic) => (
                 <li
                   key={topic.slug}
-                  className="p-4 bg-zinc-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                  className="p-4 bg-zinc-800 rounded-lg shadow-md hover:shadow-lg hover:shadow-redHover transition-all duration-300"
                 >
                   <h3 className="text-lg font-semibold capitalize">
                     {topic.slug}
@@ -80,18 +80,18 @@ const Home = () => {
                 return (
                   <li
                     key={article.article_id}
-                    className="p-4 bg-zinc-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                    className="p-4 bg-zinc-800 rounded-lg shadow-md hover:shadow-lg hover:shadow-redHover transition-all duration-300"
                   >
                     <h3 className="text-lg font-semibold line-clamp-2">
                       {article.title}
                     </h3>
-                    <p className="text-sm mt-2">Author: {article.author}</p>
-                    <p className="text-sm mt-2">Date: {formattedDate}</p>
                     <img
                       src={article.article_img_url}
                       alt={`Image for ${article.title}`}
-                      className="rounded-lg mt-3 mb-4"
+                      className="rounded-lg mt-3"
                     />
+                    <p className="text-sm my-2">Author: {article.author}</p>
+                    <p className="text-sm mb-4">Date: {formattedDate}</p>
                     <Link
                       to={`/articles/${article.article_id}`}
                       className="text-textPrimary outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"

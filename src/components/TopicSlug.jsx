@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 import { fetchArticlesByTopic } from "../utils/articlesApi";
 import ArticleCard from "./ArticleCard";
 import Loading from "./Loading";
@@ -10,6 +11,9 @@ const TopicSlug = () => {
   const [articlesByTopic, setArticlesByTopic] = useState([]);
   const [isTopicsLoading, setIsTopicsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { user } = useContext(UserContext);
+  const username = user ? user.username : null;
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsTopicsLoading(true);
@@ -26,6 +30,24 @@ const TopicSlug = () => {
       });
   }, [slug]);
 
+  const handlePostArticleClick = (e) => {
+    if (!username) {
+      e.preventDefault();
+      toast.error("Please log in to post an article.", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      navigate("/post-article");
+    }
+  };
+
   if (isTopicsLoading) {
     return <Loading isTopicsLoading={isTopicsLoading} />;
   }
@@ -36,6 +58,12 @@ const TopicSlug = () => {
 
   return (
     <section className="mt-20 p-10">
+      <button
+        onClick={handlePostArticleClick}
+        className="py-1 px-4 md:px-6 text-sm md:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redHover hover:outline-textPrimary transition-all duration-300 ease-in-out text-textPrimary rounded"
+      >
+        Post Article
+      </button>
       <h2 className="text-textPrimary text-xl md:text-2xl lg:text-3xl font-bold text-center mb-8">
         Articles related to {slug}
       </h2>

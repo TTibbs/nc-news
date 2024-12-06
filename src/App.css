@@ -40,3 +40,8 @@ body {
 .auth-button {
   @apply w-32 text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3;
 }
+
+.break-words {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}

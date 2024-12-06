@@ -16,7 +16,7 @@ const SingleComment = ({ articleComment, setArticleComments }) => {
   const createdAt = new Date(articleComment.created_at);
   const formattedDate = `${createdAt.getDate()}/${
     createdAt.getMonth() + 1
-  }/${createdAt.getFullYear()} ${createdAt.getHours()}:${createdAt.getMinutes()}`;
+  }/${createdAt.getFullYear()} at ${createdAt.getHours()}:${createdAt.getMinutes()}`;
   const deleteCommentToast = () => {
     toast("Comment Deleted", {
       position: "bottom-right",

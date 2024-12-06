@@ -59,20 +59,18 @@ const SingleArticle = () => {
   }
 
   return (
-    <section className="text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-28 mb-5 mx-5 p-10">
+    <section className="text-zinc-100 mt-24 mb-5 mx-5">
       <div className="flex flex-col">
-        <div className="flex items-center justify-between">
+        <div className="text-sm flex flex-col gap-1 md:text-base lg:text-lg mt-3">
           <h1 className="text-base md:text-lg lg:text-xl font-bold">
             {singleArticle.title}
           </h1>
-          <div className="text-sm flex flex-col gap-1 md:text-base lg:text-lg mt-3">
-            <p>Author: {singleArticle.author}</p>
-            <p>Topic: {singleArticle.topic}</p>
-            <p>
-              Estimated Reading Time: {readingTime} minute
-              {readingTime > 1 ? "s" : ""}
-            </p>
-          </div>
+          <p>Author: {singleArticle.author}</p>
+          <p>Topic: {singleArticle.topic}</p>
+          <p>
+            Est. Read Time: {readingTime} minute
+            {readingTime > 1 ? "s" : ""}
+          </p>
         </div>
         <div className="flex flex-col items-center gap-10 mt-3 mb-5 w-full">
           <img
@@ -80,9 +78,9 @@ const SingleArticle = () => {
             alt={`Image related to article titled: ${singleArticle.title}`}
             className="w-[500px] rounded-lg shadow-lg shadow-zinc-600"
           />
-          <div className="flex items-center justify-between px-8">
+          <div className="flex flex-col items-center justify-between">
             <p
-              className="w-[80%] text-sm md:text-base lg:text-lg break-words"
+              className="text-sm md:text-base lg:text-lg break-words"
               style={{
                 wordBreak: "break-word",
                 overflowWrap: "break-word",
@@ -90,7 +88,7 @@ const SingleArticle = () => {
             >
               {singleArticle.body}
             </p>
-            <div className="flex items-center gap-5 mb-4">
+            <div className="flex items-center gap-5 mt-5">
               <Voting article_id={article_id} votes={singleArticle.votes} />
             </div>
           </div>
