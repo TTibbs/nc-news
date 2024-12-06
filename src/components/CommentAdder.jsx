@@ -41,6 +41,13 @@ const CommentAdder = ({ setArticleComments }) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
+
+    if (!user) {
+      setError("You must be logged in to comment.");
+      setIsSubmitting(false);
+      return;
+    }
+
     const username = user.username;
 
     addNewComment(article_id, username, newComment)
@@ -61,6 +68,23 @@ const CommentAdder = ({ setArticleComments }) => {
       });
   };
 
+  if (!user) {
+    return (
+      <div className="text-center mt-5">
+        <p className="text-textPrimary text-lg">
+          Please{" "}
+          <a
+            href="/auth"
+            className="text-redHover hover:underline decoration-redHover decoration-4"
+          >
+            log in
+          </a>{" "}
+          to add a comment.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-2 border-zinc-200 mt-5">
       <div className="flex items-center">
@@ -77,7 +101,7 @@ const CommentAdder = ({ setArticleComments }) => {
             value={newComment}
             onChange={handleNewComment}
           ></textarea>
-          {error && <p>{error}</p>}
+          {error && <p className="text-red-500">{error}</p>}
           <div className="flex items-center justify-end mt-5">
             <button
               type="submit"

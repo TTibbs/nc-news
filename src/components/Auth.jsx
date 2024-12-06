@@ -5,63 +5,101 @@ import { UserContext } from "../contexts/UserContext";
 
 const Auth = () => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [signInUsername, setSignInUsername] = useState("");
-  const [signUpUsername, setSignUpUsername] = useState("");
-  const [name, setName] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [error, setError] = useState(null);
+  const [formValues, setFormValues] = useState({
+    signInUsername: "",
+    signUpUsername: "",
+    name: "",
+    imageUrl: "",
+  });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
-    setError(null);
+    setErrors({});
+  };
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setFormValues((prevValues) => ({ ...prevValues, [id]: value }));
+  };
+
+  const validateFields = (fields) => {
+    const fieldErrors = {};
+    fields.forEach((field) => {
+      if (!formValues[field]) {
+        fieldErrors[field] = "This field is required.";
+      }
+    });
+    return fieldErrors;
   };
 
   const handleSignInSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    setErrors({});
+    setIsLoading(true);
 
-    if (!signInUsername) {
-      setError("Username is required.");
+    const fieldErrors = validateFields(["signInUsername"]);
+    if (Object.keys(fieldErrors).length > 0) {
+      setErrors(fieldErrors);
+      setIsLoading(false);
       return;
     }
 
     try {
-      const user = await fetchUser(signInUsername);
+      const user = await fetchUser(formValues.signInUsername);
       if (user) {
         setUser(user);
         navigate("/articles?p=1");
       } else {
-        setError("User not found.");
+        setErrors({ signInUsername: "User not found." });
       }
-    } catch (err) {
-      setError("An error occurred during sign-in. Please try again.");
+    } catch {
+      setErrors({ signInUsername: "An error occurred during sign-in." });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    setErrors({});
+    setIsLoading(true);
 
-    if (!signUpUsername || !name || !imageUrl) {
-      setError("All fields are required.");
+    const fieldErrors = validateFields(["signUpUsername", "name", "imageUrl"]);
+    if (Object.keys(fieldErrors).length > 0) {
+      setErrors(fieldErrors);
+      setIsLoading(false);
       return;
     }
 
     try {
-      const existingUser = await fetchUser(signUpUsername);
+      const existingUser = await fetchUser(formValues.signUpUsername);
       if (existingUser) {
-        setError("Username already taken.");
+        setErrors({ signUpUsername: "Username already taken." });
       } else {
-        const newUser = { username: signUpUsername, name, imageUrl };
+        const newUser = {
+          username: formValues.signUpUsername,
+          name: formValues.name,
+          imageUrl: formValues.imageUrl,
+        };
         const createdUser = await createUser(newUser);
         setUser(createdUser);
         navigate("/articles?p=1");
       }
-    } catch (err) {
-      setError("An error occurred during sign-up. Please try again.");
+    } catch {
+      setErrors({ signUpUsername: "An error occurred during sign-up." });
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  const renderError = (field) => {
+    return (
+      errors[field] && <p className="text-red-500 text-sm">{errors[field]}</p>
+    );
   };
 
   return (
@@ -75,7 +113,6 @@ const Auth = () => {
         >
           <div className="absolute w-full h-full backface-hidden auth-form">
             <h2 className="text-2xl font-bold mb-4 text-center">Sign In</h2>
-            {error && <p className="text-red-500 text-center">{error}</p>}
             <form className="space-y-4" onSubmit={handleSignInSubmit}>
               <div>
                 <label
@@ -87,15 +124,20 @@ const Auth = () => {
                 <input
                   type="text"
                   id="signInUsername"
-                  value={signInUsername}
-                  onChange={(e) => setSignInUsername(e.target.value)}
+                  value={formValues.signInUsername}
+                  onChange={handleInputChange}
                   className="auth-input"
                   required
                 />
+                {renderError("signInUsername")}
               </div>
               <div className="flex justify-center">
-                <button type="submit" className="auth-button">
-                  Sign In
+                <button
+                  type="submit"
+                  className="auth-button"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Signing In..." : "Sign In"}
                 </button>
               </div>
             </form>
@@ -114,59 +156,35 @@ const Auth = () => {
             style={{ transform: "rotateY(180deg)" }}
           >
             <h2 className="text-2xl font-bold mb-4 text-center">Sign Up</h2>
-            {error && <p className="text-red-500 text-center">{error}</p>}
             <form className="space-y-4" onSubmit={handleSignUpSubmit}>
-              <div>
-                <label
-                  className="block text-sm font-medium mb-1"
-                  htmlFor="signUpUsername"
-                >
-                  Username
-                </label>
-                <input
-                  type="text"
-                  id="signUpUsername"
-                  value={signUpUsername}
-                  onChange={(e) => setSignUpUsername(e.target.value)}
-                  className="auth-input"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-sm font-medium mb-1"
-                  htmlFor="name"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="auth-input"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  className="block text-sm font-medium mb-1"
-                  htmlFor="imageUrl"
-                >
-                  Image URL
-                </label>
-                <input
-                  type="url"
-                  id="imageUrl"
-                  value={imageUrl}
-                  onChange={(e) => setImageUrl(e.target.value)}
-                  className="auth-input"
-                  required
-                />
-              </div>
+              {["signUpUsername", "name", "imageUrl"].map((field) => (
+                <div key={field}>
+                  <label
+                    className="block text-sm font-medium mb-1"
+                    htmlFor={field}
+                  >
+                    {field === "signUpUsername"
+                      ? "Username"
+                      : field.charAt(0).toUpperCase() + field.slice(1)}
+                  </label>
+                  <input
+                    type={field === "imageUrl" ? "url" : "text"}
+                    id={field}
+                    value={formValues[field]}
+                    onChange={handleInputChange}
+                    className="auth-input"
+                    required
+                  />
+                  {renderError(field)}
+                </div>
+              ))}
               <div className="flex justify-center">
-                <button type="submit" className="auth-button">
-                  Sign Up
+                <button
+                  type="submit"
+                  className="auth-button"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Signing Up..." : "Sign Up"}
                 </button>
               </div>
             </form>

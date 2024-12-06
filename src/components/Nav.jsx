@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
-import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
 const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
@@ -9,6 +8,7 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
 
   const handleLogout = () => {
     setUser(null);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -69,7 +69,7 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
               Home
             </li>
           </Link>
-          <Link to="/articles" onClick={() => setIsMenuOpen(false)}>
+          <Link to="/articles?p=1" onClick={() => setIsMenuOpen(false)}>
             <li className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
               Articles
             </li>
@@ -81,17 +81,14 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
           </Link>
           {user ? (
             <div>
-              <Link to="/auth">
-                <button
-                  onClick={handleLogout}
-                  className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"
-                >
+              <Link to="/auth" onClick={handleLogout}>
+                <button className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
                   Log Out
                 </button>
               </Link>
             </div>
           ) : (
-            <Link to="/auth">
+            <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
               <button className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
                 Log In
               </button>

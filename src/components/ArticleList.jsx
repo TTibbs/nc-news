@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { fetchArticles } from "../utils/articlesApi";
 import Loading from "../components/Loading";
+import { UserContext } from "../contexts/UserContext";
 import ArticleCard from "./ArticleCard";
 import Filter from "./Filter";
 import ErrorPage from "./ErrorPage";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ArticleList = () => {
   const [articleList, setArticleList] = useState([]);
@@ -12,6 +14,9 @@ const ArticleList = () => {
   const [totalArticles, setTotalArticles] = useState(0);
   const [isError, setIsError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const { user } = useContext(UserContext);
+  const username = user ? user.username : null;
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsArticlesLoading(true);
@@ -28,6 +33,24 @@ const ArticleList = () => {
         setIsArticlesLoading(false);
       });
   }, []);
+
+  const handlePostArticleClick = (e) => {
+    if (!username) {
+      e.preventDefault();
+      toast.error("Please log in to post an article.", {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    } else {
+      navigate("/post-article");
+    }
+  };
 
   const handleDelete = (article_id) => {
     setArticleList((prevArticles) =>
@@ -46,11 +69,12 @@ const ArticleList = () => {
     >
       {isError ? <ErrorPage err={isError} /> : null}
       <div className="flex flex-col md:flex-row items-center justify-between gap-5 mt-3">
-        <Link to="/post-article">
-          <button className="py-1 px-4 md:px-6 text-sm md:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redHover hover:outline-textPrimary transition-all duration-300 ease-in-out text-textPrimary rounded">
-            Post Article
-          </button>
-        </Link>
+        <button
+          onClick={handlePostArticleClick}
+          className="py-1 px-4 md:px-6 text-sm md:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redHover hover:outline-textPrimary transition-all duration-300 ease-in-out text-textPrimary rounded"
+        >
+          Post Article
+        </button>
         <div className="flex-grow">
           <Filter
             setArticleList={setArticleList}

@@ -12,7 +12,7 @@ import Voting from "./Voting";
 const SingleComment = ({ articleComment, setArticleComments }) => {
   const { user } = useContext(UserContext);
   const { article_id } = useParams();
-  const username = user.username;
+  const username = user ? user.username : null;
   const createdAt = new Date(articleComment.created_at);
   const formattedDate = `${createdAt.getDate()}/${
     createdAt.getMonth() + 1

@@ -98,7 +98,7 @@ const ArticleCard = ({ article, onDelete }) => {
             hidden={username !== article.author}
             onClick={() => setShowModal(true)}
           >
-            <div className="w-20 mx-auto flex items-center font-bold gap-2 py-2 px-3 text-xs md:text-base rounded-xl text-white bg-redPrimary hover:bg-redHover transition-colors duration-200 ease-linear">
+            <div className="w-20 md:w-24 mx-auto flex items-center font-bold gap-2 py-2 px-3 text-xs md:text-base rounded-xl text-white bg-redPrimary hover:bg-redHover transition-colors duration-200 ease-linear">
               <p>Delete</p>
               <MdDelete />
               {isError && (

@@ -81,7 +81,13 @@ const SingleArticle = () => {
             className="w-[500px] rounded-lg shadow-lg shadow-zinc-600"
           />
           <div className="flex items-center justify-between px-8">
-            <p className="w-[80%] text-sm md:text-base lg:text-lg">
+            <p
+              className="w-[80%] text-sm md:text-base lg:text-lg break-words"
+              style={{
+                wordBreak: "break-word",
+                overflowWrap: "break-word",
+              }}
+            >
               {singleArticle.body}
             </p>
             <div className="flex items-center gap-5 mb-4">

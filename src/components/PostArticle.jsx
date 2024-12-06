@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, Bounce } from "react-toastify";
 import { UserContext } from "../contexts/UserContext";
+import { fetchTopics, postTopic } from "../utils/topicsApi";
 import { postArticle } from "../utils/articlesApi";
-import { fetchTopics, fetchTopicBySlug, postTopic } from "../utils/topicsApi";
 
 const PostArticle = () => {
   const { user } = useContext(UserContext);
@@ -32,16 +32,11 @@ const PostArticle = () => {
   };
 
   useEffect(() => {
-    const loadTopics = async () => {
-      try {
-        const topicsData = await fetchTopics();
-        setTopics(topicsData);
-      } catch (err) {
-        showToast("Failed to load topics. Please try again.", "error");
-      }
-    };
-
-    loadTopics();
+    fetchTopics()
+      .then(setTopics)
+      .catch(() =>
+        showToast("Failed to load topics. Please try again.", "error")
+      );
   }, []);
 
   const handleTopicChange = (e) => {
@@ -90,7 +85,7 @@ const PostArticle = () => {
       navigate(`/articles/${postedArticle.article_id}`);
     } catch (err) {
       showToast("Failed to post the article. Please try again.", "error");
-      console.error("Error posting article:", err);
+      console.error(err);
     } finally {
       setIsSubmitting(false);
     }
@@ -106,7 +101,7 @@ const PostArticle = () => {
   };
 
   return (
-    <section className="text-zinc-100 rounded-tl-xl rounded-tr-xl rounded-br-xl rounded-bl-xl mt-28 mb-5 mx-5 p-10 flex flex-col items-center">
+    <section className="text-zinc-100 rounded-xl mt-28 mb-5 mx-5 p-10 flex flex-col items-center">
       <h1 className="text-lg md:text-xl lg:text-2xl font-bold mb-6">
         Post a New Article
       </h1>
