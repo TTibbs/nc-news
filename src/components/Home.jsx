@@ -17,7 +17,7 @@ const Home = () => {
         const topicsData = await fetchTopics();
         const articlesResponse = await fetchArticles();
         const articlesData = articlesResponse.data.articles;
-        setTopics(topicsData.slice(0, 5));
+        setTopics(topicsData.slice(0, 6));
         setFeaturedArticles(articlesData.slice(0, 4));
       } catch (err) {
         console.error("Failed to fetch home page data:", err);
