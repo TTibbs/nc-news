@@ -31,7 +31,12 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
             </li>
           </Link>
           {user ? (
-            <div>
+            <div className="flex items-center justify-center gap-3">
+              <Link to="/profile">
+                <li className="text-xs md:text-sm lg:text-base outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
+                  Profile
+                </li>
+              </Link>
               <Link to="/auth">
                 <button
                   onClick={handleLogout}
@@ -81,6 +86,11 @@ const Nav = ({ isMenuOpen, setIsMenuOpen }) => {
           </Link>
           {user ? (
             <div>
+              <Link to="/profile" onClick={() => setIsMenuOpen(false)}>
+                <li className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
+                  Profile
+                </li>
+              </Link>
               <Link to="/auth" onClick={handleLogout}>
                 <button className="text-xl outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3">
                   Log Out

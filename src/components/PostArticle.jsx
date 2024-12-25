@@ -14,8 +14,23 @@ const PostArticle = () => {
   const [topics, setTopics] = useState([]);
   const [topicDescription, setTopicDescription] = useState("");
   const [articleImgUrl, setArticleImgUrl] = useState("");
+  const [isImageValid, setIsImageValid] = useState(true);
+  const [isCheckingImage, setIsCheckingImage] = useState(false);
   const [isNewTopic, setIsNewTopic] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const loadTopics = async () => {
+      try {
+        const fetchedTopics = await fetchTopics();
+        setTopics(fetchedTopics);
+      } catch (error) {
+        showToast("Failed to load topics. Please try again.", "error");
+      }
+    };
+    loadTopics();
+  }, []);
+
   const showToast = (message, type = "success") => {
     toast(message, {
       position: "bottom-right",
@@ -31,16 +46,46 @@ const PostArticle = () => {
     });
   };
 
-  useEffect(() => {
-    fetchTopics()
-      .then(setTopics)
-      .catch(() =>
-        showToast("Failed to load topics. Please try again.", "error")
+  const validateImageUrl = async (url) => {
+    if (!url) return true;
+    setIsCheckingImage(true);
+
+    try {
+      const img = new Image();
+      const imagePromise = new Promise((resolve, reject) => {
+        img.onload = () => resolve(true);
+        img.onerror = () => reject(false);
+      });
+
+      img.src = url;
+      await imagePromise;
+      setIsImageValid(true);
+      return true;
+    } catch (error) {
+      setIsImageValid(false);
+      showToast(
+        "Invalid image URL. Please check the URL or try another one.",
+        "error"
       );
-  }, []);
+      return false;
+    } finally {
+      setIsCheckingImage(false);
+    }
+  };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (articleImgUrl) {
+        validateImageUrl(articleImgUrl);
+      }
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [articleImgUrl]);
 
   const handleTopicChange = (e) => {
     const selectedValue = e.target.value;
+    setIsImageValid(true);
     if (selectedValue === "new") {
       setIsNewTopic(true);
       setTopic("");
@@ -55,6 +100,11 @@ const PostArticle = () => {
     if (!title || !body || (!topic && !isNewTopic)) {
       showToast("All fields are required.", "error");
       return;
+    }
+
+    if (articleImgUrl) {
+      const isValid = await validateImageUrl(articleImgUrl);
+      if (!isValid) return;
     }
     setIsSubmitting(true);
     try {
@@ -176,13 +226,27 @@ const PostArticle = () => {
         )}
         <label className="flex flex-col text-sm md:text-base">
           Image URL (optional)
-          <input
-            type="text"
-            value={articleImgUrl}
-            onChange={(e) => setArticleImgUrl(e.target.value)}
-            className="bg-zinc-700 text-zinc-100 rounded-lg p-2 mt-1 focus:outline-none focus:ring-2 focus:ring-redPrimary"
-            placeholder="Enter an image URL for the article"
-          />
+          <div className="relative">
+            <input
+              type="text"
+              value={articleImgUrl}
+              onChange={(e) => setArticleImgUrl(e.target.value)}
+              className={`bg-zinc-700 text-zinc-100 rounded-lg p-2 mt-1 w-full focus:outline-none focus:ring-2 ${
+                articleImgUrl && !isImageValid
+                  ? "focus:ring-red-500 border-red-500"
+                  : "focus:ring-redPrimary"
+              }`}
+              placeholder="Enter an image URL for the article"
+            />
+            {isCheckingImage && (
+              <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-zinc-400">
+                Checking...
+              </span>
+            )}
+            {articleImgUrl && !isImageValid && (
+              <p className="text-red-500 text-sm mt-1">Invalid image URL</p>
+            )}
+          </div>
         </label>
         <button
           type="submit"

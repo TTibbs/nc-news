@@ -10,6 +10,7 @@ import PostArticle from "./components/PostArticle";
 import Auth from "./components/Auth";
 import { ToastContainer } from "react-toastify";
 import Layout from "./components/Layout";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -40,6 +41,14 @@ function App() {
           element={
             <Layout>
               <Auth />
+            </Layout>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <Layout>
+              <Profile />
             </Layout>
           }
         />
