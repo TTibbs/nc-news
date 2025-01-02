@@ -11,6 +11,7 @@ import Auth from "./components/Auth";
 import { ToastContainer } from "react-toastify";
 import Layout from "./components/Layout";
 import Profile from "./components/Profile";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
@@ -106,6 +107,7 @@ function App() {
           }
         />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   );
 }
