@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchUser, createUser } from "../utils/userApi";
+import { fetchUser, createUser } from "../api/userApi";
 import { UserContext } from "../contexts/UserContext";
 
 const Auth = () => {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { DownVoteButton, UpVoteButton } from "./Buttons";
-import { updateArticleVotes } from "../utils/articlesApi";
-import { updateCommentVotes } from "../utils/commentsApi";
+import { DownVoteButton, UpVoteButton } from "../Buttons";
+import { updateArticleVotes } from "../../api/articlesApi";
+import { updateCommentVotes } from "../../api/commentsApi";
 
 const Voting = ({ votes, article_id, comment_id }) => {
   const [clientVotes, setClientVotes] = useState(0);
@@ -47,9 +47,7 @@ const Voting = ({ votes, article_id, comment_id }) => {
     <>
       {isError ? <p>Oops, an error</p> : null}
       <UpVoteButton handleArticleVotes={handleVotes} disabled={hasVoted} />
-      <p className="text-base">
-        {votes + clientVotes}
-      </p>
+      <p className="text-base">{votes + clientVotes}</p>
       <DownVoteButton handleArticleVotes={handleVotes} disabled={hasVoted} />
     </>
   );

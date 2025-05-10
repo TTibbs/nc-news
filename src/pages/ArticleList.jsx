@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { fetchArticles } from "../utils/articlesApi";
-import Loading from "../components/Loading";
+import { fetchArticles } from "../api/articlesApi";
 import { UserContext } from "../contexts/UserContext";
-import ArticleCard from "./ArticleCard";
-import Filter from "./Filter";
+import ArticleCard from "../components/articles/ArticleCard";
+import Filter from "../components/articles/Filter";
 import ErrorPage from "./ErrorPage";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -59,7 +58,11 @@ const ArticleList = () => {
   };
 
   if (isArticlesLoading) {
-    return <Loading isArticlesLoading={isArticlesLoading} />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-10 h-10 border-4 border-t-transparent border-b-transparent border-r-transparent border-l-redPrimary rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   return (

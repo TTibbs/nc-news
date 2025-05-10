@@ -1,35 +1,18 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { Bounce, toast } from "react-toastify";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import { MdDelete } from "react-icons/md";
 import {
   fetchArticleComments,
   deleteArticleComment,
-} from "../utils/commentsApi";
+} from "../../api/commentsApi";
 import Voting from "./Voting";
+import { formatDate } from "../../utils/utilFuncs";
 
 const SingleComment = ({ articleComment, setArticleComments }) => {
   const { user } = useContext(UserContext);
   const { article_id } = useParams();
   const username = user ? user.username : null;
-  const createdAt = new Date(articleComment.created_at);
-  const formattedDate = `${createdAt.getDate()}/${
-    createdAt.getMonth() + 1
-  }/${createdAt.getFullYear()} at ${createdAt.getHours()}:${createdAt.getMinutes()}`;
-  const deleteCommentToast = () => {
-    toast("Comment Deleted", {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      transition: Bounce,
-    });
-  };
 
   const handleCommentDelete = (comment_id) => {
     deleteArticleComment(comment_id)
@@ -48,7 +31,7 @@ const SingleComment = ({ articleComment, setArticleComments }) => {
         <div className="w-full bg-zinc-800 text-zinc-200 flex items-center justify-between p-5 rounded-xl">
           <div className="flex flex-col gap-1 w-full">
             <p className="font-medium text-sm md:text-base lg:text-lg mb-2">
-              {formattedDate} by {articleComment.author}
+              {formatDate(articleComment.created_at)} by {articleComment.author}
             </p>
             <p className="w-[90%] text-sm md:text-base lg:text-lg rounded-lg py-2">
               {articleComment.body}

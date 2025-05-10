@@ -1,6 +1,3 @@
-import Header from "./Header";
-import Footer from "./Footer";
-
 const BadRequest = ({ error }) => {
   return (
     <section

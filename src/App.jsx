@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
-import ArticleList from "./components/ArticleList";
-import SingleArticle from "./components/SingleArticle";
-import Topics from "./components/Topics";
+import Home from "./pages/Home";
+import ArticleList from "./pages/ArticleList";
+import SingleArticle from "./pages/SingleArticle";
+import Topics from "./pages/Topics";
 import TopicSlug from "./components/TopicSlug";
-import NotFound from "./components/NotFound";
-import PostArticle from "./components/PostArticle";
-import Auth from "./components/Auth";
+import NotFound from "./pages/NotFound";
+import PostArticle from "./pages/PostArticle";
+import Auth from "./pages/Auth";
 import { ToastContainer } from "react-toastify";
 import Layout from "./components/Layout";
-import Profile from "./components/Profile";
+import Profile from "./pages/Profile";
 import { Analytics } from "@vercel/analytics/react";
 
 function App() {

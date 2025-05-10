@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
-import { fetchArticles } from "../utils/articlesApi";
-import { fetchTopics } from "../utils/topicsApi";
+import { fetchArticles } from "../api/articlesApi";
+import { fetchTopics } from "../api/topicsApi";
+import { formatDate } from "../utils/utilFuncs";
 
 const Home = () => {
   const { user } = useContext(UserContext);
@@ -70,13 +71,6 @@ const Home = () => {
             <h2 className="text-2xl font-bold mb-5">Featured Articles</h2>
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredArticles.map((article) => {
-                const createdAt = new Date(article.created_at);
-                const formattedDate = `${createdAt
-                  .getDate()
-                  .toString()
-                  .padStart(2, "0")}/${(createdAt.getMonth() + 1)
-                  .toString()
-                  .padStart(2, "0")}/${createdAt.getFullYear()}`;
                 return (
                   <li
                     key={article.article_id}
@@ -91,7 +85,9 @@ const Home = () => {
                       className="rounded-lg mt-3"
                     />
                     <p className="text-sm my-2">Author: {article.author}</p>
-                    <p className="text-sm mb-4">Date: {formattedDate}</p>
+                    <p className="text-sm mb-4">
+                      Date: {formatDate(article.created_at)}
+                    </p>
                     <Link
                       to={`/articles/${article.article_id}`}
                       className="text-textPrimary outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"

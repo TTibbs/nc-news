@@ -1,10 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
-import { fetchArticlesByTopic } from "../utils/articlesApi";
-import ArticleCard from "./ArticleCard";
-import Loading from "./Loading";
-import NotFound from "./NotFound";
+import { fetchArticlesByTopic } from "../api/articlesApi";
+import ArticleCard from "./articles/ArticleCard";
+import NotFound from "../pages/NotFound";
 
 const TopicSlug = () => {
   const { slug } = useParams();
@@ -49,7 +48,11 @@ const TopicSlug = () => {
   };
 
   if (isTopicsLoading) {
-    return <Loading isTopicsLoading={isTopicsLoading} />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-10 h-10 border-4 border-t-transparent border-b-transparent border-r-transparent border-l-redPrimary rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   if (error) {

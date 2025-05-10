@@ -1,10 +1,9 @@
 import React, { useState, useRef, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../App.css";
-import { fetchArticleComments, addNewComment } from "../utils/commentsApi";
+import { fetchArticleComments, addNewComment } from "../../api/commentsApi";
 
 const CommentAdder = ({ setArticleComments }) => {
   const { user } = useContext(UserContext);

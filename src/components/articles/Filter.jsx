@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import Loading from "./Loading";
-import { fetchArticles } from "../utils/articlesApi";
+import { fetchArticles } from "../../api/articlesApi";
 import { FaChevronDown } from "react-icons/fa";
 
 const Filter = ({ setArticleList, totalArticles }) => {
@@ -56,7 +55,11 @@ const Filter = ({ setArticleList, totalArticles }) => {
   }, [sortByQuery, orderQuery, limitQuery, pageQuery]);
 
   if (isArticlesLoading) {
-    return <Loading isArticlesLoading={isArticlesLoading} />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-10 h-10 border-4 border-t-transparent border-b-transparent border-r-transparent border-l-redPrimary rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   const limit = parseInt(limitQuery) || 12;

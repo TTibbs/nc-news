@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { toast, Bounce } from "react-toastify";
 import { UserContext } from "../contexts/UserContext";
-import { fetchTopics, deleteTopic } from "../utils/topicsApi";
-import Loading from "./Loading";
-import TopicCard from "./TopicCard";
+import { fetchTopics, deleteTopic } from "../api/topicsApi";
+import TopicCard from "../components/TopicCard";
 import ErrorPage from "./ErrorPage";
 
 const Topics = () => {
@@ -64,7 +63,11 @@ const Topics = () => {
   }, []);
 
   if (isTopicsLoading) {
-    return <Loading isTopicsLoading={isTopicsLoading} />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-10 h-10 border-4 border-t-transparent border-b-transparent border-r-transparent border-l-redPrimary rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   if (error) {

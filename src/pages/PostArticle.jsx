@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, Bounce } from "react-toastify";
 import { UserContext } from "../contexts/UserContext";
-import { fetchTopics, postTopic } from "../utils/topicsApi";
-import { postArticle } from "../utils/articlesApi";
+import { fetchTopics, postTopic } from "../api/topicsApi";
+import { postArticle } from "../api/articlesApi";
 
 const PostArticle = () => {
   const { user } = useContext(UserContext);

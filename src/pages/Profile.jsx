@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { fetchUser } from "../utils/userApi";
-import Loading from "./Loading";
+import { fetchUser } from "../api/userApi";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
@@ -35,7 +34,11 @@ const Profile = () => {
   }, [username]);
 
   if (isLoading) {
-    return <Loading isLoading={isLoading} />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-10 h-10 border-4 border-t-transparent border-b-transparent border-r-transparent border-l-redPrimary rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   if (error) {

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchArticleById } from "../utils/articlesApi";
-import { fetchArticleComments } from "../utils/commentsApi";
-import Loading from "../components/Loading";
-import CommentsList from "./CommentsList";
-import CommentAdder from "./CommentAdder";
-import Voting from "./Voting";
-import NotFound from "./NotFound";
-import { calculateReadingTime } from "../utils/readingTime";
+import { fetchArticleById } from "../api/articlesApi";
+import { fetchArticleComments } from "../api/commentsApi";
+import CommentsList from "../components/articles/CommentsList";
+import CommentAdder from "../components/articles/CommentAdder";
+import Voting from "../components/articles/Voting";
+import NotFound from "../pages/NotFound";
+import { calculateReadingTime } from "../utils/utilFuncs";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -51,7 +50,11 @@ const SingleArticle = () => {
   }, [article_id]);
 
   if (isArticleLoading || isCommentsLoading) {
-    return <Loading isArticleLoading={isArticleLoading} />;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-10 h-10 border-4 border-t-transparent border-b-transparent border-r-transparent border-l-redPrimary rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   if (error) {

@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast, Bounce } from "react-toastify";
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
 import VotesAndCommentCount from "./VotesAndCommentCount";
-import { capitaliseFirstLetter } from "../utils/utilFuncs";
+import { capitaliseFirstLetter } from "../../utils/utilFuncs";
 import { MdDelete } from "react-icons/md";
-import { deleteArticle } from "../utils/articlesApi";
+import { deleteArticle } from "../../api/articlesApi";
+import { formatDate } from "../../utils/utilFuncs";
 
 const ArticleCard = ({ article, onDelete }) => {
   const { user } = useContext(UserContext);
@@ -13,11 +14,6 @@ const ArticleCard = ({ article, onDelete }) => {
   const [showModal, setShowModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isError, setIsError] = useState(null);
-
-  const createdAt = new Date(article.created_at);
-  const formattedDate = `${createdAt.getDate()}/${
-    createdAt.getMonth() + 1
-  }/${createdAt.getFullYear()}`;
 
   const showToast = (message, type = "success") => {
     toast(message, {
@@ -74,7 +70,7 @@ const ArticleCard = ({ article, onDelete }) => {
         <div className="w-full flex items-center gap-3 p-1 md:p-2 lg:p-3">
           <div className="w-3/4 flex flex-col text-xs md:text-sm">
             <p>Author: {article.author}</p>
-            <p>Date: {formattedDate}</p>
+            <p>Date: {formatDate(article.created_at)}</p>
             <p>Topic: {capitaliseFirstLetter(article.topic)}</p>
           </div>
           <div className="w-1/4">
