@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="w-full bottom-0 left-0 py-5 px-4 md:px-14 bg-navBg flex items-center justify-between text-textPrimary">
+    <footer className="w-full py-5 px-4 md:px-14 bg-navBg flex items-center justify-between text-textPrimary">
       <Link to="/">
         <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
           N(c)ews
