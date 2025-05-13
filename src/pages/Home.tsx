@@ -45,26 +45,19 @@ const Home = (): JSX.Element => {
       ) : (
         <>
           <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-5">Featured Topics</h2>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
               {topics.map((topic) => (
-                <li
+                <Link
                   key={topic.slug}
-                  className="p-4 bg-zinc-800 rounded-lg shadow-md hover:shadow-lg hover:shadow-redHover transition-all duration-300"
+                  to={`/topics/${topic.slug}`}
+                  className="block"
                 >
-                  <h3 className="text-lg font-semibold capitalize">
-                    {topic.slug}
-                  </h3>
-                  <p className="text-sm mt-2 mb-4 line-clamp-3">
-                    {topic.description}
-                  </p>
-                  <Link
-                    to={`/topics/${topic.slug}`}
-                    className="text-textPrimary outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"
-                  >
-                    View Articles
-                  </Link>
-                </li>
+                  <li className="p-6 max-w-sm bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-800 rounded-xl shadow-lg border-2 border-redPrimary hover:border-textPrimary hover:scale-105 hover:shadow-redHover transition-all duration-300 ease-in-out cursor-pointer">
+                    <h3 className="text-xl font-extrabold capitalize mb-2 tracking-wide text-zinc-100">
+                      {topic.slug}
+                    </h3>
+                  </li>
+                </Link>
               ))}
             </ul>
           </section>
@@ -73,29 +66,28 @@ const Home = (): JSX.Element => {
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredArticles.map((article) => {
                 return (
-                  <li
+                  <Link
                     key={article.article_id}
-                    className="p-4 bg-zinc-800 rounded-lg shadow-md hover:shadow-lg hover:shadow-redHover transition-all duration-300"
+                    to={`/articles/${article.article_id}`}
+                    className="block"
                   >
-                    <h3 className="text-lg font-semibold line-clamp-2">
-                      {article.title}
-                    </h3>
-                    <img
-                      src={article.article_img_url}
-                      alt={`Image for ${article.title}`}
-                      className="rounded-lg mt-3"
-                    />
-                    <p className="text-sm my-2">Author: {article.author}</p>
-                    <p className="text-sm mb-4">
-                      Date: {formatDate(article.created_at)}
-                    </p>
-                    <Link
-                      to={`/articles/${article.article_id}`}
-                      className="text-textPrimary outline outline-2 rounded-lg outline-redPrimary hover:outline-textPrimary hover:bg-redHover hover:text-zinc-100 transition-all duration-300 ease-linear py-1 px-3"
-                    >
-                      Read More
-                    </Link>
-                  </li>
+                    <li className="p-4 bg-gradient-to-br from-zinc-800 via-zinc-900 to-zinc-800 rounded-xl shadow-lg border-2 border-redPrimary hover:border-textPrimary hover:scale-105 hover:shadow-redHover transition-all duration-300 ease-in-out cursor-pointer">
+                      <h3 className="text-lg font-semibold line-clamp-1">
+                        {article.title}
+                      </h3>
+                      <img
+                        src={article.article_img_url}
+                        alt={`Image for ${article.title}`}
+                        className="rounded-lg w-full h-40 object-cover mt-3"
+                      />
+                      <div className="flex justify-between mt-2">
+                        <p className="text-lg">Author: {article.author}</p>
+                        <p className="text-lg">
+                          {formatDate(article.created_at)}
+                        </p>
+                      </div>
+                    </li>
+                  </Link>
                 );
               })}
             </ul>
