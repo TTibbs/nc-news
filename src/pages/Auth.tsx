@@ -91,23 +91,22 @@ const Auth = () => {
     }
 
     try {
-      const existingUser = await fetchUser(formValues.signUpUsername);
-      if (existingUser) {
-        setErrors({ signUpUsername: "Username already taken." });
-      } else {
-        const newUser: User = {
-          username: formValues.signUpUsername,
-          name: formValues.name,
-          avatar_url: formValues.imageUrl,
-        };
-        const createdUser = await createUser(newUser);
-        if (userContext?.setUser) {
-          userContext.setUser(createdUser);
-          navigate("/articles?p=1");
-        }
+      const newUser: User = {
+        username: formValues.signUpUsername,
+        name: formValues.name,
+        avatar_url: formValues.imageUrl,
+      };
+      const createdUser = await createUser(newUser);
+      if (userContext?.setUser) {
+        userContext.setUser(createdUser);
+        navigate("/articles?p=1");
       }
-    } catch {
-      setErrors({ signUpUsername: "An error occurred during sign-up." });
+    } catch (err) {
+      if (err instanceof Error) {
+        setErrors({ signUpUsername: err.message });
+      } else {
+        setErrors({ signUpUsername: "An error occurred during sign-up." });
+      }
     } finally {
       setIsLoading(false);
     }

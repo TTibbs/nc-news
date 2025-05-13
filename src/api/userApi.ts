@@ -14,10 +14,12 @@ export const fetchUser = async (username: string): Promise<User | null> => {
   } catch (err) {
     if (err instanceof AxiosError && err.response?.status === 404) {
       return null;
-    } else {
-      console.error(err);
-      throw err;
     }
+    if (err instanceof AxiosError && err.response?.data?.msg) {
+      throw new Error(err.response.data.msg);
+    }
+    console.error(err);
+    throw err;
   }
 };
 
@@ -26,6 +28,9 @@ export const createUser = async (newUser: User): Promise<User> => {
     const response = await api.post(`/api/users`, newUser);
     return response.data.newUser;
   } catch (err) {
+    if (err instanceof AxiosError && err.response?.data?.msg) {
+      throw new Error(err.response.data.msg);
+    }
     console.error(err);
     throw err;
   }
@@ -39,6 +44,9 @@ export const updateUser = async (
     const response = await api.patch(`/api/users/${username}`, updatedUser);
     return response.data.updatedUser;
   } catch (err) {
+    if (err instanceof AxiosError && err.response?.data?.msg) {
+      throw new Error(err.response.data.msg);
+    }
     console.error(err);
     throw err;
   }
@@ -49,6 +57,9 @@ export const deleteUser = async (username: string): Promise<User> => {
     const response = await api.delete(`/api/users/${username}`);
     return response.data.deletedUser;
   } catch (err) {
+    if (err instanceof AxiosError && err.response?.data?.msg) {
+      throw new Error(err.response.data.msg);
+    }
     console.error(err);
     throw err;
   }
@@ -61,6 +72,9 @@ export const getUserCommentVotes = async (
     const response = await api.get(`/api/users/${username}/commentvotes`);
     return response.data.total_votes;
   } catch (err) {
+    if (err instanceof AxiosError && err.response?.data?.msg) {
+      throw new Error(err.response.data.msg);
+    }
     console.error(err);
     throw err;
   }
@@ -73,6 +87,9 @@ export const getUserArticleVotes = async (
     const response = await api.get(`/api/users/${username}/articlevotes`);
     return response.data.total_votes;
   } catch (err) {
+    if (err instanceof AxiosError && err.response?.data?.msg) {
+      throw new Error(err.response.data.msg);
+    }
     console.error(err);
     throw err;
   }
