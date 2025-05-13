@@ -1,5 +1,5 @@
 import { useState, useRef, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { UserContext } from "@/contexts/UserContext";
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -80,6 +80,20 @@ const CommentAdder = ({ setArticleComments }: CommentAdderProps) => {
         setIsSubmitting(false);
       });
   };
+
+  if (!userContext?.user) {
+    return (
+      <div className="text-center mb-10">
+        <p className="text-lg">
+          Want to contribute?{" "}
+          <Link to="/auth" className="text-redPrimary hover:underline">
+            Log in or Sign up
+          </Link>{" "}
+          to start posting and commenting.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={submitNewComment} className="w-full max-w-xl mx-auto my-4">
