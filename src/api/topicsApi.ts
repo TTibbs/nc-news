@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Topic, NewTopic } from "../types/api.types";
+import { Topic, NewTopic } from "@/types/api.types";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 

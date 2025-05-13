@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { Comment, NewComment } from "../types/api.types";
+import { Comment, NewComment } from "@/types/api.types";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 

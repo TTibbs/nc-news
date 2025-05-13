@@ -8,7 +8,7 @@ import {
 } from "@/api/userApi";
 import { Link } from "react-router-dom";
 import { User } from "@/types/api.types";
-import ErrorPage from "./ErrorPage";
+import ErrorPage from "@/pages/ErrorPage";
 
 const Profile = (): JSX.Element => {
   const userContext = useContext(UserContext);

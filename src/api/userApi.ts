@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { User, UpdatedUser } from "../types/api.types";
+import { User, UpdatedUser } from "@/types/api.types";
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
 

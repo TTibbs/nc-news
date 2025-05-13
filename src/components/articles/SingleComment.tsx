@@ -1,14 +1,11 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
+import { UserContext } from "@/contexts/UserContext";
 import { MdDelete } from "react-icons/md";
-import {
-  fetchArticleComments,
-  deleteArticleComment,
-} from "../../api/commentsApi";
+import { fetchArticleComments, deleteArticleComment } from "@/api/commentsApi";
 import Voting from "./Voting";
-import { formatDate } from "../../utils/utilFuncs.ts";
-import { Comment, Article } from "../../types/api.types";
+import { formatDate } from "@/utils/utilFuncs";
+import { Comment, Article } from "@/types/api.types";
 
 interface SingleCommentProps {
   articleComment: Comment;

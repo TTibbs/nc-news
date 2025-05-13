@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchArticleById } from "../api/articlesApi";
-import { fetchArticleComments } from "../api/commentsApi";
-import CommentsList from "../components/articles/CommentsList";
-import CommentAdder from "../components/articles/CommentAdder";
-import Voting from "../components/articles/Voting";
-import ErrorPage from "./ErrorPage";
-import { calculateReadingTime } from "../utils/utilFuncs.ts";
-import { Article, Comment } from "../types/api.types";
-import NotFound from "./NotFound";
+import { fetchArticleById } from "@/api/articlesApi";
+import { fetchArticleComments } from "@/api/commentsApi";
+import CommentsList from "@/components/articles/CommentsList";
+import CommentAdder from "@/components/articles/CommentAdder";
+import Voting from "@/components/articles/Voting";
+import ErrorPage from "@/pages/ErrorPage";
+import { calculateReadingTime } from "@/utils/utilFuncs";
+import { Article, Comment } from "@/types/api.types";
+import NotFound from "@/pages/NotFound";
 
 const SingleArticle = (): JSX.Element => {
   const { article_id } = useParams<{ article_id: string }>();
