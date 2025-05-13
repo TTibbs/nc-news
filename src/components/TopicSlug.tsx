@@ -7,7 +7,7 @@ import NotFound from "@/pages/NotFound";
 import { Article } from "@/types/api.types";
 import { toast } from "react-toastify";
 
-const TopicSlug = (): JSX.Element => {
+const TopicSlug = () => {
   const { slug } = useParams<{ slug: string }>();
   const [articlesByTopic, setArticlesByTopic] = useState<Article[]>([]);
   const [isTopicsLoading, setIsTopicsLoading] = useState<boolean>(true);

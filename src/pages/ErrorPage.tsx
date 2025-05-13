@@ -2,7 +2,7 @@ interface ErrorPageProps {
   error: string;
 }
 
-const ErrorPage = ({ error }: ErrorPageProps): JSX.Element => {
+const ErrorPage = ({ error }: ErrorPageProps) => {
   return (
     <section
       className="min-h-[100vh - 80px] flex items-center justify-center mt-20"

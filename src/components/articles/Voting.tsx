@@ -9,11 +9,7 @@ interface VotingProps {
   comment_id?: number;
 }
 
-const Voting = ({
-  votes,
-  article_id,
-  comment_id,
-}: VotingProps): JSX.Element => {
+const Voting = ({ votes, article_id, comment_id }: VotingProps) => {
   const [clientVotes, setClientVotes] = useState<number>(0);
   const [isError, setIsError] = useState<boolean>(false);
   const [hasVoted, setHasVoted] = useState<boolean>(false);

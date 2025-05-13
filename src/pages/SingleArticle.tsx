@@ -10,7 +10,7 @@ import { calculateReadingTime } from "@/utils/utilFuncs";
 import { Article, Comment } from "@/types/api.types";
 import NotFound from "@/pages/NotFound";
 
-const SingleArticle = (): JSX.Element => {
+const SingleArticle = () => {
   const { article_id } = useParams<{ article_id: string }>();
   const [singleArticle, setSingleArticle] = useState<Article | null>(null);
   const [articleComments, setArticleComments] = useState<Comment[]>([]);

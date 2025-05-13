@@ -16,7 +16,7 @@ interface SingleCommentProps {
 const SingleComment = ({
   articleComment,
   setArticleComments,
-}: SingleCommentProps): JSX.Element => {
+}: SingleCommentProps) => {
   const userContext = useContext(UserContext);
   const { article_id } = useParams<{ article_id: string }>();
   const username = userContext?.user?.username || null;

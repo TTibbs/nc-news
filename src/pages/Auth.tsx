@@ -18,7 +18,7 @@ interface FormErrors {
   imageUrl?: string;
 }
 
-const Auth = (): JSX.Element => {
+const Auth = () => {
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<FormValues>({
     signInUsername: "",
@@ -113,7 +113,7 @@ const Auth = (): JSX.Element => {
     }
   };
 
-  const renderError = (field: keyof FormErrors): JSX.Element | null => {
+  const renderError = (field: keyof FormErrors) => {
     return errors[field] ? (
       <p className="text-red-500 text-sm">{errors[field]}</p>
     ) : null;

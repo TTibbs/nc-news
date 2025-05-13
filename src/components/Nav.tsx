@@ -8,7 +8,7 @@ interface NavProps {
   setIsMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Nav = ({ isMenuOpen, setIsMenuOpen }: NavProps): JSX.Element => {
+const Nav = ({ isMenuOpen, setIsMenuOpen }: NavProps) => {
   const userContext = useContext(UserContext);
   const user = userContext?.user;
   const setUser = userContext?.setUser;

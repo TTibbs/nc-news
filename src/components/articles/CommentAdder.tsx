@@ -10,9 +10,7 @@ interface CommentAdderProps {
   setArticleComments: (comments: Comment[]) => void;
 }
 
-const CommentAdder = ({
-  setArticleComments,
-}: CommentAdderProps): JSX.Element => {
+const CommentAdder = ({ setArticleComments }: CommentAdderProps) => {
   const userContext = useContext(UserContext);
   const { article_id } = useParams<{ article_id: string }>();
   const [newComment, setNewComment] = useState<string>("");

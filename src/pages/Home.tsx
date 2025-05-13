@@ -6,7 +6,7 @@ import { fetchTopics } from "@/api/topicsApi";
 import { formatDate } from "@/utils/utilFuncs";
 import { Article, Topic } from "@/types/api.types";
 
-const Home = (): JSX.Element => {
+const Home = () => {
   const userContext = useContext(UserContext);
   const username = userContext?.user?.username;
   const [topics, setTopics] = useState<Topic[]>([]);

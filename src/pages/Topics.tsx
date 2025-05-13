@@ -6,7 +6,7 @@ import TopicCard from "@/components/TopicCard";
 import ErrorPage from "@/pages/ErrorPage";
 import { Topic } from "@/types/api.types";
 
-const Topics = (): JSX.Element => {
+const Topics = () => {
   const userContext = useContext(UserContext);
   const user = userContext?.user;
   const [topicsList, setTopicsList] = useState<Topic[]>([]);

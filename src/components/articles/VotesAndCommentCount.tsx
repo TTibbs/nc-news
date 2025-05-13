@@ -9,7 +9,7 @@ interface VotesAndCommentCountProps {
 const VotesAndCommentCount = ({
   votes,
   commentCount,
-}: VotesAndCommentCountProps): JSX.Element => {
+}: VotesAndCommentCountProps) => {
   return (
     <div className="flex flex-col gap-1 w-full">
       <p className="flex items-center gap-2">

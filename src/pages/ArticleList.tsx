@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { Article } from "@/types/api.types";
 import { FilterProps } from "@/components/articles/Filter";
 
-const ArticleList = (): JSX.Element => {
+const ArticleList = () => {
   const [articleList, setArticleList] = useState<Article[]>([]);
   const [isArticlesLoading, setIsArticlesLoading] = useState<boolean>(true);
   const [totalArticles, setTotalArticles] = useState<number>(0);

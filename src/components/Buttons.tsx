@@ -6,10 +6,7 @@ interface ButtonProps {
   disabled: boolean;
 }
 
-export const UpVoteButton = ({
-  handleArticleVotes,
-  disabled,
-}: ButtonProps): JSX.Element => {
+export const UpVoteButton = ({ handleArticleVotes, disabled }: ButtonProps) => {
   return (
     <BiSolidUpvote
       onClick={() => !disabled && handleArticleVotes(1)}
@@ -25,7 +22,7 @@ export const UpVoteButton = ({
 export const DownVoteButton = ({
   handleArticleVotes,
   disabled,
-}: ButtonProps): JSX.Element => {
+}: ButtonProps) => {
   return (
     <BiSolidDownvote
       onClick={() => !disabled && handleArticleVotes(-1)}
@@ -38,6 +35,6 @@ export const DownVoteButton = ({
   );
 };
 
-export const DeleteButton = (): JSX.Element => {
+export const DeleteButton = () => {
   return <MdDelete />;
 };

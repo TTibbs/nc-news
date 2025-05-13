@@ -13,7 +13,7 @@ interface ArticleCardProps {
   onDelete?: (article_id: number) => void;
 }
 
-const ArticleCard = ({ article, onDelete }: ArticleCardProps): JSX.Element => {
+const ArticleCard = ({ article, onDelete }: ArticleCardProps) => {
   const userContext = useContext(UserContext);
   const username = userContext?.user?.username;
   const [showModal, setShowModal] = useState<boolean>(false);

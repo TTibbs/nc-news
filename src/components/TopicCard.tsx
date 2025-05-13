@@ -7,11 +7,7 @@ interface TopicCardProps {
   isDeletable: boolean;
 }
 
-const TopicCard = ({
-  topic,
-  onDelete,
-  isDeletable,
-}: TopicCardProps): JSX.Element => {
+const TopicCard = ({ topic, onDelete, isDeletable }: TopicCardProps) => {
   return (
     <li className="flex flex-col items-center justify-center gap-3 text-zinc-200 p-6 sm:p-8 md:p-10 rounded-lg transition-transform duration-300 hover:scale-105 relative overflow-hidden shadow-lg shadow-redHover group w-64 max-w-xs">
       <h1 className="text-base md:text-lg font-bold capitalize text-center">

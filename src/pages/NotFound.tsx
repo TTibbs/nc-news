@@ -2,7 +2,7 @@ interface NotFoundProps {
   error?: { status?: string | number; msg?: string };
 }
 
-const NotFound = ({ error }: NotFoundProps): JSX.Element => {
+const NotFound = ({ error }: NotFoundProps) => {
   const status = error?.status || "404";
   const message = error?.msg || "Page Not Found";
 

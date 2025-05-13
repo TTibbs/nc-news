@@ -6,7 +6,7 @@ import { fetchTopics, postTopic } from "@/api/topicsApi";
 import { postArticle } from "@/api/articlesApi";
 import { Topic, User } from "@/types/api.types";
 
-const PostArticle = (): JSX.Element => {
+const PostArticle = () => {
   const userContext = useContext(UserContext);
   const user = userContext?.user as User;
   const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "@/components/Nav";
 import { IoMenu } from "react-icons/io5";
 
-const Header = (): JSX.Element => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (

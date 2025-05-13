@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Footer = (): JSX.Element => {
+const Footer = () => {
   return (
     <footer className="w-full py-5 px-4 md:px-14 bg-navBg flex items-center justify-between text-textPrimary">
       <Link to="/">

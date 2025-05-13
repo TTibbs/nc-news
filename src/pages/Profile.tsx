@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { User } from "@/types/api.types";
 import ErrorPage from "@/pages/ErrorPage";
 
-const Profile = (): JSX.Element => {
+const Profile = () => {
   const userContext = useContext(UserContext);
   const username = userContext?.user?.username;
   const [userInfo, setUserInfo] = useState<User | null>(null);

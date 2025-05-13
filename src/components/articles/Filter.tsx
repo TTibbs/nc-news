@@ -11,7 +11,7 @@ export interface FilterProps {
   currentPage: number;
 }
 
-const Filter = (props: FilterProps): JSX.Element => {
+const Filter = (props: FilterProps) => {
   const { setArticleList, totalArticles } = props;
   const [isArticlesLoading, setIsArticlesLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
