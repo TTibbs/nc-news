@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import {
   Article,
   ArticleQueryParams,
@@ -12,133 +12,107 @@ const api = axios.create({
   baseURL: API_BASE_URL,
 });
 
-export const fetchArticles = async (
+export const fetchArticles = (
   sort_by: string = "created_at",
   order: "asc" | "desc" = "asc",
   limit?: number,
   p: number = 1
 ): Promise<AxiosResponse<ApiResponse<Article>>> => {
-  try {
-    const response = await api.get("/api/articles", {
+  return api
+    .get("/api/articles", {
       params: {
         sort_by,
         order,
         limit,
         p,
       } as ArticleQueryParams,
+    })
+    .then((response) => {
+      return response;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response.data.msg);
     });
-    return response.data;
-  } catch (err) {
-    if (err instanceof AxiosError && err.response?.data?.msg) {
-      throw new Error(err.response.data.msg);
-    }
-    console.error(err);
-    throw err;
-  }
 };
 
-export const fetchArticleById = async (
-  article_id: number
-): Promise<Article> => {
-  try {
-    const response = await api.get(`/api/articles/${article_id}`);
-    return response.data.article;
-  } catch (err) {
-    if (err instanceof AxiosError && err.response?.data?.msg) {
-      throw new Error(err.response.data.msg);
-    }
-    console.error(err);
-    throw err;
-  }
+export const fetchArticleById = (article_id: number): Promise<Article> => {
+  return api
+    .get(`/api/articles/${article_id}`)
+    .then((response) => {
+      return response.data.article;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response.data.msg);
+    });
 };
 
-export const fetchArticleComments = async (
+export const fetchArticleComments = (
   article_id: number
 ): Promise<ApiResponse<Article>> => {
-  try {
-    const response = await api.get(`/api/articles/${article_id}/comments`);
-    return response.data.articleComments;
-  } catch (err) {
-    if (err instanceof AxiosError && err.response?.data?.msg) {
-      throw new Error(err.response.data.msg);
-    }
-    console.error(err);
-    throw err;
-  }
+  return api
+    .get(`/api/articles/${article_id}/comments`)
+    .then((response) => {
+      return response.data.articleComments;
+    })
+    .catch((err) => {
+      return Promise.reject(err.response.data.msg);
+    });
 };
 
-export const fetchArticlesByTopic = async (
-  slug: string
-): Promise<Article[]> => {
-  try {
-    const response = await api.get(`/api/articles?topic=${slug}`);
-    return response.data.articles;
-  } catch (err) {
-    if (err instanceof AxiosError && err.response?.data?.msg) {
-      throw new Error(err.response.data.msg);
-    }
-    console.error(err);
-    throw err;
-  }
+export const fetchArticlesByTopic = (slug: string): Promise<Article[]> => {
+  return api
+    .get(`/api/articles?topic=${slug}`)
+    .then((response) => {
+      return response.data.articles;
+    })
+    .catch((err) => {
+      return Promise.reject(
+        err.response?.data || { status: 500, msg: "Server error" }
+      );
+    });
 };
 
-export const updateArticleVotes = async (
+export const updateArticleVotes = (
   article_id: number,
   inc_votes: number
 ): Promise<Article> => {
   const body = { inc_votes };
 
-  try {
-    const response = await api.patch(`/api/articles/${article_id}`, body);
-    return response.data.updatedArticle;
-  } catch (err) {
-    if (err instanceof AxiosError && err.response?.data?.msg) {
-      throw new Error(err.response.data.msg);
-    }
-    console.error(err);
-    throw err;
-  }
+  return api
+    .patch(`/api/articles/${article_id}`, body)
+    .then((response) => {
+      return response.data.updatedArticle;
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
 };
 
-export const deleteArticleComment = async (
+export const deleteArticleComment = (
   comment_id: number
 ): Promise<AxiosResponse> => {
-  try {
-    const response = await api.delete(`/api/comments/${comment_id}`);
-    return response.data.comment;
-  } catch (err) {
-    if (err instanceof AxiosError && err.response?.data?.msg) {
-      throw new Error(err.response.data.msg);
-    }
+  return api.delete(`/api/comments/${comment_id}`).catch((err) => {
     console.log(err);
     throw err;
-  }
+  });
 };
 
-export const postArticle = async (newArticle: NewArticle): Promise<Article> => {
-  try {
-    const response = await api.post(`/api/articles`, newArticle);
-    return response.data.newArticle;
-  } catch (err) {
-    if (err instanceof AxiosError && err.response?.data?.msg) {
-      throw new Error(err.response.data.msg);
-    }
+export const postArticle = (newArticle: NewArticle): Promise<Article> => {
+  return api
+    .post(`/api/articles`, newArticle)
+    .then((response) => {
+      return response.data.newArticle;
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
+};
+
+export const deleteArticle = (article_id: number): Promise<AxiosResponse> => {
+  return api.delete(`/api/articles/${article_id}`).catch((err) => {
     console.log(err);
     throw err;
-  }
-};
-
-export const deleteArticle = async (
-  article_id: number
-): Promise<AxiosResponse> => {
-  try {
-    const response = await api.delete(`/api/articles/${article_id}`);
-    return response.data.article;
-  } catch (err) {
-    if (err instanceof AxiosError && err.response?.data?.msg) {
-      throw new Error(err.response.data.msg);
-    }
-    console.error(err);
-    throw err;
-  }
+  });
 };

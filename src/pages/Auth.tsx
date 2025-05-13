@@ -120,7 +120,7 @@ const Auth = () => {
 
   return (
     <section className="flex items-center justify-center min-h-screen">
-      <div className="relative w-96 h-[420px] perspective">
+      <div className="relative w-96 h-[460px] perspective">
         <div
           className={`absolute w-full h-full transition-transform duration-700 transform ${
             isFlipped ? "rotate-y-180" : ""
