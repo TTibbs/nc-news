@@ -1,6 +1,6 @@
 import React from "react";
-import SingleComment from "./SingleComment";
-import { Comment, Article } from "../../types/api.types";
+import SingleComment from "@/components/articles/SingleComment";
+import { Comment, Article } from "@/types/api.types";
 
 interface CommentsListProps {
   articleComments: Comment[];

@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
-import { fetchArticles } from "../api/articlesApi";
-import { fetchTopics } from "../api/topicsApi";
-import { formatDate } from "../utils/utilFuncs";
-import { Article, Topic } from "../types/api.types";
+import { UserContext } from "@/contexts/UserContext";
+import { fetchArticles } from "@/api/articlesApi";
+import { fetchTopics } from "@/api/topicsApi";
+import { formatDate } from "@/utils/utilFuncs";
+import { Article, Topic } from "@/types/api.types";
 
 const Home = (): JSX.Element => {
   const userContext = useContext(UserContext);
@@ -18,9 +18,9 @@ const Home = (): JSX.Element => {
       try {
         const topicsData = await fetchTopics();
         const articlesResponse = await fetchArticles();
-        const articlesData = articlesResponse.data.articles || [];
-        setTopics(topicsData.slice(0, 6));
-        setFeaturedArticles(articlesData.slice(0, 6));
+        const articlesData = articlesResponse.data?.articles || [];
+        setTopics(topicsData?.slice(0, 6) || []);
+        setFeaturedArticles(articlesData?.slice(0, 6) || []);
       } catch (err) {
         console.error("Failed to fetch home page data:", err);
       } finally {

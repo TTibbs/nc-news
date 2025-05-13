@@ -7,7 +7,7 @@ import {
   deleteArticleComment,
 } from "../../api/commentsApi";
 import Voting from "./Voting";
-import { formatDate } from "../../utils/utilFuncs";
+import { formatDate } from "../../utils/utilFuncs.ts";
 import { Comment, Article } from "../../types/api.types";
 
 interface SingleCommentProps {

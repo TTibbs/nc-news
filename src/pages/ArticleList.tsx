@@ -1,12 +1,12 @@
 import { useState, useEffect, useContext } from "react";
-import { fetchArticles } from "../api/articlesApi";
-import { UserContext } from "../contexts/UserContext";
-import ArticleCard from "../components/articles/ArticleCard";
-import Filter from "../components/articles/Filter";
-import ErrorPage from "./ErrorPage";
+import { fetchArticles } from "@/api/articlesApi";
+import { UserContext } from "@/contexts/UserContext";
+import ArticleCard from "@/components/articles/ArticleCard";
+import Filter from "@/components/articles/Filter";
+import ErrorPage from "@/pages/ErrorPage";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Article } from "../types/api.types";
+import { Article } from "@/types/api.types";
 import { FilterProps } from "@/components/articles/Filter";
 
 const ArticleList = (): JSX.Element => {

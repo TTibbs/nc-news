@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { toast, Bounce } from "react-toastify";
-import { UserContext } from "../contexts/UserContext";
-import { fetchTopics, deleteTopic } from "../api/topicsApi";
-import TopicCard from "../components/TopicCard";
-import ErrorPage from "./ErrorPage";
-import { Topic } from "../types/api.types";
+import { UserContext } from "@/contexts/UserContext";
+import { fetchTopics, deleteTopic } from "@/api/topicsApi";
+import TopicCard from "@/components/TopicCard";
+import ErrorPage from "@/pages/ErrorPage";
+import { Topic } from "@/types/api.types";
 
 const Topics = (): JSX.Element => {
   const userContext = useContext(UserContext);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { DownVoteButton, UpVoteButton } from "../Buttons";
-import { updateArticleVotes } from "../../api/articlesApi";
-import { updateCommentVotes } from "../../api/commentsApi";
+import { DownVoteButton, UpVoteButton } from "@/components/Buttons";
+import { updateArticleVotes } from "@/api/articlesApi";
+import { updateCommentVotes } from "@/api/commentsApi";
 
 interface VotingProps {
   votes: number;

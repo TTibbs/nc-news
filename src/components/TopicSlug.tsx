@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { UserContext } from "../contexts/UserContext";
-import { fetchArticlesByTopic } from "../api/articlesApi";
-import ArticleCard from "./articles/ArticleCard";
-import NotFound from "../pages/NotFound";
-import { Article } from "../types/api.types";
+import { UserContext } from "@/contexts/UserContext";
+import { fetchArticlesByTopic } from "@/api/articlesApi";
+import ArticleCard from "@/components/articles/ArticleCard";
+import NotFound from "@/pages/NotFound";
+import { Article } from "@/types/api.types";
 import { toast } from "react-toastify";
 
 const TopicSlug = (): JSX.Element => {

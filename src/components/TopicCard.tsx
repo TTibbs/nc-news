@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Topic } from "../types/api.types";
+import { Topic } from "@/types/api.types";
 
 interface TopicCardProps {
   topic: Topic;

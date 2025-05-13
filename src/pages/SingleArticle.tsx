@@ -6,7 +6,7 @@ import CommentsList from "../components/articles/CommentsList";
 import CommentAdder from "../components/articles/CommentAdder";
 import Voting from "../components/articles/Voting";
 import ErrorPage from "./ErrorPage";
-import { calculateReadingTime } from "../utils/utilFuncs";
+import { calculateReadingTime } from "../utils/utilFuncs.ts";
 import { Article, Comment } from "../types/api.types";
 import NotFound from "./NotFound";
 

@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchUser, createUser } from "../api/userApi";
-import { UserContext } from "../contexts/UserContext";
-import { User } from "../types/api.types";
+import { fetchUser, createUser } from "@/api/userApi";
+import { UserContext } from "@/contexts/UserContext";
+import { User } from "@/types/api.types";
 
 interface FormValues {
   signInUsername: string;

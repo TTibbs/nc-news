@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast, Bounce } from "react-toastify";
-import { UserContext } from "../contexts/UserContext";
-import { fetchTopics, postTopic } from "../api/topicsApi";
-import { postArticle } from "../api/articlesApi";
-import { Topic, User } from "../types/api.types";
+import { UserContext } from "@/contexts/UserContext";
+import { fetchTopics, postTopic } from "@/api/topicsApi";
+import { postArticle } from "@/api/articlesApi";
+import { Topic, User } from "@/types/api.types";
 
 const PostArticle = (): JSX.Element => {
   const userContext = useContext(UserContext);

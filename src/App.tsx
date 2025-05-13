@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home";
-import ArticleList from "./pages/ArticleList";
-import SingleArticle from "./pages/SingleArticle";
-import Topics from "./pages/Topics";
-import TopicSlug from "./components/TopicSlug";
-import NotFound from "./pages/NotFound";
-import PostArticle from "./pages/PostArticle";
-import Auth from "./pages/Auth";
+import Home from "@/pages/Home";
+import ArticleList from "@/pages/ArticleList";
+import SingleArticle from "@/pages/SingleArticle";
+import Topics from "@/pages/Topics";
+import TopicSlug from "@/components/TopicSlug";
+import NotFound from "@/pages/NotFound";
+import PostArticle from "@/pages/PostArticle";
+import Auth from "@/pages/Auth";
 import { ToastContainer } from "react-toastify";
-import Layout from "./components/Layout";
-import Profile from "./pages/Profile";
+import Layout from "@/components/Layout";
+import Profile from "@/pages/Profile";
 import { Analytics } from "@vercel/analytics/react";
 
 const App = () => {

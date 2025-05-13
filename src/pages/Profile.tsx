@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../contexts/UserContext";
-import { fetchUser } from "../api/userApi";
+import { UserContext } from "@/contexts/UserContext";
+import { fetchUser } from "@/api/userApi";
 import { Link } from "react-router-dom";
-import { User } from "../types/api.types";
+import { User } from "@/types/api.types";
 
 const Profile = (): JSX.Element => {
   const userContext = useContext(UserContext);

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { fetchArticles } from "../../api/articlesApi";
+import { fetchArticles } from "@/api/articlesApi";
 import { FaChevronDown } from "react-icons/fa";
-import { Article } from "../../types/api.types";
+import { Article } from "@/types/api.types";
 
 export interface FilterProps {
   setArticleList: React.Dispatch<React.SetStateAction<Article[]>>;

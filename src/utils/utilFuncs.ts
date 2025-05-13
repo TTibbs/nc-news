@@ -1,8 +1,8 @@
-export const capitaliseFirstLetter = (string) => {
+export const capitaliseFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const calculateReadingTime = (text) => {
+export const calculateReadingTime = (text: string) => {
   if (!text || typeof text !== "string") {
     return 0;
   }
@@ -13,7 +13,11 @@ export const calculateReadingTime = (text) => {
   return time;
 };
 
-export const formatDate = (date) => {
-  const options = { year: "numeric", month: "long", day: "numeric" };
+export const formatDate = (date: string) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
   return new Date(date).toLocaleDateString("en-GB", options);
 };

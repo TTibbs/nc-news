@@ -1,10 +1,10 @@
 import { useState, useRef, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
+import { UserContext } from "@/contexts/UserContext";
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchArticleComments, addNewComment } from "../../api/commentsApi";
-import { Comment } from "../../types/api.types";
+import { fetchArticleComments, addNewComment } from "@/api/commentsApi";
+import { Comment } from "@/types/api.types";
 
 interface CommentAdderProps {
   setArticleComments: (comments: Comment[]) => void;

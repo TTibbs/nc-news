@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
-import { UserContext } from "../contexts/UserContext";
-import { User } from "../types/api.types";
+import { UserContext } from "@/contexts/UserContext";
 
 interface NavProps {
   isMenuOpen: boolean;
@@ -10,10 +9,14 @@ interface NavProps {
 }
 
 const Nav = ({ isMenuOpen, setIsMenuOpen }: NavProps): JSX.Element => {
-  const { user, setUser } = useContext(UserContext);
+  const userContext = useContext(UserContext);
+  const user = userContext?.user;
+  const setUser = userContext?.setUser;
 
   const handleLogout = (): void => {
-    setUser(null);
+    if (setUser) {
+      setUser(null);
+    }
     setIsMenuOpen(false);
   };
 

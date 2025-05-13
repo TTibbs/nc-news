@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import Nav from "./Nav";
+import Nav from "@/components/Nav";
 import { IoMenu } from "react-icons/io5";
 
 const Header = (): JSX.Element => {

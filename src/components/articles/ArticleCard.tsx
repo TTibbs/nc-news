@@ -1,13 +1,12 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast, Bounce } from "react-toastify";
-import { UserContext } from "../../contexts/UserContext";
-import VotesAndCommentCount from "./VotesAndCommentCount";
-import { capitaliseFirstLetter } from "../../utils/utilFuncs";
+import { UserContext } from "@/contexts/UserContext";
+import VotesAndCommentCount from "@/components/articles/VotesAndCommentCount";
+import { capitaliseFirstLetter, formatDate } from "@/utils/utilFuncs";
 import { MdDelete } from "react-icons/md";
-import { deleteArticle } from "../../api/articlesApi";
-import { formatDate } from "../../utils/utilFuncs";
-import { Article } from "../../types/api.types";
+import { deleteArticle } from "@/api/articlesApi";
+import { Article } from "@/types/api.types";
 
 interface ArticleCardProps {
   article: Article;
