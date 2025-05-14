@@ -5,7 +5,6 @@ import ArticleCard from "@/components/articles/ArticleCard";
 import Filter from "@/components/articles/Filter";
 import ErrorPage from "@/pages/ErrorPage";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { Article } from "@/types/api.types";
 import { FilterProps } from "@/components/articles/Filter";
 
@@ -34,24 +33,6 @@ const ArticleList = () => {
         setIsArticlesLoading(false);
       });
   }, []);
-
-  const handlePostArticleClick = (e: React.MouseEvent): void => {
-    if (!username) {
-      e.preventDefault();
-      toast.error("Please log in to post an article.", {
-        position: "top-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-    } else {
-      navigate("/post-article");
-    }
-  };
 
   const handleDelete = (article_id: number): void => {
     setArticleList((prevArticles) =>
@@ -82,8 +63,9 @@ const ArticleList = () => {
       {isError ? <ErrorPage error={isError} /> : null}
       <div className="flex flex-col md:flex-row items-center justify-between gap-5 mt-3">
         <button
-          onClick={handlePostArticleClick}
-          className="py-1 px-4 md:px-6 text-sm md:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redHover hover:outline-textPrimary transition-all duration-300 ease-in-out text-textPrimary rounded"
+          onClick={() => navigate("/post-article")}
+          disabled={!username}
+          className="py-1 px-4 md:px-6 text-sm md:text-base outline outline-2 outline-redPrimary bg-zinc-900 hover:bg-redHover hover:outline-textPrimary transition-all duration-300 ease-in-out text-textPrimary rounded disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-zinc-800 disabled:hover:outline-redPrimary"
         >
           Post Article
         </button>
